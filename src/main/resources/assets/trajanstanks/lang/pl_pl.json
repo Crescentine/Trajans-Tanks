@@ -1,0 +1,10 @@
+{
+  "item.trajanstanks.tank_item": "Czołg",
+  "item.trajanstanks.tank_controller": "Kierownica Czołgu",
+  "item.trajanstanks.netherite_wheel": "Wzmacniane Skórzane Koło",
+  "itemGroup.trajanstanks": "Czołgi Trajana",
+  "key.tankmod.startmoving" : "Napszód",
+  "item.trajanstanks.artillery_shell_item": "Amunicja przeciwpancerna",
+  "item.trajanstanks.artillery_item": "Działo przeciwpancerne",
+  "category.tankmod.trajanstanks" : "Czołgi Modyfikacja"
+}

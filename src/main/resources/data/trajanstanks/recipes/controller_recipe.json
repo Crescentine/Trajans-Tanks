@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " n ",
+        "nRn",
+        " F "
+    ],
+    "key": {
+        "n": {
+            "item": "minecraft:iron_ingot"
+        },
+        "R": {
+            "item": "minecraft:redstone_block"
+        },
+        "F": {
+            "item": "minecraft:redstone_torch"
+        }
+    },
+    "result": {
+        "item": "trajanstanks:tank_controller",
+        "count": 1
+    }
+}

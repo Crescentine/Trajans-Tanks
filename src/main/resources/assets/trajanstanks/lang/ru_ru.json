@@ -1,0 +1,10 @@
+{
+  "item.trajanstanks.tank_item": "Танк",
+  "item.trajanstanks.tank_controller": "Руль танка",
+  "item.trajanstanks.netherite_wheel": "Кожаное колесо укреплённое незеритом",
+  "itemGroup.trajanstanks": "Танки Траяна",
+  "key.tankmod.startmoving" : "Движение танка вперёд",
+  "item.trajanstanks.artillery_shell_item": "Противотанковые Снаряды",
+  "item.trajanstanks.artillery_item": "Противотанковая Артиллерия",
+  "category.tankmod.trajanstanks" : "мод, добавляющий танк"
+}

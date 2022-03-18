@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  I",
+    "FTI",
+    "NNN"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "F": {
+      "item": "minecraft:furnace"
+    },
+    "T": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "N": {
+      "item": "trajanstanks:netherite_wheel"
+    }
+  },
+  "result": {
+    "item": "trajanstanks:tank_item",
+    "count": 1
+  }
+}

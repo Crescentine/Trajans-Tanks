@@ -1,0 +1,13 @@
+{
+  "item.trajanstanks.tank_item": "Tanque leve (Panzer 2)",
+  "item.trajanstanks.tank_controller": "Volante",
+  "item.trajanstanks.artillery_shell_item": "Munição anti-tanque",
+  "item.trajanstanks.artillery_item": "Artilharia anti-tanque",
+  "itemGroup.trajanstanks": "Tanques de Trajan",
+  "key.tankmod.startmoving" : "Para frente",
+  "category.tankmod.trajanstanks" : "Modificação de Tanque",
+  "item.trajanstanks.netherite_wheel": "Roda",
+  "key.tankmod.shoot" : "Fogo!",
+  "item.trajanstanks.heavy_tank_item" : "Tanque pesado (Tiger)",
+  "item.trajanstanks.shell_item" : "Munição de tanque"
+}

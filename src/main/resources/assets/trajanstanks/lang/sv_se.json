@@ -1,0 +1,8 @@
+{
+  "item.trajanstanks.tank_item": "Pansarvagn",
+  "item.trajanstanks.tank_controller": "Pansarvagn Ratt",
+  "item.trajanstanks.netherite_wheel": "Täckt Läderratt",
+  "itemGroup.trajanstanks": "Trajan's Pansarvagnar",
+  "key.tankmod.startmoving" : "Pansarvagns Styrknappar",
+  "category.tankmod.trajanstanks" : "Pansarvagns Mod"
+}

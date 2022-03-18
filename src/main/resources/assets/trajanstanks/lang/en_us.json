@@ -1,0 +1,13 @@
+{
+  "item.trajanstanks.tank_item": "Light Tank (Panzer 2)",
+  "item.trajanstanks.tank_controller": "Tank Steering Wheel",
+  "item.trajanstanks.artillery_shell_item": "Anti-Tank Ammo",
+  "item.trajanstanks.artillery_item": "Anti-Tank Artillery",
+  "itemGroup.trajanstanks": "Trajan's Tanks",
+  "key.tankmod.startmoving" : "Forward",
+  "category.tankmod.trajanstanks" : "Tank Mod",
+  "item.trajanstanks.netherite_wheel": "Wheel",
+  "key.tankmod.shoot" : "Fire!",
+  "item.trajanstanks.heavy_tank_item" : "Heavy Tank (Tiger)",
+  "item.trajanstanks.shell_item" : "Tank Ammo"
+}
