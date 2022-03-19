@@ -15,10 +15,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.AgeableMob;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.Pig;
@@ -33,7 +30,7 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 public class ArtilleryEntity extends Pig implements IAnimatable {
-    private final int cooldown = 75;
+    private final int cooldown = TankModConfig.mounted_gun_shot_cooldown.get();
 
     private int time = cooldown;
 
@@ -52,6 +49,10 @@ public class ArtilleryEntity extends Pig implements IAnimatable {
     @Override
     public boolean canStandOnFluid(FluidState fluid) {
         return false;
+    }
+
+    @Override
+    public void thunderHit(ServerLevel p_29473_, LightningBolt p_29474_) {
     }
 
     @Override

@@ -22,14 +22,18 @@ public class TankModEntityTypes {
     public static DeferredRegister<EntityType<?>> ENTITY_TYPES
             = DeferredRegister.create(ForgeRegistries.ENTITIES, TankMod.MOD_ID);
 
-    public static final EntityType<ArtilleryEntity> ARTILLERY_ENTITY_TYPE_RAW = EntityType.Builder.<ArtilleryEntity>of(ArtilleryEntity::new, MobCategory.MISC).sized(1.65F, 1.0F).clientTrackingRange(10).build("artillery_entity_type_raw");
-    public static final RegistryObject<EntityType<ArtilleryEntity>> ARTILLERY_ENTITY_TYPE = ENTITY_TYPES.register("artillery_entity_type", () -> ARTILLERY_ENTITY_TYPE_RAW);
+    public static final RegistryObject<EntityType<ArtilleryEntity>> ARTILLERY_ENTITY_TYPE = ENTITY_TYPES.register("artillery_entity_type",
+            () -> EntityType.Builder.of(ArtilleryEntity:: new, MobCategory.MISC).sized(1.65F, 1.0F)
+                    .clientTrackingRange(10).build("artillery_entity_type"));
 
-    public static final EntityType<TankEntity> TANK_ENTITY_TYPE_RAW = EntityType.Builder.<TankEntity>of(TankEntity::new, MobCategory.MISC).sized(4.0F, 2.0F).clientTrackingRange(10).build("tank_entity_type_raw");
-    public static final RegistryObject<EntityType<TankEntity>> TANK_ENTITY_TYPE = ENTITY_TYPES.register("tank_entity_type", () -> TANK_ENTITY_TYPE_RAW);
+    public static final RegistryObject<EntityType<TankEntity>> TANK_ENTITY_TYPE = ENTITY_TYPES.register("tank_entity_type",
+            () -> EntityType.Builder.<TankEntity>of(TankEntity::new, MobCategory.MISC).sized(4.0F, 2.0F)
+                    .clientTrackingRange(10).build("tank_entity_type"));
 
-    public static final EntityType<HeavyTankEntity> HEAVY_TANK_ENTITY_TYPE_RAW = EntityType.Builder.<HeavyTankEntity>of(HeavyTankEntity::new, MobCategory.MISC).sized(4.5F, 2.2F).clientTrackingRange(10).build("heavy_tank_entity_type_raw");
-    public static final RegistryObject<EntityType<HeavyTankEntity>> HEAVY_TANK_ENTITY_TYPE = ENTITY_TYPES.register("heavy_tank_entity_type", () -> HEAVY_TANK_ENTITY_TYPE_RAW);
+    public static final RegistryObject<EntityType<HeavyTankEntity>> HEAVY_TANK_ENTITY_TYPE = ENTITY_TYPES.register("heavy_tank_entity_type",
+            () -> EntityType.Builder.<HeavyTankEntity>of(HeavyTankEntity::new, MobCategory.MISC).sized(4.5F, 2.2F)
+                    .clientTrackingRange(10).build("heavy_tank_entity"));
+
 
 
 

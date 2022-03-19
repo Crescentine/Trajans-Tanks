@@ -24,18 +24,14 @@ public class TankModItems {
     public static final RegistryObject<Item> TANK_CONTROLLER = ITEMS.register("tank_controller",
             () -> new Item(new Item.Properties().tab(TankModItemGroup.TANK_MOD_ITEM_GROUP)));
 
-    public static final RegistryObject<Item> TANK_ITEM = ITEMS.register("tank_item", () -> new TankSpawnEgg(TankModEntityTypes.TANK_ENTITY_TYPE_RAW, 0x757980, 0x959dab, (new Item.Properties()).tab(TankModItemGroup.TANK_MOD_ITEM_GROUP)));
+    public static final RegistryObject<Item> TANK_ITEM = ITEMS.register("tank_item", () -> new TankSpawnEgg(TankModEntityTypes.TANK_ENTITY_TYPE, 0x757980, 0x959dab, (new Item.Properties()).tab(TankModItemGroup.TANK_MOD_ITEM_GROUP)));
 
-    public static final RegistryObject<Item> ARTILLERY_ITEM = ITEMS.register("artillery_item", () -> new TankSpawnEgg(TankModEntityTypes.ARTILLERY_ENTITY_TYPE_RAW, 0x7a7873, 0x66625d, (new Item.Properties()).tab(TankModItemGroup.TANK_MOD_ITEM_GROUP)));
+    public static final RegistryObject<Item> ARTILLERY_ITEM = ITEMS.register("artillery_item", () -> new TankSpawnEgg(TankModEntityTypes.ARTILLERY_ENTITY_TYPE, 0x7a7873, 0x66625d, (new Item.Properties()).tab(TankModItemGroup.TANK_MOD_ITEM_GROUP)));
 
-    public static final RegistryObject<Item> HEAVY_TANK_ITEM = ITEMS.register("heavy_tank_item", () -> new TankSpawnEgg(TankModEntityTypes.HEAVY_TANK_ENTITY_TYPE_RAW, 0x9D9A82, 0x8a8879, (new Item.Properties()).tab(TankModItemGroup.TANK_MOD_ITEM_GROUP)));
+    public static final RegistryObject<Item> HEAVY_TANK_ITEM = ITEMS.register("heavy_tank_item", () -> new TankSpawnEgg(TankModEntityTypes.HEAVY_TANK_ENTITY_TYPE, 0x9D9A82, 0x8a8879, (new Item.Properties()).tab(TankModItemGroup.TANK_MOD_ITEM_GROUP)));
 
 
     public static final RegistryObject<Item> NETHERITE_WHEEL = ITEMS.register("netherite_wheel",
             () -> new Item(new Item.Properties().tab(TankModItemGroup.TANK_MOD_ITEM_GROUP)));
-
-    public static void register(IEventBus eventBus) {
-        ITEMS.register(eventBus );
-    }
 
 }

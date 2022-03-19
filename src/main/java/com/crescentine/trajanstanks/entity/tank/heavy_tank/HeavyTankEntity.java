@@ -38,7 +38,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 public class HeavyTankEntity extends Pig implements IAnimatable {
     private final AnimationFactory factory = new AnimationFactory(this);
 
-    private final int cooldown = 75;
+    private final int cooldown = TankModConfig.heavy_tank_shot_cooldown.get();
 
     private int time = cooldown;
 
@@ -46,7 +46,10 @@ public class HeavyTankEntity extends Pig implements IAnimatable {
     public HeavyTankEntity(EntityType<?> entityType, Level world) {
         super((EntityType<? extends Pig>) entityType, world);
     }
+    @Override
+    public void thunderHit(ServerLevel p_29473_, LightningBolt p_29474_) {
 
+    }
     public static AttributeSupplier.Builder createAttributes() {
         return Pig.createLivingAttributes()
                 .add(Attributes.MOVEMENT_SPEED, TankModConfig.light_tank_speed.get())
@@ -160,11 +163,6 @@ public class HeavyTankEntity extends Pig implements IAnimatable {
     @Override
     public Pig getBreedOffspring(ServerLevel p_149001_, AgeableMob p_149002_) {
         return null;
-    }
-
-    @Override
-    public void thunderHit(ServerLevel p_29473_, LightningBolt p_29474_) {
-
     }
 
     @Override

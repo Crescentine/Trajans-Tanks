@@ -38,7 +38,7 @@ import net.minecraft.world.damagesource.DamageSource;
 public class TankEntity extends Pig implements IAnimatable {
     private final AnimationFactory factory = new AnimationFactory(this);
 
-    private final int cooldown = 75;
+    private final int cooldown = TankModConfig.light_tank_shot_cooldown.get();
 
     private int time = cooldown;
 

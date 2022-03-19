@@ -81,18 +81,13 @@ public class TankMod {
                 }
         );
                     GeckoLib.initialize();
-        // Register the setup method for modloading
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         eventBus.addListener(this::setup);
-        // Register the enqueueIMC method for modloading
         eventBus.addListener(this::enqueueIMC);
-        // Register the processIMC method for modloading
         eventBus.addListener(this::processIMC);
         eventBus.addListener(this::commonSetup);
-        // Register the doClientStuff method for modloading
-        TankModItems.register(eventBus);
-        TankModEntityTypes.register(eventBus);
-        // Register ourselves for server and other game events we are interested in
+        TankModItems.ITEMS.register(eventBus);
+        TankModEntityTypes.ENTITY_TYPES.register(eventBus);
         MinecraftForge.EVENT_BUS.register(this);
         TankNetwork.init();
     }

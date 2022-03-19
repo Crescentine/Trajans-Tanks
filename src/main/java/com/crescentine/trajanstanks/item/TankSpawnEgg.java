@@ -11,10 +11,13 @@ import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.core.Direction;
 
 import net.minecraft.world.item.Item.Properties;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 
-public class TankSpawnEgg extends SpawnEggItem {
-    public TankSpawnEgg(EntityType<?> typeIn, int primaryColorIn, int secondaryColorIn, Properties builder) {
-        super((EntityType<? extends Mob>) typeIn, primaryColorIn, secondaryColorIn, builder);
+import java.util.function.Supplier;
+
+public class TankSpawnEgg extends ForgeSpawnEggItem {
+    public TankSpawnEgg(Supplier<? extends EntityType<? extends Mob>> typeIn, int primaryColorIn, int secondaryColorIn, Properties builder) {
+        super(typeIn, primaryColorIn, secondaryColorIn, builder);
 
         // Have to manually add dispenser behavior due to forge item registry event running too late.
         DispenserBlock.registerBehavior(
