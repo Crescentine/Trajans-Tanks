@@ -1,6 +1,7 @@
 package com.crescentine.trajanstanks.entity.artillery;
 
 import com.crescentine.trajanstanks.config.TankModConfig;
+import com.crescentine.trajanstanks.entity.BaseTankEntity;
 import com.crescentine.trajanstanks.entity.shell.ArtilleryShell;
 import com.crescentine.trajanstanks.entity.shell.ShellEntity;
 import com.crescentine.trajanstanks.item.TankModItems;
@@ -29,11 +30,9 @@ import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class ArtilleryEntity extends Pig implements IAnimatable {
+public class ArtilleryEntity extends BaseTankEntity implements IAnimatable {
     private final int cooldown = TankModConfig.mounted_gun_shot_cooldown.get();
-
     private int time = cooldown;
-
     public ArtilleryEntity(EntityType<?> entityType, Level world) {
         super((EntityType<? extends Pig>) entityType, world);
     }
@@ -47,110 +46,18 @@ public class ArtilleryEntity extends Pig implements IAnimatable {
     private final AnimationFactory factory = new AnimationFactory(this);
 
     @Override
-    public boolean canStandOnFluid(FluidState fluid) {
-        return false;
-    }
-
-    @Override
-    public void thunderHit(ServerLevel p_29473_, LightningBolt p_29474_) {
-    }
-
-    @Override
-    public boolean rideableUnderWater() {
-        return false;
-    }
-
-    @Override
-    protected int calculateFallDamage(float fallDistance, float damageMultiplier) {
-        return 0;
-    }
-
-    @Override
-    public int getMaxFallDistance() {
-        return 30;
-    }
-
-    @Override
     public boolean canBeControlledByRider() {
         return false;
     }
-
-
-    @Override
-    protected void removePassenger(Entity entity) {
-        super.removePassenger(entity);
-    }
-
-    @Override
-    public boolean requiresCustomPersistence() {
-        return true;
-    }
-    @Override
-    public ItemStack getItemBySlot(EquipmentSlot slot) {
-        return ItemStack.EMPTY;
-    }
-
-    @Override
-    protected void registerGoals() {
-    }
-//Movement Related
-    @Override
-    protected boolean shouldPassengersInheritMalus() {
-        return true;
-    }
-    @Override
-    public float getSteeringSpeed() {
-        return 0.05f;
-    }
-
-    @Override
-    public boolean isBaby() {
-        return false;
-    }
-
-    @Override
-    public Pig getBreedOffspring(ServerLevel p_149001_, AgeableMob p_149002_) {
-        return null;
-    }
-
-
     @Override
     protected boolean isImmobile() {
         return false;
     }
-
-    @Override
-    protected SoundEvent getAmbientSound() {
-        return SoundEvents.MINECART_RIDING;
-    }
-
-    @Override
-    protected SoundEvent getDeathSound() {
-        return SoundEvents.GENERIC_EXPLODE;
-    }
-
-    @Override
-    protected SoundEvent getHurtSound(DamageSource source) {
-        return SoundEvents.ARMOR_EQUIP_IRON;
-    }
-
-    @Override
-    protected SoundEvent getSwimSplashSound() {
-        return SoundEvents.PLAYER_SPLASH;
-    }
-
-    @Override
-    protected SoundEvent getSwimSound() {
-        return SoundEvents.GENERIC_SWIM;
-    }
-
-
     @Override
     public InteractionResult interactAt(Player player, Vec3 hitPos, InteractionHand hand) {
         player.startRiding(this, true);
         return InteractionResult.SUCCESS;
     }
-
     @Override
     public void registerControllers(AnimationData data) {
 

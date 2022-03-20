@@ -1,6 +1,5 @@
-package com.crescentine.trajanstanks;
+package com.crescentine.trajanstanks.item;
 
-import com.crescentine.trajanstanks.item.TankModItems;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 

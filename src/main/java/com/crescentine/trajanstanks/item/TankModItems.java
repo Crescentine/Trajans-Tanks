@@ -1,13 +1,10 @@
 package com.crescentine.trajanstanks.item;
 
 import com.crescentine.trajanstanks.TankMod;
-import com.crescentine.trajanstanks.TankModItemGroup;
 import com.crescentine.trajanstanks.entity.shell.ShellItem;
 import com.crescentine.trajanstanks.entity.TankModEntityTypes;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;

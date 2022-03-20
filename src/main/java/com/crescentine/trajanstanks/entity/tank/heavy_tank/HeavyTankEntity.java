@@ -2,6 +2,7 @@ package com.crescentine.trajanstanks.entity.tank.heavy_tank;
 
 import com.crescentine.trajanstanks.TankModClient;
 import com.crescentine.trajanstanks.config.TankModConfig;
+import com.crescentine.trajanstanks.entity.BaseTankEntity;
 import com.crescentine.trajanstanks.entity.shell.ShellEntity;
 import com.crescentine.trajanstanks.entity.tank.light_tank.TankEntity;
 import com.crescentine.trajanstanks.item.TankModItems;
@@ -35,21 +36,14 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class HeavyTankEntity extends Pig implements IAnimatable {
+public class HeavyTankEntity extends BaseTankEntity implements IAnimatable {
     private final AnimationFactory factory = new AnimationFactory(this);
-
     private final int cooldown = TankModConfig.heavy_tank_shot_cooldown.get();
-
     private int time = cooldown;
-
-
     public HeavyTankEntity(EntityType<?> entityType, Level world) {
         super((EntityType<? extends Pig>) entityType, world);
     }
-    @Override
-    public void thunderHit(ServerLevel p_29473_, LightningBolt p_29474_) {
 
-    }
     public static AttributeSupplier.Builder createAttributes() {
         return Pig.createLivingAttributes()
                 .add(Attributes.MOVEMENT_SPEED, TankModConfig.light_tank_speed.get())
@@ -58,8 +52,6 @@ public class HeavyTankEntity extends Pig implements IAnimatable {
                 .add(Attributes.ARMOR, 5.0f)
                 .add(Attributes.FOLLOW_RANGE, 0.0D);
     }
-
-
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
         if (event.isMoving()) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.model.tank Movement", true));
@@ -69,141 +61,24 @@ public class HeavyTankEntity extends Pig implements IAnimatable {
     }
 
     @Override
-    public boolean canStandOnFluid(FluidState fluid) {
-        return false;
-    }
-
-
-
-    @Override
-    public boolean rideableUnderWater() {
-        return false;
-    }
-
-    @Override
-    protected int calculateFallDamage(float fallDistance, float damageMultiplier) {
-        return 0;
-    }
-
-    @Override
-    public int getMaxFallDistance() {
-        return 30;
-    }
-
-    @Override
-    public boolean canBeControlledByRider() {
-        if (!FMLEnvironment.dist.isClient()) {
-            return true;
-        }
-        if (TankModClient.STARTMOVING.isDown()) {
-            return true;
-        }
-        return false;
-    }
-
-
-    @Override
-    protected void removePassenger(Entity entity) {
-        super.removePassenger(entity);
-    }
-
-    @Override
-    public boolean requiresCustomPersistence() {
-        return true;
-    }
-
-    @Override
     public void registerControllers(AnimationData animationData) {
         animationData.addAnimationController(new AnimationController<>(this, "controller", 0, this::predicate));
 
     }
-
-
     @Override
     public AnimationFactory getFactory() {
         return this.factory;
     }
-
-    @Override
-    public ItemStack getItemBySlot(EquipmentSlot slot) {
-        return ItemStack.EMPTY;
-    }
-
-    @Override
-    protected void registerGoals() {
-    }
-//Movement Related
-
-
-    @Override
-    protected boolean shouldPassengersInheritMalus() {
-        return true;
-    }
-/*
-    @Override
-    public boolean isEffectiveAi() {
-        return true;
-    } */
-
-    //Movement Related ^
-
-
-    @Override
-    public void stopRiding() {
-
-        super.stopRiding();
-    }
-
-
-    @Override
-    public boolean isBaby() {
-        return false;
-    }
-
-    @Override
-    public Pig getBreedOffspring(ServerLevel p_149001_, AgeableMob p_149002_) {
-        return null;
-    }
-
     @Override
     protected boolean isImmobile() {
         return false;
     }
-
-    @Override
-    protected SoundEvent getAmbientSound() {
-        return SoundEvents.MINECART_RIDING;
-    }
-
-    @Override
-    protected SoundEvent getDeathSound() {
-        return SoundEvents.GENERIC_EXPLODE;
-    }
-
-    @Override
-    protected SoundEvent getHurtSound(DamageSource source) {
-        return SoundEvents.ARMOR_EQUIP_IRON;
-    }
-
-    @Override
-    protected SoundEvent getSwimSplashSound() {
-        return SoundEvents.PLAYER_SPLASH;
-    }
-
-    @Override
-    protected SoundEvent getSwimSound() {
-        return SoundEvents.GENERIC_SWIM;
-    }
-
-
     @Override
     public InteractionResult interactAt(Player player, Vec3 hitPos, InteractionHand hand) {
         player.startRiding(this, true);
         return InteractionResult.SUCCESS;
     }
-
     static int shellsUsed = 1;
-
     public void tick() {
         super.tick();
 
@@ -240,7 +115,6 @@ public class HeavyTankEntity extends Pig implements IAnimatable {
             double z = -Mth.cos((float) (player.getEyeY() / 180.0F * (float) Math.PI)) * distance;
 
 
-            //     shellEntity.setPos(player.getX() + x, player.getY() - 1.0D, player.getZ() + z);
             shellEntity.setPos(player.getEyePosition());
             world.addFreshEntity(shellEntity);
 
