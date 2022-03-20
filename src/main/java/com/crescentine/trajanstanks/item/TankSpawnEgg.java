@@ -19,7 +19,6 @@ public class TankSpawnEgg extends ForgeSpawnEggItem {
     public TankSpawnEgg(Supplier<? extends EntityType<? extends Mob>> typeIn, int primaryColorIn, int secondaryColorIn, Properties builder) {
         super(typeIn, primaryColorIn, secondaryColorIn, builder);
 
-        // Have to manually add dispenser behavior due to forge item registry event running too late.
         DispenserBlock.registerBehavior(
                 this,
                 new DefaultDispenseItemBehavior() {

@@ -52,7 +52,6 @@ public class TankMod {
             "1"::equals
     );
     public static final String MOD_ID = "trajanstanks";
-    // Directly reference a log4j logger.
     private static final Logger LOGGER = LogManager.getLogger();
     public TankMod() {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, TankModConfig.SPEC, "trajanstanks-config.toml");
@@ -81,10 +80,8 @@ public class TankMod {
                 }
         );
                     GeckoLib.initialize();
+
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        eventBus.addListener(this::setup);
-        eventBus.addListener(this::enqueueIMC);
-        eventBus.addListener(this::processIMC);
         eventBus.addListener(this::commonSetup);
         TankModItems.ITEMS.register(eventBus);
         TankModEntityTypes.ENTITY_TYPES.register(eventBus);
@@ -95,46 +92,8 @@ public class TankMod {
     public void commonSetup(final FMLCommonSetupEvent event) {
         TankNetwork.init();
     }
-
-    private void setup(final FMLCommonSetupEvent event) {
-
-        // some preinit code
-        LOGGER.info("HELLO FROM PREINIT");
-        LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
-    }
-
-    private void enqueueIMC(final InterModEnqueueEvent event) {
-        // some example code to dispatch IMC to another mod
-        InterModComms.sendTo("examplemod", "helloworld", () -> {
-            LOGGER.info("Hello world from the MDK");
-            return "Hello world";
-        });
-    }
-
-    private void processIMC(final InterModProcessEvent event) {
-        // some example code to receive and process InterModComms from other mods
-        LOGGER.info("Got IMC {}", event.getIMCStream().
-                map(m -> m.getMessageSupplier().get()).
-                collect(Collectors.toList()));
-    }
-
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
-    @SubscribeEvent
-    public void onServerStarting(ServerStartingEvent event) {
-        // do something when the server starts
-        LOGGER.info("HELLO from server starting");
-    }
-
-    // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
-    // Event bus for receiving Registry Events)
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistryEvents {
-        @SubscribeEvent
-        public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
-            // register a new block here
-            LOGGER.info("HELLO from Register Block");
-        }
-
         @OnlyIn(Dist.CLIENT)
         @SubscribeEvent
         public static void registerRenderers(final FMLClientSetupEvent event) {
@@ -144,8 +103,6 @@ public class TankMod {
             EntityRenderers.register(TankModEntityTypes.SHELL.get(), ThrownItemRenderer<ShellEntity>::new);
             EntityRenderers.register(TankModEntityTypes.ARTILLERY_SHELL.get(), ThrownItemRenderer<ArtilleryShell>::new);
             EntityRenderers.register(TankModEntityTypes.HEAVY_TANK_ENTITY_TYPE.get(), HeavyTankRenderer::new);
-
-            //        event.registerEntityRenderer(TankModEntityTypes.SHELL.get(), ThrownItemRenderer::new<>(entityRendererManager, minecraftClient.getItemRenderer()));
 
         }
     }
