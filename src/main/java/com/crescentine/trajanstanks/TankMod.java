@@ -1,6 +1,8 @@
 package com.crescentine.trajanstanks;
 
+import com.crescentine.trajanstanks.blockentity.TankModBlockEntities;
 import com.crescentine.trajanstanks.config.TankModConfig;
+import com.crescentine.trajanstanks.container.TankModContainers;
 import com.crescentine.trajanstanks.entity.*;
 import com.crescentine.trajanstanks.entity.artillery.ArtilleryEntityRenderer;
 import com.crescentine.trajanstanks.entity.shell.ArtilleryShell;
@@ -12,35 +14,30 @@ import com.crescentine.trajanstanks.packet.ArtilleryInputMessage;
 import com.crescentine.trajanstanks.packet.HeavyInputMessage;
 import com.crescentine.trajanstanks.packet.TankInputMessage;
 import com.crescentine.trajanstanks.packet.TankNetwork;
+
+import com.crescentine.trajanstanks.recipe.ModRecipes;
+import com.crescentine.trajanstanks.screen.CrafterScreen;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import software.bernie.geckolib3.GeckoLib;
-
-import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("trajanstanks")
@@ -84,9 +81,19 @@ public class TankMod {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         eventBus.addListener(this::commonSetup);
         TankModItems.ITEMS.register(eventBus);
+        TankModItems.BLOCKS.register(eventBus);
+        eventBus.addListener(this::doClientStuff);
         TankModEntityTypes.ENTITY_TYPES.register(eventBus);
         MinecraftForge.EVENT_BUS.register(this);
+      //  ModRecipeTypes.register(eventBus);
         TankNetwork.init();
+        TankModContainers.register(eventBus);
+        TankModBlockEntities.register(eventBus);
+        ModRecipes.init();
+    }
+
+    private void doClientStuff(final FMLClientSetupEvent event) {
+        MenuScreens.register(TankModContainers.CRAFTER_CONTAINER.get(), CrafterScreen::new);
     }
 
     public void commonSetup(final FMLCommonSetupEvent event) {

@@ -1,0 +1,29 @@
+{
+  "type" : "trajanstanks:crafter",
+  "ingredients" : [
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:diamond"
+    }
+  ],
+  "output" : {
+    "item" : "trajanstanks:tank_item"
+  }
+}

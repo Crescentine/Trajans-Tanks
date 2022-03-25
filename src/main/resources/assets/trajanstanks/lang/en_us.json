@@ -9,5 +9,6 @@
   "item.trajanstanks.netherite_wheel": "Wheel",
   "key.tankmod.shoot" : "Fire!",
   "item.trajanstanks.heavy_tank_item" : "Heavy Tank (Tiger)",
+  "container.trajanstanks.crafter" : "Tank Crafter",
   "item.trajanstanks.shell_item" : "Tank Ammo"
 }
