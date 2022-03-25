@@ -33,12 +33,6 @@ public class CrafterBlock extends HorizontalDirectionalBlock implements EntityBl
         return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
-    @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state,
-                                                                  BlockEntityType<T> beType) {
-        return level.isClientSide ? null
-                : (level0, pos, state0, blockEntity) -> ((CrafterBlockEntity) blockEntity).tick();
-    }
 
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
@@ -61,5 +55,10 @@ public class CrafterBlock extends HorizontalDirectionalBlock implements EntityBl
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(FACING);
+    }
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
+        return ((tickerWorld, pos, tickerState, blockEntity) -> CrafterBlockEntity.tick(tickerWorld, (CrafterBlockEntity) blockEntity));
     }
 }

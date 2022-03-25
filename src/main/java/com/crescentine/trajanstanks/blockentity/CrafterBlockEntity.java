@@ -56,11 +56,12 @@ public class CrafterBlockEntity extends InventoryBlockEntity implements MenuProv
         return null;
     }
 
-    public void tick(Level level, BlockPos pos, BlockState state, CrafterBlockEntity entity) {
+    public static void tick(Level world, CrafterBlockEntity entity) {
         if (hasRecipe(entity)) {
             craftItem(entity);
         }
     }
+
 
     private static boolean hasRecipe(CrafterBlockEntity entity) {
         Level world = entity.level;
@@ -77,6 +78,7 @@ public class CrafterBlockEntity extends InventoryBlockEntity implements MenuProv
                 && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem());
 
     }
+
 
     private static void craftItem(CrafterBlockEntity entity) {
         Level world = entity.level;
