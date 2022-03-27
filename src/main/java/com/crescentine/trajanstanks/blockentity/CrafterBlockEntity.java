@@ -19,25 +19,17 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.TickingBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.AABB;
-import net.minecraftforge.client.model.data.IModelData;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
 public class CrafterBlockEntity extends InventoryBlockEntity implements MenuProvider {
-
-    private final ItemStackHandler itemHandler = new ItemStackHandler();
-    private final LazyOptional<ItemStackHandler> handler = LazyOptional.of(() -> itemHandler);
     public static final Component TITLE = new TranslatableComponent(
             "container." + TankMod.MOD_ID + ".crafter");
 
@@ -84,7 +76,7 @@ public class CrafterBlockEntity extends InventoryBlockEntity implements MenuProv
         Level world = entity.level;
         SimpleContainer inventory = new SimpleContainer(entity.inventory.getSlots());
         for (int i = 0; i < entity.inventory.getSlots(); i++) {
-            inventory.setItem(i, entity.getItemInSlot(i));
+            inventory.setItem(i, entity.inventory.getStackInSlot(i));
         }
 
         Optional<TankCrafterRecipe> match = world.getRecipeManager()

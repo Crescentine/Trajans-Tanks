@@ -3,12 +3,14 @@ package com.crescentine.trajanstanks.blockentity;
 import com.crescentine.trajanstanks.container.CrafterContainer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
-import net.minecraft.world.SimpleMenuProvider;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -43,12 +45,25 @@ public class CrafterBlock extends HorizontalDirectionalBlock implements EntityBl
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand,
                                  BlockHitResult result) {
         if (!level.isClientSide && level.getBlockEntity(pos) instanceof final CrafterBlockEntity crafter) {
-            final MenuProvider container = new SimpleMenuProvider(CrafterContainer.getServerContainer(crafter, pos),
-                    CrafterBlockEntity.TITLE);
-            NetworkHooks.openGui((ServerPlayer) player, container, pos);
+            MenuProvider containerProvider = createContainerProvider(level, pos);
+            NetworkHooks.openGui((ServerPlayer) player, containerProvider, pos);
         }
 
         return InteractionResult.SUCCESS;
+    }
+
+    private MenuProvider createContainerProvider(Level worldIn, BlockPos pos) {
+        return new MenuProvider() {
+            @Override
+            public TranslatableComponent getDisplayName() {
+                return new TranslatableComponent("Tank Crafter");
+            }
+
+            @Override
+            public AbstractContainerMenu createMenu(int i, Inventory playerInventory, Player playerEntity) {
+                return new CrafterContainer(i, worldIn, pos, playerInventory, playerEntity);
+            }
+        };
     }
 
     @Override

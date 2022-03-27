@@ -12,9 +12,9 @@ public class TankModBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister
             .create(ForgeRegistries.BLOCK_ENTITIES, TankMod.MOD_ID);
 
-    public static final RegistryObject<BlockEntityType<CrafterBlockEntity>> CRAFTER = BLOCK_ENTITIES
-            .register("crafter", () -> BlockEntityType.Builder
-                    .of(CrafterBlockEntity::new, TankModItems.CRAFTER_BLOCK.get()).build(null));
+    public static RegistryObject<BlockEntityType<CrafterBlockEntity>> CRAFTER =
+            BLOCK_ENTITIES.register("crafter", () -> BlockEntityType.Builder.of
+                    (CrafterBlockEntity::new, TankModItems.CRAFTER_BLOCK.get()).build(null));
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

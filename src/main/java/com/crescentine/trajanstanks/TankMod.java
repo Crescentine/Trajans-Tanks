@@ -9,6 +9,7 @@ import com.crescentine.trajanstanks.entity.shell.ArtilleryShell;
 import com.crescentine.trajanstanks.entity.shell.ShellEntity;
 import com.crescentine.trajanstanks.entity.tank.heavy_tank.HeavyTankRenderer;
 import com.crescentine.trajanstanks.entity.tank.light_tank.TankEntityRenderer;
+import com.crescentine.trajanstanks.entity.tank.medium_tank.MediumTankRenderer;
 import com.crescentine.trajanstanks.item.TankModItems;
 import com.crescentine.trajanstanks.packet.ArtilleryInputMessage;
 import com.crescentine.trajanstanks.packet.HeavyInputMessage;
@@ -110,6 +111,7 @@ public class TankMod {
             EntityRenderers.register(TankModEntityTypes.SHELL.get(), ThrownItemRenderer<ShellEntity>::new);
             EntityRenderers.register(TankModEntityTypes.ARTILLERY_SHELL.get(), ThrownItemRenderer<ArtilleryShell>::new);
             EntityRenderers.register(TankModEntityTypes.HEAVY_TANK_ENTITY_TYPE.get(), HeavyTankRenderer::new);
+            EntityRenderers.register(TankModEntityTypes.MEDIUM_TANK_ENTITY_TYPE.get(), MediumTankRenderer::new);
 
         }
     }

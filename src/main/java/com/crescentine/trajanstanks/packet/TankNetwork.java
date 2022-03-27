@@ -14,6 +14,10 @@ public class TankNetwork {
             new ResourceLocation(TankMod.MOD_ID, "heavy_tank"), () -> NETWORK_VERSION,
             version -> version.equals(NETWORK_VERSION), version -> version.equals(NETWORK_VERSION));
 
+    public static final SimpleChannel MEDIUM_TANK = NetworkRegistry.newSimpleChannel(
+            new ResourceLocation(TankMod.MOD_ID, "medium_tank"), () -> NETWORK_VERSION,
+            version -> version.equals(NETWORK_VERSION), version -> version.equals(NETWORK_VERSION));
+
     public static final SimpleChannel TANK = NetworkRegistry.newSimpleChannel(
             new ResourceLocation(TankMod.MOD_ID, "tank"), () -> NETWORK_VERSION,
             version -> version.equals(NETWORK_VERSION), version -> version.equals(NETWORK_VERSION));
@@ -23,6 +27,7 @@ public class TankNetwork {
             version -> version.equals(NETWORK_VERSION), version -> version.equals(NETWORK_VERSION));
 
     public static void init() {
+        MEDIUM_TANK.registerMessage(++channel_id, MediumTankInputMessage.class, MediumTankInputMessage::writePacketData, MediumTankInputMessage::decode, MediumTankInputMessage::handle);
         HEAVY_TANK.registerMessage(++channel_id, HeavyInputMessage.class, HeavyInputMessage::writePacketData, HeavyInputMessage::decode, HeavyInputMessage::handle);
         ARTILLERY.registerMessage(++channel_id, ArtilleryInputMessage.class, ArtilleryInputMessage::writePacketData, ArtilleryInputMessage::decode, ArtilleryInputMessage::handle);
         TANK.registerMessage(++channel_id, TankInputMessage.class, TankInputMessage::writePacketData, TankInputMessage::decode, TankInputMessage::handle);

@@ -4,10 +4,8 @@ import com.crescentine.trajanstanks.config.TankModConfig;
 import com.crescentine.trajanstanks.entity.artillery.ArtilleryEntity;
 import com.crescentine.trajanstanks.entity.tank.heavy_tank.HeavyTankEntity;
 import com.crescentine.trajanstanks.entity.tank.light_tank.TankEntity;
-import com.crescentine.trajanstanks.packet.ArtilleryInputMessage;
-import com.crescentine.trajanstanks.packet.HeavyInputMessage;
-import com.crescentine.trajanstanks.packet.TankInputMessage;
-import com.crescentine.trajanstanks.packet.TankNetwork;
+import com.crescentine.trajanstanks.entity.tank.medium_tank.MediumTankEntity;
+import com.crescentine.trajanstanks.packet.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -36,6 +34,7 @@ public class InputEvents {
             TankNetwork.TANK.sendToServer(new TankInputMessage(key));
             TankNetwork.ARTILLERY.sendToServer(new ArtilleryInputMessage(key));
             TankNetwork.HEAVY_TANK.sendToServer(new HeavyInputMessage(key));
+            TankNetwork.MEDIUM_TANK.sendToServer(new MediumTankInputMessage(key));
         }
     }
     @SubscribeEvent
@@ -56,6 +55,12 @@ public class InputEvents {
         if (entity instanceof ArtilleryEntity) {
             ((ArtilleryEntity) entity).getAttribute
                     (Attributes.MAX_HEALTH).setBaseValue(TankModConfig.mounted_gun_health.get());
+        }
+        if (entity instanceof MediumTankEntity) {
+            ((MediumTankEntity) entity).getAttribute
+                    (Attributes.MAX_HEALTH).setBaseValue(TankModConfig.medium_tank_health.get());
+            ((MediumTankEntity) entity).getAttribute(
+                    Attributes.MOVEMENT_SPEED).setBaseValue(TankModConfig.medium_tank_speed.get());
         }
     }
 }

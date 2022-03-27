@@ -8,37 +8,42 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import org.jetbrains.annotations.Nullable;
 
 public class CrafterContainer extends AbstractContainerMenu {
-    private static CrafterBlockEntity blockEntity;
+    private final BlockEntity blockEntity;
     private final ContainerLevelAccess containerAccess;
 
-    public  CrafterContainer(int id, Inventory playerInv) {
-        this(id, playerInv, new ItemStackHandler(9), BlockPos.ZERO);
-    }
-    public CrafterContainer(int id, Inventory playerInv, IItemHandler slot, BlockPos pos) {
+    public CrafterContainer(int id, Level level, BlockPos pos,
+                            Inventory playerInv, Player player) {
         super(TankModContainers.CRAFTER_CONTAINER.get(), id);
+        this.blockEntity = level.getBlockEntity(pos);
         this.containerAccess = ContainerLevelAccess.create(playerInv.player.level, pos);
-        //Top Row
-        addSlot(new SlotItemHandler(slot, 0, 44, 17));
-        //Row 2
-        addSlot(new SlotItemHandler(slot, 1, 26, 35));
-        addSlot(new SlotItemHandler(slot, 2, 44, 35));
-        addSlot(new SlotItemHandler(slot, 3, 62, 35));
-        //Row 3
-        addSlot(new SlotItemHandler(slot, 4, 26, 53));
-        addSlot(new SlotItemHandler(slot, 5, 44, 53));
-        addSlot(new SlotItemHandler(slot, 6, 62, 53));
-        //Blueprint Slot
-        addSlot(new SlotItemHandler(slot, 7, 98, 53));
-        //Output Slot
-        addSlot(new SlotItemHandler(slot, 8, 134, 35));
 
-
+        if(blockEntity != null) {
+            blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
+                //Top Row
+                addSlot(new SlotItemHandler(h, 0, 44, 17));
+                //Row 2
+                addSlot(new SlotItemHandler(h, 1, 26, 35));
+                addSlot(new SlotItemHandler(h, 2, 44, 35));
+                addSlot(new SlotItemHandler(h, 3, 62, 35));
+                //Row 3
+                addSlot(new SlotItemHandler(h, 4, 26, 53));
+                addSlot(new SlotItemHandler(h, 5, 44, 53));
+                addSlot(new SlotItemHandler(h, 6, 62, 53));
+                //Blueprint Slot
+                addSlot(new SlotItemHandler(h, 7, 98, 53));
+                //Output Slot
+                addSlot(new SlotItemHandler(h, 8, 134, 35));
+            });
+        }
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 9; col++) {
                 this.addSlot(new Slot(playerInv, col + row * 9 + 9, 8 + col * 18, 166 - (4 - row) * 18 - 10));
@@ -53,11 +58,6 @@ public class CrafterContainer extends AbstractContainerMenu {
     @Override
     public boolean stillValid(Player player) {
         return stillValid(this.containerAccess, player, TankModItems.CRAFTER_BLOCK.get());
-    }
-
-
-    public static MenuConstructor getServerContainer(CrafterBlockEntity crafter, BlockPos pos) {
-        return (id, playerInv, player) -> new CrafterContainer(id, playerInv, crafter.inventory, pos);
     }
 
     @Override

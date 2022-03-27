@@ -6,6 +6,7 @@ import com.crescentine.trajanstanks.entity.shell.ArtilleryShell;
 import com.crescentine.trajanstanks.entity.shell.ShellEntity;
 import com.crescentine.trajanstanks.entity.tank.heavy_tank.HeavyTankEntity;
 import com.crescentine.trajanstanks.entity.tank.light_tank.TankEntity;
+import com.crescentine.trajanstanks.entity.tank.medium_tank.MediumTankEntity;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.resources.ResourceLocation;
@@ -34,6 +35,10 @@ public class TankModEntityTypes {
             () -> EntityType.Builder.<HeavyTankEntity>of(HeavyTankEntity::new, MobCategory.MISC).sized(4.5F, 2.2F)
                     .clientTrackingRange(10).build("heavy_tank_entity"));
 
+    public static final RegistryObject<EntityType<MediumTankEntity>> MEDIUM_TANK_ENTITY_TYPE = ENTITY_TYPES.register("medium_tank_entity_type",
+            () -> EntityType.Builder.<MediumTankEntity>of(MediumTankEntity::new, MobCategory.MISC).sized(4.5F, 2.2F)
+                    .clientTrackingRange(10).build("medium_tank_entity"));
+
 
 
 
@@ -58,6 +63,8 @@ public class TankModEntityTypes {
         event.put(TANK_ENTITY_TYPE.get(), TankEntity.createAttributes().build());
         event.put(HEAVY_TANK_ENTITY_TYPE.get(), HeavyTankEntity.createAttributes().build());
         event.put(ARTILLERY_ENTITY_TYPE.get(), ArtilleryEntity.createAttributes().build());
+        event.put(MEDIUM_TANK_ENTITY_TYPE.get(), MediumTankEntity.createAttributes().build());
+
     }
 
 }
