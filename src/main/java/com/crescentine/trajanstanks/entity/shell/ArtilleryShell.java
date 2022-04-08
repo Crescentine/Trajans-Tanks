@@ -2,7 +2,7 @@ package com.crescentine.trajanstanks.entity.shell;
 
 import com.crescentine.trajanstanks.config.TankModConfig;
 import com.crescentine.trajanstanks.entity.TankModEntityTypes;
-import com.crescentine.trajanstanks.entity.tank.light_tank.TankEntity;
+import com.crescentine.trajanstanks.entity.tank.light_tank.Panzer2Entity;
 import com.crescentine.trajanstanks.item.TankModItems;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.world.damagesource.DamageSource;
@@ -43,7 +43,7 @@ public class ArtilleryShell extends ThrowableItemProjectile {
         Entity entity = entityHitResult.getEntity();
         entity.hurt(DamageSource.thrown(this, this.getOwner()), (float) (TankModConfig.anti_tank_shell_damage.get() * 1.0f));
 
-        if (entity instanceof TankEntity) {
+        if (entity instanceof Panzer2Entity) {
             entity.hurt(DamageSource.thrown(this, this.getOwner()), (float) (TankModConfig.anti_tank_shell_damage_to_tank.get() * 1.0f));
         }
     }

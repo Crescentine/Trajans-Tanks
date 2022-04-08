@@ -1,6 +1,6 @@
 package com.crescentine.trajanstanks.packet;
 
-import com.crescentine.trajanstanks.entity.tank.light_tank.TankEntity;
+import com.crescentine.trajanstanks.entity.tank.light_tank.Panzer2Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
@@ -27,8 +27,8 @@ public class TankInputMessage {
         context.enqueueWork(() -> {
                     Player player = context.getSender();
                     if (player == null || !player.isAlive()) return;
-                    if (player.getVehicle() instanceof TankEntity) {
-                        TankEntity Tank = (TankEntity) player.getVehicle();
+                    if (player.getVehicle() instanceof Panzer2Entity) {
+                        Panzer2Entity Tank = (Panzer2Entity) player.getVehicle();
                         Tank.shoot(player, player.level);
                     }
                 }

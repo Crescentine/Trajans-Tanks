@@ -1,8 +1,0 @@
-{
-  "item.trajanstanks.tank_item": "Panzer",
-  "item.trajanstanks.tank_controller": "Panzer Lenkrad",
-  "item.trajanstanks.netherite_wheel": "Verstärkt Leder Rad",
-  "itemGroup.trajanstanks": "Trajan's Panzers",
-  "key.tankmod.startmoving" : "Panzerschlüssel",
-  "category.tankmod.trajanstanks" : "Panzer Mod"
-}

@@ -2,23 +2,18 @@ package com.crescentine.trajanstanks;
 
 import com.crescentine.trajanstanks.config.TankModConfig;
 import com.crescentine.trajanstanks.entity.artillery.ArtilleryEntity;
-import com.crescentine.trajanstanks.entity.tank.heavy_tank.HeavyTankEntity;
-import com.crescentine.trajanstanks.entity.tank.light_tank.TankEntity;
-import com.crescentine.trajanstanks.entity.tank.medium_tank.MediumTankEntity;
+import com.crescentine.trajanstanks.entity.tank.heavy_tank.TigerTankEntity;
+import com.crescentine.trajanstanks.entity.tank.light_tank.Panzer2Entity;
+import com.crescentine.trajanstanks.entity.tank.medium_tank.T34Entity;
 import com.crescentine.trajanstanks.packet.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.animal.Pig;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-
-import java.util.Objects;
 
 @Mod.EventBusSubscriber(modid = TankMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class InputEvents {
@@ -40,26 +35,26 @@ public class InputEvents {
     @SubscribeEvent
     public static void OnTankJoinWorld(EntityJoinWorldEvent event) {
         Entity entity = event.getEntity();
-        if (entity instanceof TankEntity) {
-            ((TankEntity) entity).getAttribute
+        if (entity instanceof Panzer2Entity) {
+            ((Panzer2Entity) entity).getAttribute
                     (Attributes.MAX_HEALTH).setBaseValue(TankModConfig.light_tank_health.get());
-            ((TankEntity) entity).getAttribute(
+            ((Panzer2Entity) entity).getAttribute(
                     Attributes.MOVEMENT_SPEED).setBaseValue(TankModConfig.light_tank_speed.get());
         }
-        if (entity instanceof HeavyTankEntity) {
-            ((HeavyTankEntity) entity).getAttribute
+        if (entity instanceof TigerTankEntity) {
+            ((TigerTankEntity) entity).getAttribute
                     (Attributes.MAX_HEALTH).setBaseValue(TankModConfig.heavy_tank_health.get());
-            ((HeavyTankEntity) entity).getAttribute(
+            ((TigerTankEntity) entity).getAttribute(
                     Attributes.MOVEMENT_SPEED).setBaseValue(TankModConfig.heavy_tank_speed.get());
         }
         if (entity instanceof ArtilleryEntity) {
             ((ArtilleryEntity) entity).getAttribute
                     (Attributes.MAX_HEALTH).setBaseValue(TankModConfig.mounted_gun_health.get());
         }
-        if (entity instanceof MediumTankEntity) {
-            ((MediumTankEntity) entity).getAttribute
+        if (entity instanceof T34Entity) {
+            ((T34Entity) entity).getAttribute
                     (Attributes.MAX_HEALTH).setBaseValue(TankModConfig.medium_tank_health.get());
-            ((MediumTankEntity) entity).getAttribute(
+            ((T34Entity) entity).getAttribute(
                     Attributes.MOVEMENT_SPEED).setBaseValue(TankModConfig.medium_tank_speed.get());
         }
     }

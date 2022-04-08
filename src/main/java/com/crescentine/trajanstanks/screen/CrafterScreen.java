@@ -33,6 +33,7 @@ public class CrafterScreen extends AbstractContainerScreen<CrafterContainer> {
     @Override
     public void render(PoseStack stack, int mouseX, int mouseY, float partialTicks) {
         super.render(stack, mouseX, mouseY, partialTicks);
+        this.renderTooltip(stack, mouseX, mouseY);
         this.font.draw(stack, this.title, this.leftPos + 20, this.topPos + 5, 0x404040);
         this.font.draw(stack, this.playerInventoryTitle, this.leftPos + 8, this.topPos + 75, 0x404040);
     }

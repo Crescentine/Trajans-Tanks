@@ -4,9 +4,9 @@ import com.crescentine.trajanstanks.TankMod;
 import com.crescentine.trajanstanks.entity.artillery.ArtilleryEntity;
 import com.crescentine.trajanstanks.entity.shell.ArtilleryShell;
 import com.crescentine.trajanstanks.entity.shell.ShellEntity;
-import com.crescentine.trajanstanks.entity.tank.heavy_tank.HeavyTankEntity;
-import com.crescentine.trajanstanks.entity.tank.light_tank.TankEntity;
-import com.crescentine.trajanstanks.entity.tank.medium_tank.MediumTankEntity;
+import com.crescentine.trajanstanks.entity.tank.heavy_tank.TigerTankEntity;
+import com.crescentine.trajanstanks.entity.tank.light_tank.Panzer2Entity;
+import com.crescentine.trajanstanks.entity.tank.medium_tank.T34Entity;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.resources.ResourceLocation;
@@ -27,17 +27,17 @@ public class TankModEntityTypes {
             () -> EntityType.Builder.of(ArtilleryEntity:: new, MobCategory.MISC).sized(1.65F, 1.0F)
                     .clientTrackingRange(10).build("artillery_entity_type"));
 
-    public static final RegistryObject<EntityType<TankEntity>> TANK_ENTITY_TYPE = ENTITY_TYPES.register("tank_entity_type",
-            () -> EntityType.Builder.<TankEntity>of(TankEntity::new, MobCategory.MISC).sized(4.0F, 2.0F)
-                    .clientTrackingRange(10).build("tank_entity_type"));
+    public static final RegistryObject<EntityType<Panzer2Entity>> PANZER_TWO_ENTITY_TYPE = ENTITY_TYPES.register("panzer_two_entity_type",
+            () -> EntityType.Builder.<Panzer2Entity>of(Panzer2Entity::new, MobCategory.MISC).sized(4.0F, 2.0F)
+                    .clientTrackingRange(10).build("panzer_two_entity_type"));
 
-    public static final RegistryObject<EntityType<HeavyTankEntity>> HEAVY_TANK_ENTITY_TYPE = ENTITY_TYPES.register("heavy_tank_entity_type",
-            () -> EntityType.Builder.<HeavyTankEntity>of(HeavyTankEntity::new, MobCategory.MISC).sized(4.5F, 2.2F)
-                    .clientTrackingRange(10).build("heavy_tank_entity"));
+    public static final RegistryObject<EntityType<TigerTankEntity>> TIGER_ENTITY_TYPE = ENTITY_TYPES.register("tiger_tank_entity_type",
+            () -> EntityType.Builder.<TigerTankEntity>of(TigerTankEntity::new, MobCategory.MISC).sized(4.5F, 2.2F)
+                    .clientTrackingRange(10).build("tiger_tank_entity_type"));
 
-    public static final RegistryObject<EntityType<MediumTankEntity>> MEDIUM_TANK_ENTITY_TYPE = ENTITY_TYPES.register("medium_tank_entity_type",
-            () -> EntityType.Builder.<MediumTankEntity>of(MediumTankEntity::new, MobCategory.MISC).sized(4.5F, 2.2F)
-                    .clientTrackingRange(10).build("medium_tank_entity"));
+    public static final RegistryObject<EntityType<T34Entity>> T34_ENTITY_TYPE = ENTITY_TYPES.register("t34_entity_type",
+            () -> EntityType.Builder.<T34Entity>of(T34Entity::new, MobCategory.MISC).sized(4.5F, 2.2F)
+                    .clientTrackingRange(10).build("t34_entity_type"));
 
 
 
@@ -60,10 +60,10 @@ public class TankModEntityTypes {
             }
     @SubscribeEvent
     public static void entityAttributesInit(EntityAttributeCreationEvent event) {
-        event.put(TANK_ENTITY_TYPE.get(), TankEntity.createAttributes().build());
-        event.put(HEAVY_TANK_ENTITY_TYPE.get(), HeavyTankEntity.createAttributes().build());
+        event.put(PANZER_TWO_ENTITY_TYPE.get(), Panzer2Entity.createAttributes().build());
+        event.put(TIGER_ENTITY_TYPE.get(), TigerTankEntity.createAttributes().build());
         event.put(ARTILLERY_ENTITY_TYPE.get(), ArtilleryEntity.createAttributes().build());
-        event.put(MEDIUM_TANK_ENTITY_TYPE.get(), MediumTankEntity.createAttributes().build());
+        event.put(T34_ENTITY_TYPE.get(), T34Entity.createAttributes().build());
 
     }
 

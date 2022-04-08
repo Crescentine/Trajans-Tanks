@@ -1,21 +1,20 @@
 package com.crescentine.trajanstanks.entity.tank.light_tank;
 
 import com.crescentine.trajanstanks.TankMod;
-import com.crescentine.trajanstanks.entity.tank.light_tank.TankEntity;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 
-public class TankEntityModel extends AnimatedGeoModel<TankEntity>
+public class Panzer2Model extends AnimatedGeoModel<Panzer2Entity>
 {
-    public ResourceLocation getModelLocation(TankEntity object) {
+    public ResourceLocation getModelLocation(Panzer2Entity object) {
         return new ResourceLocation(TankMod.MOD_ID, "geo/tank.geo.json");
     }
 
-    public ResourceLocation getTextureLocation(TankEntity object) {
+    public ResourceLocation getTextureLocation(Panzer2Entity object) {
         return new ResourceLocation(TankMod.MOD_ID, "textures/item/texture.png");
     }
 
-    public ResourceLocation getAnimationFileLocation(TankEntity animatable) {
+    public ResourceLocation getAnimationFileLocation(Panzer2Entity animatable) {
         return new ResourceLocation(TankMod.MOD_ID, "animations/tank.animation.json");
     }
 }

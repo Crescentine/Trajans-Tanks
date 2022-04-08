@@ -7,9 +7,9 @@ import com.crescentine.trajanstanks.entity.*;
 import com.crescentine.trajanstanks.entity.artillery.ArtilleryEntityRenderer;
 import com.crescentine.trajanstanks.entity.shell.ArtilleryShell;
 import com.crescentine.trajanstanks.entity.shell.ShellEntity;
-import com.crescentine.trajanstanks.entity.tank.heavy_tank.HeavyTankRenderer;
-import com.crescentine.trajanstanks.entity.tank.light_tank.TankEntityRenderer;
-import com.crescentine.trajanstanks.entity.tank.medium_tank.MediumTankRenderer;
+import com.crescentine.trajanstanks.entity.tank.heavy_tank.TigerTankRenderer;
+import com.crescentine.trajanstanks.entity.tank.light_tank.Panzer2Renderer;
+import com.crescentine.trajanstanks.entity.tank.medium_tank.T34Renderer;
 import com.crescentine.trajanstanks.item.TankModItems;
 import com.crescentine.trajanstanks.packet.ArtilleryInputMessage;
 import com.crescentine.trajanstanks.packet.HeavyInputMessage;
@@ -107,11 +107,11 @@ public class TankMod {
         public static void registerRenderers(final FMLClientSetupEvent event) {
             Minecraft minecraftClient = Minecraft.getInstance();
             EntityRenderers.register(TankModEntityTypes.ARTILLERY_ENTITY_TYPE.get(), ArtilleryEntityRenderer::new);
-            EntityRenderers.register(TankModEntityTypes.TANK_ENTITY_TYPE.get(), TankEntityRenderer::new);
+            EntityRenderers.register(TankModEntityTypes.PANZER_TWO_ENTITY_TYPE.get(), Panzer2Renderer::new);
             EntityRenderers.register(TankModEntityTypes.SHELL.get(), ThrownItemRenderer<ShellEntity>::new);
             EntityRenderers.register(TankModEntityTypes.ARTILLERY_SHELL.get(), ThrownItemRenderer<ArtilleryShell>::new);
-            EntityRenderers.register(TankModEntityTypes.HEAVY_TANK_ENTITY_TYPE.get(), HeavyTankRenderer::new);
-            EntityRenderers.register(TankModEntityTypes.MEDIUM_TANK_ENTITY_TYPE.get(), MediumTankRenderer::new);
+            EntityRenderers.register(TankModEntityTypes.TIGER_ENTITY_TYPE.get(), TigerTankRenderer::new);
+            EntityRenderers.register(TankModEntityTypes.T34_ENTITY_TYPE.get(), T34Renderer::new);
 
         }
     }

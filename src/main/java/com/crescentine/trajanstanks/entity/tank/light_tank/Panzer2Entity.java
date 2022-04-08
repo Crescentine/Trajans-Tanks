@@ -36,11 +36,11 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 
-public class TankEntity extends BaseTankEntity implements IAnimatable {
+public class Panzer2Entity extends BaseTankEntity implements IAnimatable {
     private final AnimationFactory factory = new AnimationFactory(this);
     private final int cooldown = TankModConfig.light_tank_shot_cooldown.get();
     private int time = cooldown;
-    public TankEntity(EntityType<?> entityType, Level world) {
+    public Panzer2Entity(EntityType<?> entityType, Level world) {
         super((EntityType<? extends Pig>) entityType, world);
     }
 

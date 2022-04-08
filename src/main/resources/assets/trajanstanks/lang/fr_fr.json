@@ -1,8 +1,0 @@
-{
-  "item.trajanstanks.tank_item": "Tank",
-  "item.trajanstanks.tank_controller": "Volant de Tank",
-  "item.trajanstanks.netherite_wheel": "oue en cuir renforcé ",
-  "itemGroup.trajanstanks": "Les Tanks de Trajan",
-  "key.tankmod.startmoving" : "Clé de Mouvement du Tank",
-  "category.tankmod.trajanstanks" : "Mod de Tranks"
-}

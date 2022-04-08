@@ -1,7 +1,6 @@
 package com.crescentine.trajanstanks.packet;
 
-import com.crescentine.trajanstanks.entity.tank.heavy_tank.HeavyTankEntity;
-import com.crescentine.trajanstanks.entity.tank.light_tank.TankEntity;
+import com.crescentine.trajanstanks.entity.tank.heavy_tank.TigerTankEntity;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.network.NetworkEvent;
@@ -28,8 +27,8 @@ public class HeavyInputMessage {
         context.enqueueWork(() -> {
                     Player player = context.getSender();
                     if (player == null || !player.isAlive()) return;
-                    if (player.getVehicle() instanceof HeavyTankEntity) {
-                        HeavyTankEntity heavyTank = (HeavyTankEntity) player.getVehicle();
+                    if (player.getVehicle() instanceof TigerTankEntity) {
+                        TigerTankEntity heavyTank = (TigerTankEntity) player.getVehicle();
                         heavyTank.shoot(player, player.level);
                     }
                 }

@@ -1,4 +1,4 @@
-package com.crescentine.trajanstanks.entity.tank.medium_tank;
+package com.crescentine.trajanstanks.entity.tank.heavy_tank;
 
 import com.crescentine.trajanstanks.config.TankModConfig;
 import com.crescentine.trajanstanks.entity.BaseTankEntity;
@@ -12,7 +12,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.Pig;
@@ -28,11 +28,11 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class MediumTankEntity extends BaseTankEntity implements IAnimatable {
+public class TigerTankEntity extends BaseTankEntity implements IAnimatable {
     private final AnimationFactory factory = new AnimationFactory(this);
-    private final int cooldown = TankModConfig.medium_tank_shot_cooldown.get();
+    private final int cooldown = TankModConfig.heavy_tank_shot_cooldown.get();
     private int time = cooldown;
-    public MediumTankEntity(EntityType<?> entityType, Level world) {
+    public TigerTankEntity(EntityType<?> entityType, Level world) {
         super((EntityType<? extends Pig>) entityType, world);
     }
 
@@ -40,13 +40,13 @@ public class MediumTankEntity extends BaseTankEntity implements IAnimatable {
         return Pig.createLivingAttributes()
                 .add(Attributes.MOVEMENT_SPEED, TankModConfig.light_tank_speed.get())
                 .add(Attributes.MAX_HEALTH, 250.0)
-                .add(Attributes.ARMOR, 4.0f)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 10.0D)
+                .add(Attributes.ARMOR, 5.0f)
                 .add(Attributes.FOLLOW_RANGE, 0.0D);
     }
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
         if (event.isMoving()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.model.tank Movement", true));
             return PlayState.CONTINUE;
         }
         return PlayState.STOP;
@@ -55,8 +55,8 @@ public class MediumTankEntity extends BaseTankEntity implements IAnimatable {
     @Override
     public void registerControllers(AnimationData animationData) {
         animationData.addAnimationController(new AnimationController<>(this, "controller", 0, this::predicate));
-    }
 
+    }
     @Override
     public AnimationFactory getFactory() {
         return this.factory;
@@ -76,7 +76,6 @@ public class MediumTankEntity extends BaseTankEntity implements IAnimatable {
 
         if (time < cooldown) time++;
     }
-
     public boolean shoot(Player player, Level world) {
         ItemStack itemStack = ItemStack.EMPTY;
         Player playerEntity = (Player) player;
@@ -106,6 +105,7 @@ public class MediumTankEntity extends BaseTankEntity implements IAnimatable {
 
             double x = -Mth.sin((float) (player.getEyeY() / 180.0F * (float) Math.PI)) * distance;
             double z = -Mth.cos((float) (player.getEyeY() / 180.0F * (float) Math.PI)) * distance;
+
 
             shellEntity.setPos(player.getEyePosition());
             world.addFreshEntity(shellEntity);

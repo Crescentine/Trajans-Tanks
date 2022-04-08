@@ -1,8 +1,0 @@
-{
-  "item.trajanstanks.tank_item": "Stridsvogn",
-  "item.trajanstanks.tank_controller": "Stridsvogn Ratt",
-  "item.trajanstanks.netherite_wheel": "Forsterket Lær Hjul",
-  "itemGroup.trajanstanks": "Trajan's Stridsvogner",
-  "key.tankmod.startmoving" : "Stridsvogn Bevegelses Nøkkel",
-  "category.tankmod.trajanstanks" : "Stridsvogn Mod"
-}

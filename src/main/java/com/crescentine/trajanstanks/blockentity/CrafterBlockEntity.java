@@ -91,7 +91,7 @@ public class CrafterBlockEntity extends InventoryBlockEntity implements MenuProv
             entity.extractItem(5);
             entity.extractItem(6);
             entity.insertItem(8, new ItemStack(match.get().getResultItem().getItem(),
-                    entity.getItemInSlot(8).getCount() + 1));
+                    1));
         }
     }
 
@@ -100,7 +100,7 @@ public class CrafterBlockEntity extends InventoryBlockEntity implements MenuProv
     }
 
     private static boolean canInsertAmountIntoOutputSlot(SimpleContainer inventory) {
-        return inventory.getItem(8).getCount() > inventory.getItem(8).getCount();
+        return inventory.getItem(8).getMaxStackSize() > inventory.getItem(8).getCount();
     }
 
 }

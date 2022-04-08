@@ -1,0 +1,32 @@
+{
+  "type" : "trajanstanks:crafter",
+  "ingredients" : [
+    {
+      "item": "trajanstanks:light_tank_turret"
+    },
+    {
+      "item": "trajanstanks:panzer_two_engine"
+    },
+    {
+      "item": "trajanstanks:steering_crafting_item"
+    },
+    {
+      "item": "trajanstanks:light_tank_plating"
+    },
+    {
+      "item": "trajanstanks:light_tank_tracks"
+    },
+    {
+      "item": "trajanstanks:light_tank_tracks"
+    },
+    {
+      "item": "trajanstanks:light_tank_tracks"
+    },
+    {
+      "item": "trajanstanks:panzer_two_blueprint"
+    }
+  ],
+  "output" : {
+    "item" : "trajanstanks:tank_item"
+  }
+}
