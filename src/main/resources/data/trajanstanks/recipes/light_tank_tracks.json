@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "iIi",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:rail"
+        },
+        "i": {
+            "item": "minecraft:iron_ingot"
+        },
+        "I": {
+            "item": "minecraft:iron_block"
+        }
+    },
+    "result": {
+        "item": "trajanstanks:light_tank_tracks"
+    }
+}

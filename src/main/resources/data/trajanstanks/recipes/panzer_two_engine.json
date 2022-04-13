@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#I#",
+        "PPP",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:iron_nugget"
+        },
+        "I": {
+            "item": "minecraft:iron_block"
+        },
+        "P": {
+            "item": "minecraft:piston"
+        }
+    },
+    "result": {
+        "item": "trajanstanks:panzer_two_engine"
+    }
+}

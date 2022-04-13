@@ -29,7 +29,7 @@ public class TankInputMessage {
                     if (player == null || !player.isAlive()) return;
                     if (player.getVehicle() instanceof Panzer2Entity) {
                         Panzer2Entity Tank = (Panzer2Entity) player.getVehicle();
-                        Tank.shoot(player, player.level);
+                        Tank.shoot(player, Tank, player.level);
                     }
                 }
         );

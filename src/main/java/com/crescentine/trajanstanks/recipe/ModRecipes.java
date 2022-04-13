@@ -3,6 +3,7 @@ package com.crescentine.trajanstanks.recipe;
 import com.crescentine.trajanstanks.TankMod;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Tuple;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraftforge.event.RegistryEvent;

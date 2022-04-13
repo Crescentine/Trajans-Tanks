@@ -27,11 +27,12 @@ public class CrafterScreen extends AbstractContainerScreen<CrafterContainer> {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
         RenderSystem.setShaderTexture(0, TEXTURE);
-        blit(stack, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
+        blit(stack, leftPos, topPos, 0, 0, imageWidth, imageHeight);
 
     }
     @Override
     public void render(PoseStack stack, int mouseX, int mouseY, float partialTicks) {
+        this.renderBackground(stack);
         super.render(stack, mouseX, mouseY, partialTicks);
         this.renderTooltip(stack, mouseX, mouseY);
         this.font.draw(stack, this.title, this.leftPos + 20, this.topPos + 5, 0x404040);

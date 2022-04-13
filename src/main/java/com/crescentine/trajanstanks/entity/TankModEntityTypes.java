@@ -36,7 +36,7 @@ public class TankModEntityTypes {
                     .clientTrackingRange(10).build("tiger_tank_entity_type"));
 
     public static final RegistryObject<EntityType<T34Entity>> T34_ENTITY_TYPE = ENTITY_TYPES.register("t34_entity_type",
-            () -> EntityType.Builder.<T34Entity>of(T34Entity::new, MobCategory.MISC).sized(4.5F, 2.2F)
+            () -> EntityType.Builder.<T34Entity>of(T34Entity::new, MobCategory.MISC).sized(3.8F, 2.1f)
                     .clientTrackingRange(10).build("t34_entity_type"));
 
 

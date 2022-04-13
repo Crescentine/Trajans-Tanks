@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "iPi",
+        "PLP",
+        "iPi"
+    ],
+    "key": {
+        "i": {
+            "item": "minecraft:iron_ingot"
+        },
+        "P": {
+            "item": "minecraft:paper"
+        },
+        "L": {
+            "item": "minecraft:light_blue_dye"
+        }
+    },
+    "result": {
+        "item": "trajanstanks:tiger_blueprint"
+    }
+}

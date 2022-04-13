@@ -19,7 +19,7 @@ public class TankCrafterRecipe implements Recipe<SimpleContainer> {
     ResourceLocation TYPE_ID = new ResourceLocation(TankMod.MOD_ID, "crafter");
     private final ResourceLocation id;
     private final ItemStack output;
-    private final NonNullList<Ingredient> recipeItems;
+    public final NonNullList<Ingredient> recipeItems;
 
     public TankCrafterRecipe(ResourceLocation id, ItemStack output,
                              NonNullList<Ingredient> recipeItems) {
@@ -27,6 +27,11 @@ public class TankCrafterRecipe implements Recipe<SimpleContainer> {
         this.output = output;
         this.TYPE_ID = TYPE_ID;
         this.recipeItems = recipeItems;
+    }
+
+    @Override
+    public NonNullList<Ingredient> getIngredients() {
+        return recipeItems;
     }
 
     @Override

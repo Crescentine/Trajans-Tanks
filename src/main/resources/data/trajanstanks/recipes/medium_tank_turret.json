@@ -1,0 +1,25 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " # ",
+        "IDI",
+        "i i"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:iron_trapdoor"
+        },
+        "I": {
+            "item": "minecraft:iron_block"
+        },
+        "D": {
+            "item": "minecraft:dispenser"
+        },
+        "i": {
+            "item": "minecraft:iron_ingot"
+        }
+    },
+    "result": {
+        "item" : "trajanstanks:medium_tank_turret"
+    }
+}

@@ -85,9 +85,10 @@ public class Panzer2Entity extends BaseTankEntity implements IAnimatable {
          if (time < cooldown) time++;
     }
 
-    public boolean shoot(Player player, Level world) {
+    public boolean shoot(Player player, Panzer2Entity tank, Level world) {
         ItemStack itemStack = ItemStack.EMPTY;
         Player playerEntity = (Player) player;
+        Panzer2Entity tankEntity = (Panzer2Entity) tank;
         for (int i = 0; i < playerEntity.getInventory().getContainerSize(); ++i) {
             ItemStack stack = playerEntity.getInventory().getItem(i);
             if (stack.getItem() == TankModItems.SHELL_ITEM.get() && stack.getCount() >= shellsUsed) {
@@ -107,13 +108,8 @@ public class Panzer2Entity extends BaseTankEntity implements IAnimatable {
             return false;
         }
         if (!itemStack.isEmpty()) {
-            ShellEntity shellEntity = new ShellEntity(player, world);
-            shellEntity.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.5F, 0F);
-
-            double distance = 1.0D;
-
-            double x = -Mth.sin((float) (player.getEyeY() / 180.0F * (float) Math.PI)) * distance;
-            double z = -Mth.cos((float) (player.getEyeY() / 180.0F * (float) Math.PI)) * distance;
+            ShellEntity shellEntity = new ShellEntity(playerEntity, world);
+            shellEntity.shootFromRotation(playerEntity, playerEntity.getXRot(), tankEntity.getYRot(), 0.0F, 2.0F, 0F);
 
             shellEntity.setPos(player.getEyePosition());
             world.addFreshEntity(shellEntity);

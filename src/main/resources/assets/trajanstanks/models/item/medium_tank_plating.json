@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "trajanstanks:item/medium_tank_plating"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "type" : "trajanstanks:crafter",
+  "ingredients" : [
+    {
+      "item": "trajanstanks:medium_tank_turret"
+    },
+    {
+      "item": "trajanstanks:t34_engine"
+    },
+    {
+      "item": "trajanstanks:steering_crafting_item"
+    },
+    {
+      "item": "trajanstanks:medium_tank_plating"
+    },
+    {
+      "item": "trajanstanks:medium_tank_tracks"
+    },
+    {
+      "item": "trajanstanks:medium_tank_tracks"
+    },
+    {
+      "item": "trajanstanks:medium_tank_tracks"
+    },
+    {
+      "item": "trajanstanks:t34_blueprint"
+    }
+  ],
+  "output" : {
+    "item" : "trajanstanks:medium_tank_item"
+  }
+}
