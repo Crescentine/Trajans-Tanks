@@ -27,7 +27,7 @@ public class CrafterScreen extends AbstractContainerScreen<CrafterContainer> {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
         RenderSystem.setShaderTexture(0, TEXTURE);
-        blit(stack, leftPos, topPos, 0, 0, imageWidth, imageHeight);
+        blit(stack, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
 
     }
     @Override

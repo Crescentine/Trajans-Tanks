@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "III",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:rail"
+        },
+        "I": {
+            "item": "minecraft:iron_block"
+        }
+    },
+    "result": {
+        "item": "trajanstanks:heavy_tank_tracks"
+    }
+}

@@ -39,20 +39,27 @@ public class ArtilleryEntity extends BaseTankEntity implements IAnimatable {
     public static AttributeSupplier.Builder createAttributes() {
         return Pig.createLivingAttributes()
                 .add(Attributes.MAX_HEALTH, 200.0D)
-                .add(Attributes.MOVEMENT_SPEED, 0.02f)
+                .add(Attributes.MOVEMENT_SPEED, 0.00f)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 10.0D)
                 .add(Attributes.FOLLOW_RANGE, 0.0D);
     }
     private final AnimationFactory factory = new AnimationFactory(this);
 
     @Override
-    public boolean canBeControlledByRider() {
-        return false;
-    }
-    @Override
     protected boolean isImmobile() {
         return false;
     }
+
+    @Override
+    public boolean canBeControlledByRider() {
+        return true;
+    }
+
+    @Override
+    public float getSteeringSpeed() {
+        return 0.0f;
+    }
+
     @Override
     public InteractionResult interactAt(Player player, Vec3 hitPos, InteractionHand hand) {
         player.startRiding(this, true);
