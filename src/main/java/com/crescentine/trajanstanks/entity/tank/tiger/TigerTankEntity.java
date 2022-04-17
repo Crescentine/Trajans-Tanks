@@ -1,5 +1,6 @@
-package com.crescentine.trajanstanks.entity.tank.heavy_tank;
+package com.crescentine.trajanstanks.entity.tank.tiger;
 
+import com.crescentine.trajanstanks.TankModClient;
 import com.crescentine.trajanstanks.config.TankModConfig;
 import com.crescentine.trajanstanks.entity.BaseTankEntity;
 import com.crescentine.trajanstanks.entity.shell.ShellEntity;
@@ -38,7 +39,6 @@ public class TigerTankEntity extends BaseTankEntity implements IAnimatable {
 
     public static AttributeSupplier.Builder createAttributes() {
         return Pig.createLivingAttributes()
-                .add(Attributes.MOVEMENT_SPEED, TankModConfig.light_tank_speed.get())
                 .add(Attributes.MAX_HEALTH, 250.0)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 10.0D)
                 .add(Attributes.ARMOR, 5.0f)
@@ -50,6 +50,21 @@ public class TigerTankEntity extends BaseTankEntity implements IAnimatable {
             return PlayState.CONTINUE;
         }
         return PlayState.STOP;
+    }
+
+    double speed = TankModConfig.heavy_tank_speed.get();
+    float speedFloat = (float)speed;
+    @Override
+    public float getSteeringSpeed() {
+        if (TankModClient.STARTMOVING.isDown()) {
+            return speedFloat;
+        }
+        return 0.0f;
+    }
+
+    @Override
+    public boolean canBeControlledByRider() {
+        return true;
     }
 
     @Override

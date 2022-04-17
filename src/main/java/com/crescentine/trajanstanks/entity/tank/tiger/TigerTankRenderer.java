@@ -1,4 +1,4 @@
-package com.crescentine.trajanstanks.entity.tank.heavy_tank;
+package com.crescentine.trajanstanks.entity.tank.tiger;
 
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

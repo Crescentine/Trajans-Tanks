@@ -36,7 +36,7 @@ public class TankModConfig {
 
         BUILDER.push("Light Tank Stats");
         light_tank_health = BUILDER.define("Light Tank Health (0-250)" , 80.0);
-        light_tank_speed = BUILDER.define("Light Tank Speed" , 0.6);
+        light_tank_speed = BUILDER.define("Light Tank Speed" , 0.17);
         light_tank_shot_cooldown = BUILDER.define("Light Tank Shot Cooldown (1 = 1/20 second)", 60);
         BUILDER.pop();
 
@@ -48,13 +48,13 @@ public class TankModConfig {
 
         BUILDER.push("Heavy Tank Stats");
         heavy_tank_health = BUILDER.define("Heavy Tank Health (0-250)" , 110.0);
-        heavy_tank_speed = BUILDER.define("Heavy Tank Speed" , 0.44);
+        heavy_tank_speed = BUILDER.define("Heavy Tank Speed" , 0.12);
         heavy_tank_shot_cooldown = BUILDER.define("Heavy Tank Shoot Cooldown (1 = 1/20 second", 80);
         BUILDER.pop();
 
         BUILDER.push("Medium Tank Stats");
         medium_tank_health = BUILDER.define("Medium Tank Health (0-250)" , 95.0);
-        medium_tank_speed = BUILDER.define("Medium Tank Speed" , 0.55);
+        medium_tank_speed = BUILDER.define("Medium Tank Speed" , 0.14);
         medium_tank_shot_cooldown = BUILDER.define("Medium Tank Shoot Cooldown (1 = 1/20 second", 70);
         BUILDER.pop();
 

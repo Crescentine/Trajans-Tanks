@@ -1,4 +1,4 @@
-package com.crescentine.trajanstanks.entity.tank.heavy_tank;
+package com.crescentine.trajanstanks.entity.tank.tiger;
 
 import com.crescentine.trajanstanks.TankMod;
 import net.minecraft.resources.ResourceLocation;

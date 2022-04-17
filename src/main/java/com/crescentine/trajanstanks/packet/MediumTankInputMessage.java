@@ -1,6 +1,6 @@
 package com.crescentine.trajanstanks.packet;
 
-import com.crescentine.trajanstanks.entity.tank.medium_tank.T34Entity;
+import com.crescentine.trajanstanks.entity.tank.t34.T34Entity;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.network.NetworkEvent;

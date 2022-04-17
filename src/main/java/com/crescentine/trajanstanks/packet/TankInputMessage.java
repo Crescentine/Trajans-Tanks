@@ -1,6 +1,6 @@
 package com.crescentine.trajanstanks.packet;
 
-import com.crescentine.trajanstanks.entity.tank.light_tank.Panzer2Entity;
+import com.crescentine.trajanstanks.entity.tank.panzer2.Panzer2Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;

@@ -2,9 +2,9 @@ package com.crescentine.trajanstanks;
 
 import com.crescentine.trajanstanks.config.TankModConfig;
 import com.crescentine.trajanstanks.entity.artillery.ArtilleryEntity;
-import com.crescentine.trajanstanks.entity.tank.heavy_tank.TigerTankEntity;
-import com.crescentine.trajanstanks.entity.tank.light_tank.Panzer2Entity;
-import com.crescentine.trajanstanks.entity.tank.medium_tank.T34Entity;
+import com.crescentine.trajanstanks.entity.tank.tiger.TigerTankEntity;
+import com.crescentine.trajanstanks.entity.tank.panzer2.Panzer2Entity;
+import com.crescentine.trajanstanks.entity.tank.t34.T34Entity;
 import com.crescentine.trajanstanks.packet.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.Entity;
@@ -38,14 +38,10 @@ public class InputEvents {
         if (entity instanceof Panzer2Entity) {
             ((Panzer2Entity) entity).getAttribute
                     (Attributes.MAX_HEALTH).setBaseValue(TankModConfig.light_tank_health.get());
-            ((Panzer2Entity) entity).getAttribute(
-                    Attributes.MOVEMENT_SPEED).setBaseValue(TankModConfig.light_tank_speed.get());
         }
         if (entity instanceof TigerTankEntity) {
             ((TigerTankEntity) entity).getAttribute
                     (Attributes.MAX_HEALTH).setBaseValue(TankModConfig.heavy_tank_health.get());
-            ((TigerTankEntity) entity).getAttribute(
-                    Attributes.MOVEMENT_SPEED).setBaseValue(TankModConfig.heavy_tank_speed.get());
         }
         if (entity instanceof ArtilleryEntity) {
             ((ArtilleryEntity) entity).getAttribute
@@ -54,8 +50,6 @@ public class InputEvents {
         if (entity instanceof T34Entity) {
             ((T34Entity) entity).getAttribute
                     (Attributes.MAX_HEALTH).setBaseValue(TankModConfig.medium_tank_health.get());
-            ((T34Entity) entity).getAttribute(
-                    Attributes.MOVEMENT_SPEED).setBaseValue(TankModConfig.medium_tank_speed.get());
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.crescentine.trajanstanks.entity.tank.light_tank;
+package com.crescentine.trajanstanks.entity.tank.panzer2;
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;

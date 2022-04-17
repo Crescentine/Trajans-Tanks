@@ -1,4 +1,4 @@
-package com.crescentine.trajanstanks.entity.tank.medium_tank;
+package com.crescentine.trajanstanks.entity.tank.t34;
 
 import com.crescentine.trajanstanks.TankMod;
 import net.minecraft.resources.ResourceLocation;
