@@ -2,6 +2,7 @@ package com.crescentine.trajanstanks.screen;
 
 import com.crescentine.trajanstanks.TankMod;
 import com.crescentine.trajanstanks.container.CrafterContainer;
+import com.crescentine.trajanstanks.container.PlatingPressContainer;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -10,9 +11,9 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-public class CrafterScreen extends AbstractContainerScreen<CrafterContainer> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation(TankMod.MOD_ID, "textures/gui/crafter.png");
-    public CrafterScreen(CrafterContainer container, Inventory playerInv, Component title) {
+public class PlatingPressScreen extends AbstractContainerScreen<PlatingPressContainer> {
+    private static final ResourceLocation TEXTURE = new ResourceLocation(TankMod.MOD_ID, "textures/gui/plating_press.png");
+    public PlatingPressScreen(PlatingPressContainer container, Inventory playerInv, Component title) {
         super(container, playerInv, title);
         this.leftPos = 0;
         this.topPos = 0;

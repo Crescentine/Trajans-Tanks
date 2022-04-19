@@ -22,7 +22,13 @@ public class TankModContainers {
                 Level level = inv.player.getCommandSenderWorld();
                 return new CrafterContainer(windowId, level, pos, inv, inv.player);
             })));
-
+    public static final RegistryObject<MenuType<PlatingPressContainer>> PLATING_PRESS_CONTAINER
+            = CONTAINERS.register("plating_press_container",
+            () -> IForgeMenuType.create(((windowId, inv, data) -> {
+                BlockPos pos = data.readBlockPos();
+                Level level = inv.player.getCommandSenderWorld();
+                return new PlatingPressContainer(windowId, level, pos, inv, inv.player);
+            })));
 
     public static void register(IEventBus eventBus) {
         CONTAINERS.register(eventBus);

@@ -20,6 +20,12 @@ public class ModRecipes {
             return TankMod.MOD_ID + ":crafter";
         }
     };
+    public static final RecipeType<TankCrafterRecipe> PLATING_PRESS_RECIPE_TYPE = new RecipeType<>() {
+        @Override
+        public String toString() {
+            return TankMod.MOD_ID + ":crafter";
+        }
+    };
 
     public static void init() {
         FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(RecipeSerializer.class, ModRecipes::registerRecipeSerializers);
@@ -27,5 +33,7 @@ public class ModRecipes {
     public static void registerRecipeSerializers(RegistryEvent.Register<RecipeSerializer<?>> event) {
         Registry.register(Registry.RECIPE_TYPE, new ResourceLocation(CRAFTER_RECIPE_TYPE.toString()), CRAFTER_RECIPE_TYPE);
         event.getRegistry().register(TankCrafterRecipe.Serializer.INSTANCE);
+        Registry.register(Registry.RECIPE_TYPE, new ResourceLocation(PLATING_PRESS_RECIPE_TYPE.toString()), PLATING_PRESS_RECIPE_TYPE);
+        event.getRegistry().register(PlatingPressRecipe.Serializer.INSTANCE);
     }
 }

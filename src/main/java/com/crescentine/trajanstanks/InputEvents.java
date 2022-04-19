@@ -2,9 +2,10 @@ package com.crescentine.trajanstanks;
 
 import com.crescentine.trajanstanks.config.TankModConfig;
 import com.crescentine.trajanstanks.entity.artillery.ArtilleryEntity;
-import com.crescentine.trajanstanks.entity.tank.tiger.TigerTankEntity;
-import com.crescentine.trajanstanks.entity.tank.panzer2.Panzer2Entity;
-import com.crescentine.trajanstanks.entity.tank.t34.T34Entity;
+import com.crescentine.trajanstanks.entity.tanks.cruisermk1.CruiserMk1Entity;
+import com.crescentine.trajanstanks.entity.tanks.tiger.TigerTankEntity;
+import com.crescentine.trajanstanks.entity.tanks.panzer2.Panzer2Entity;
+import com.crescentine.trajanstanks.entity.tanks.t34.T34Entity;
 import com.crescentine.trajanstanks.packet.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.Entity;
@@ -26,10 +27,11 @@ public class InputEvents {
 
     private static void onInput(Minecraft mc, int key, int action) {
         if (mc.screen == null && TankModClient.shootkey.consumeClick()) {
-            TankNetwork.TANK.sendToServer(new TankInputMessage(key));
-            TankNetwork.ARTILLERY.sendToServer(new ArtilleryInputMessage(key));
-            TankNetwork.HEAVY_TANK.sendToServer(new HeavyInputMessage(key));
-            TankNetwork.MEDIUM_TANK.sendToServer(new MediumTankInputMessage(key));
+            TankModNetwork.PANZER2.sendToServer(new Panzer2Packet(key));
+            TankModNetwork.ARTILLERY.sendToServer(new ArtilleryPacket(key));
+            TankModNetwork.TIGER.sendToServer(new TigerPacket(key));
+            TankModNetwork.T34.sendToServer(new T34Packet(key));
+            TankModNetwork.CRUISERMK1.sendToServer(new CruiserMk1Packet(key));
         }
     }
     @SubscribeEvent
@@ -37,11 +39,11 @@ public class InputEvents {
         Entity entity = event.getEntity();
         if (entity instanceof Panzer2Entity) {
             ((Panzer2Entity) entity).getAttribute
-                    (Attributes.MAX_HEALTH).setBaseValue(TankModConfig.light_tank_health.get());
+                    (Attributes.MAX_HEALTH).setBaseValue(TankModConfig.panzer2_health.get());
         }
         if (entity instanceof TigerTankEntity) {
             ((TigerTankEntity) entity).getAttribute
-                    (Attributes.MAX_HEALTH).setBaseValue(TankModConfig.heavy_tank_health.get());
+                    (Attributes.MAX_HEALTH).setBaseValue(TankModConfig.tiger_health.get());
         }
         if (entity instanceof ArtilleryEntity) {
             ((ArtilleryEntity) entity).getAttribute
@@ -49,7 +51,11 @@ public class InputEvents {
         }
         if (entity instanceof T34Entity) {
             ((T34Entity) entity).getAttribute
-                    (Attributes.MAX_HEALTH).setBaseValue(TankModConfig.medium_tank_health.get());
+                    (Attributes.MAX_HEALTH).setBaseValue(TankModConfig.t34_health.get());
+        }
+        if (entity instanceof CruiserMk1Entity) {
+            ((CruiserMk1Entity) entity).getAttribute
+                    (Attributes.MAX_HEALTH).setBaseValue(TankModConfig.cruisermk1_health.get());
         }
     }
 }

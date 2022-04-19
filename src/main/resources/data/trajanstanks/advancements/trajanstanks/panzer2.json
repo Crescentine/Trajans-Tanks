@@ -1,0 +1,27 @@
+{
+  "parent": "trajanstanks:trajanstanks/crafter",
+  "display": {
+    "icon": {
+      "item": "trajanstanks:tank_item"
+    },
+    "title": "Panz-tastic!",
+    "description": "Craft a Panzer 2 Tank",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "trajanstanks:tank_item"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

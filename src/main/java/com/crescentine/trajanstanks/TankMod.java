@@ -1,23 +1,22 @@
 package com.crescentine.trajanstanks;
 
-import com.crescentine.trajanstanks.blockentity.TankModBlockEntities;
+import com.crescentine.trajanstanks.block.TankModBlockEntities;
 import com.crescentine.trajanstanks.config.TankModConfig;
 import com.crescentine.trajanstanks.container.TankModContainers;
 import com.crescentine.trajanstanks.entity.*;
 import com.crescentine.trajanstanks.entity.artillery.ArtilleryEntityRenderer;
 import com.crescentine.trajanstanks.entity.shell.ArtilleryShell;
 import com.crescentine.trajanstanks.entity.shell.ShellEntity;
-import com.crescentine.trajanstanks.entity.tank.tiger.TigerTankRenderer;
-import com.crescentine.trajanstanks.entity.tank.panzer2.Panzer2Renderer;
-import com.crescentine.trajanstanks.entity.tank.t34.T34Renderer;
+import com.crescentine.trajanstanks.entity.tanks.cruisermk1.CruiserMk1Renderer;
+import com.crescentine.trajanstanks.entity.tanks.tiger.TigerTankRenderer;
+import com.crescentine.trajanstanks.entity.tanks.panzer2.Panzer2Renderer;
+import com.crescentine.trajanstanks.entity.tanks.t34.T34Renderer;
 import com.crescentine.trajanstanks.item.TankModItems;
-import com.crescentine.trajanstanks.packet.ArtilleryInputMessage;
-import com.crescentine.trajanstanks.packet.HeavyInputMessage;
-import com.crescentine.trajanstanks.packet.TankInputMessage;
-import com.crescentine.trajanstanks.packet.TankNetwork;
+import com.crescentine.trajanstanks.packet.*;
 
 import com.crescentine.trajanstanks.recipe.ModRecipes;
 import com.crescentine.trajanstanks.screen.CrafterScreen;
+import com.crescentine.trajanstanks.screen.PlatingPressScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.Minecraft;
@@ -53,30 +52,47 @@ public class TankMod {
     private static final Logger LOGGER = LogManager.getLogger();
     public TankMod() {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, TankModConfig.SPEC, "trajanstanks-config.toml");
-        NETWORK_INSTANCE.registerMessage(0, TankInputMessage.class,
-                TankInputMessage::writePacketData,
-                TankInputMessage::new,
+        NETWORK_INSTANCE.registerMessage(0, Panzer2Packet.class,
+                Panzer2Packet::writePacketData,
+                Panzer2Packet::new,
                 (packet, ctx) -> {
                     ctx.get().setPacketHandled(true);
                     packet.handle(packet, null);
                 }
         );
-        NETWORK_INSTANCE.registerMessage(1, ArtilleryInputMessage.class,
-                ArtilleryInputMessage::writePacketData,
-                ArtilleryInputMessage::new,
+        NETWORK_INSTANCE.registerMessage(1, ArtilleryPacket.class,
+                ArtilleryPacket::writePacketData,
+                ArtilleryPacket::new,
                 (packet, ctx) -> {
                     ctx.get().setPacketHandled(true);
                     packet.handle(packet, null);
                 }
         );
-        NETWORK_INSTANCE.registerMessage(2, HeavyInputMessage.class,
-                HeavyInputMessage::writePacketData,
-                HeavyInputMessage::new,
+        NETWORK_INSTANCE.registerMessage(2, TigerPacket.class,
+                TigerPacket::writePacketData,
+                TigerPacket::new,
                 (packet, ctx) -> {
                     ctx.get().setPacketHandled(true);
                     packet.handle(packet, null);
                 }
         );
+        NETWORK_INSTANCE.registerMessage(3, T34Packet.class,
+                T34Packet::writePacketData,
+                T34Packet::new,
+                (packet, ctx) -> {
+                    ctx.get().setPacketHandled(true);
+                    packet.handle(packet, null);
+                }
+        );
+        NETWORK_INSTANCE.registerMessage(4, CruiserMk1Packet.class,
+                CruiserMk1Packet::writePacketData,
+                CruiserMk1Packet::new,
+                (packet, ctx) -> {
+                    ctx.get().setPacketHandled(true);
+                    packet.handle(packet, null);
+                }
+        );
+
                     GeckoLib.initialize();
 
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -86,8 +102,7 @@ public class TankMod {
         eventBus.addListener(this::doClientStuff);
         TankModEntityTypes.ENTITY_TYPES.register(eventBus);
         MinecraftForge.EVENT_BUS.register(this);
-      //  ModRecipeTypes.register(eventBus);
-        TankNetwork.init();
+        TankModNetwork.init();
         TankModContainers.register(eventBus);
         TankModBlockEntities.register(eventBus);
         ModRecipes.init();
@@ -95,10 +110,11 @@ public class TankMod {
 
     private void doClientStuff(final FMLClientSetupEvent event) {
         MenuScreens.register(TankModContainers.CRAFTER_CONTAINER.get(), CrafterScreen::new);
+        MenuScreens.register(TankModContainers.PLATING_PRESS_CONTAINER.get(), PlatingPressScreen::new);
     }
 
     public void commonSetup(final FMLCommonSetupEvent event) {
-        TankNetwork.init();
+        TankModNetwork.init();
     }
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistryEvents {
@@ -112,6 +128,7 @@ public class TankMod {
             EntityRenderers.register(TankModEntityTypes.ARTILLERY_SHELL.get(), ThrownItemRenderer<ArtilleryShell>::new);
             EntityRenderers.register(TankModEntityTypes.TIGER_ENTITY_TYPE.get(), TigerTankRenderer::new);
             EntityRenderers.register(TankModEntityTypes.T34_ENTITY_TYPE.get(), T34Renderer::new);
+            EntityRenderers.register(TankModEntityTypes.CRUISERMK1_ENTITY_TYPE.get(), CruiserMk1Renderer::new);
 
         }
     }

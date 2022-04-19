@@ -2,7 +2,7 @@ package com.crescentine.trajanstanks.entity.shell;
 
 import com.crescentine.trajanstanks.config.TankModConfig;
 import com.crescentine.trajanstanks.entity.TankModEntityTypes;
-import com.crescentine.trajanstanks.entity.tank.panzer2.Panzer2Entity;
+import com.crescentine.trajanstanks.entity.tanks.panzer2.Panzer2Entity;
 import com.crescentine.trajanstanks.item.TankModItems;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.world.damagesource.DamageSource;

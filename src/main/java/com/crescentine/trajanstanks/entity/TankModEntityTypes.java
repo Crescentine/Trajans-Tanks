@@ -4,9 +4,10 @@ import com.crescentine.trajanstanks.TankMod;
 import com.crescentine.trajanstanks.entity.artillery.ArtilleryEntity;
 import com.crescentine.trajanstanks.entity.shell.ArtilleryShell;
 import com.crescentine.trajanstanks.entity.shell.ShellEntity;
-import com.crescentine.trajanstanks.entity.tank.tiger.TigerTankEntity;
-import com.crescentine.trajanstanks.entity.tank.panzer2.Panzer2Entity;
-import com.crescentine.trajanstanks.entity.tank.t34.T34Entity;
+import com.crescentine.trajanstanks.entity.tanks.cruisermk1.CruiserMk1Entity;
+import com.crescentine.trajanstanks.entity.tanks.tiger.TigerTankEntity;
+import com.crescentine.trajanstanks.entity.tanks.panzer2.Panzer2Entity;
+import com.crescentine.trajanstanks.entity.tanks.t34.T34Entity;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.resources.ResourceLocation;
@@ -39,7 +40,9 @@ public class TankModEntityTypes {
             () -> EntityType.Builder.<T34Entity>of(T34Entity::new, MobCategory.MISC).sized(3.8F, 2.1f)
                     .clientTrackingRange(10).build("t34_entity_type"));
 
-
+    public static final RegistryObject<EntityType<CruiserMk1Entity>> CRUISERMK1_ENTITY_TYPE = ENTITY_TYPES.register("cruisermk1_entity_type",
+            () -> EntityType.Builder.<CruiserMk1Entity>of(CruiserMk1Entity::new, MobCategory.MISC).sized(3.8F, 2.1f)
+                    .clientTrackingRange(10).build("cruisermk1_entity_type"));
 
 
     public static final RegistryObject<EntityType<ShellEntity>> SHELL = ENTITY_TYPES.register("shell",
@@ -64,6 +67,7 @@ public class TankModEntityTypes {
         event.put(TIGER_ENTITY_TYPE.get(), TigerTankEntity.createAttributes().build());
         event.put(ARTILLERY_ENTITY_TYPE.get(), ArtilleryEntity.createAttributes().build());
         event.put(T34_ENTITY_TYPE.get(), T34Entity.createAttributes().build());
+        event.put(CRUISERMK1_ENTITY_TYPE.get(), CruiserMk1Entity.createAttributes().build());
 
     }
 

@@ -5,17 +5,21 @@ import net.minecraftforge.common.ForgeConfigSpec;
 public class TankModConfig {
     public static final ForgeConfigSpec.Builder BUILDER  = new ForgeConfigSpec.Builder();
     public static final ForgeConfigSpec SPEC;
-    public static final ForgeConfigSpec.ConfigValue<Double> light_tank_health;
-    public static final ForgeConfigSpec.ConfigValue<Double> light_tank_speed;
-    public static final ForgeConfigSpec.ConfigValue<Integer> light_tank_shot_cooldown;
+    public static final ForgeConfigSpec.ConfigValue<Double> panzer2_health;
+    public static final ForgeConfigSpec.ConfigValue<Double> panzer2_speed;
+    public static final ForgeConfigSpec.ConfigValue<Integer> panzer2_shot_cooldown;
 
-    public static final ForgeConfigSpec.ConfigValue<Double> medium_tank_health;
-    public static final ForgeConfigSpec.ConfigValue<Double> medium_tank_speed;
-    public static final ForgeConfigSpec.ConfigValue<Integer> medium_tank_shot_cooldown;
+    public static final ForgeConfigSpec.ConfigValue<Double> t34_health;
+    public static final ForgeConfigSpec.ConfigValue<Double> t34_speed;
+    public static final ForgeConfigSpec.ConfigValue<Integer> t34_shot_cooldown;
 
-    public static final ForgeConfigSpec.ConfigValue<Double> heavy_tank_health;
-    public static final ForgeConfigSpec.ConfigValue<Double> heavy_tank_speed;
-    public static final ForgeConfigSpec.ConfigValue<Integer> heavy_tank_shot_cooldown;
+    public static final ForgeConfigSpec.ConfigValue<Double> tiger_health;
+    public static final ForgeConfigSpec.ConfigValue<Double> tiger_speed;
+    public static final ForgeConfigSpec.ConfigValue<Integer> tiger_shot_cooldown;
+
+    public static final ForgeConfigSpec.ConfigValue<Double> cruisermk1_health;
+    public static final ForgeConfigSpec.ConfigValue<Double> cruisermk1_speed;
+    public static final ForgeConfigSpec.ConfigValue<Integer> cruisermk1_shot_cooldown;
 
     public static final ForgeConfigSpec.ConfigValue<Double> mounted_gun_health;
     public static final ForgeConfigSpec.ConfigValue<Integer> mounted_gun_shot_cooldown;
@@ -34,28 +38,33 @@ public class TankModConfig {
         BUILDER.comment("Config File for Trajan's Tank Mod");
         BUILDER.pop();
 
-        BUILDER.push("Light Tank Stats");
-        light_tank_health = BUILDER.define("Light Tank Health (0-250)" , 80.0);
-        light_tank_speed = BUILDER.define("Light Tank Speed" , 0.17);
-        light_tank_shot_cooldown = BUILDER.define("Light Tank Shot Cooldown (1 = 1/20 second)", 60);
+        BUILDER.push("Panzer 2 Stats");
+        panzer2_health = BUILDER.define("Panzer 2 Health (0-250)" , 80.0);
+        panzer2_speed = BUILDER.define("Panzer 2 Speed" , 0.17);
+        panzer2_shot_cooldown = BUILDER.define("Panzer 2 Shot Cooldown (1 = 1/20 second)", 60);
         BUILDER.pop();
 
+        BUILDER.push("Tiger Stats");
+        tiger_health = BUILDER.define("Tiger Health (0-250)" , 110.0);
+        tiger_speed = BUILDER.define("Tiger Speed" , 0.12);
+        tiger_shot_cooldown = BUILDER.define("Tiger Shoot Cooldown (1 = 1/20 second", 80);
+        BUILDER.pop();
+
+        BUILDER.push("T-34 Stats");
+        t34_health = BUILDER.define("T-34 Health (0-250)" , 95.0);
+        t34_speed = BUILDER.define("T-34 Speed" , 0.14);
+        t34_shot_cooldown = BUILDER.define("T-34 Shoot Cooldown (1 = 1/20 second", 70);
+        BUILDER.pop();
+
+        BUILDER.push("Cruiser MK1 Stats");
+        cruisermk1_health = BUILDER.define("Cruiser MK1 Health (0-250)" , 80.0);
+        cruisermk1_speed = BUILDER.define("Cruiser MK1 Speed" , 0.17);
+        cruisermk1_shot_cooldown = BUILDER.define("Cruiser MK1 Shoot Cooldown (1 = 1/20 second", 60);
+        BUILDER.pop();
 
         BUILDER.push("Anti-Tank Stats");
         mounted_gun_health = BUILDER.define("Artillery Health", 30.0);
         mounted_gun_shot_cooldown = BUILDER.define("Artillery Shot Cooldown (1 = 1/20 second)", 75);
-        BUILDER.pop();
-
-        BUILDER.push("Heavy Tank Stats");
-        heavy_tank_health = BUILDER.define("Heavy Tank Health (0-250)" , 110.0);
-        heavy_tank_speed = BUILDER.define("Heavy Tank Speed" , 0.12);
-        heavy_tank_shot_cooldown = BUILDER.define("Heavy Tank Shoot Cooldown (1 = 1/20 second", 80);
-        BUILDER.pop();
-
-        BUILDER.push("Medium Tank Stats");
-        medium_tank_health = BUILDER.define("Medium Tank Health (0-250)" , 95.0);
-        medium_tank_speed = BUILDER.define("Medium Tank Speed" , 0.14);
-        medium_tank_shot_cooldown = BUILDER.define("Medium Tank Shoot Cooldown (1 = 1/20 second", 70);
         BUILDER.pop();
 
         BUILDER.push("Tank Shell Damages");

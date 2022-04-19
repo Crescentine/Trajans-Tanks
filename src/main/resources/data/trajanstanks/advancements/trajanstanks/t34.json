@@ -1,0 +1,27 @@
+{
+  "parent": "trajanstanks:trajanstanks/crafter",
+  "display": {
+    "icon": {
+      "item": "trajanstanks:medium_tank_item"
+    },
+    "title": "The Red Army's Finest",
+    "description": "Craft a T-34!",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "trajanstanks:medium_tank_item"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
