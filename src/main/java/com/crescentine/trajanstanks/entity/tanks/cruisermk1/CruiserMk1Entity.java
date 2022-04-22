@@ -2,6 +2,7 @@ package com.crescentine.trajanstanks.entity.tanks.cruisermk1;
 
 import com.crescentine.trajanstanks.TankModClient;
 import com.crescentine.trajanstanks.config.TankModConfig;
+import com.crescentine.trajanstanks.container.EngineFabricatorContainer;
 import com.crescentine.trajanstanks.entity.BaseTankEntity;
 import com.crescentine.trajanstanks.entity.shell.ShellEntity;
 import com.crescentine.trajanstanks.entity.tanks.panzer2.Panzer2Entity;
@@ -47,7 +48,7 @@ public class CruiserMk1Entity extends BaseTankEntity implements IAnimatable {
 
         private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
             if (event.isMoving()) {
-                event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.cruisermk1.walking", true));
+                event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
                 return PlayState.CONTINUE;
             }
             return PlayState.STOP;

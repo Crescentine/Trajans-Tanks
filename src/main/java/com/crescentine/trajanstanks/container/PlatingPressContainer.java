@@ -5,6 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
@@ -18,14 +19,15 @@ public class PlatingPressContainer extends AbstractContainerMenu {
     private final Level level;
     private final ContainerLevelAccess containerAccess;
 
+
     public PlatingPressContainer(int id, Level level, BlockPos pos,
-                            Inventory playerInv, Player player) {
+                                 Inventory playerInv, Player player) {
         super(TankModContainers.PLATING_PRESS_CONTAINER.get(), id);
         this.blockEntity = level.getBlockEntity(pos);
         this.level = playerInv.player.level;
         this.containerAccess = ContainerLevelAccess.create(playerInv.player.level, pos);
 
-        if(blockEntity != null) {
+        if (blockEntity != null) {
             blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
                 //Row 1
                 addSlot(new SlotItemHandler(h, 0, 43, 30));
@@ -45,8 +47,6 @@ public class PlatingPressContainer extends AbstractContainerMenu {
         for (int col = 0; col < 9; col++) {
             this.addSlot(new Slot(playerInv, col, 8 + col * 18, 142));
         }
-
-
     }
     @Override
     public boolean stillValid(Player pPlayer) {

@@ -16,6 +16,7 @@ import com.crescentine.trajanstanks.packet.*;
 
 import com.crescentine.trajanstanks.recipe.ModRecipes;
 import com.crescentine.trajanstanks.screen.CrafterScreen;
+import com.crescentine.trajanstanks.screen.EngineFabricatorScreen;
 import com.crescentine.trajanstanks.screen.PlatingPressScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -110,6 +111,7 @@ public class TankMod {
 
     private void doClientStuff(final FMLClientSetupEvent event) {
         MenuScreens.register(TankModContainers.CRAFTER_CONTAINER.get(), CrafterScreen::new);
+        MenuScreens.register(TankModContainers.ENGINE_FABRICATOR_CONTAINER.get(), EngineFabricatorScreen::new);
         MenuScreens.register(TankModContainers.PLATING_PRESS_CONTAINER.get(), PlatingPressScreen::new);
     }
 

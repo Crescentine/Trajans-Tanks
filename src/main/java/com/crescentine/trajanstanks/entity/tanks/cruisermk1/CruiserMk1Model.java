@@ -7,14 +7,14 @@ import software.bernie.geckolib3.model.AnimatedGeoModel;
 
 public class CruiserMk1Model extends AnimatedGeoModel<CruiserMk1Entity> {
     public ResourceLocation getModelLocation(CruiserMk1Entity object) {
-        return new ResourceLocation(TankMod.MOD_ID, "geo/cruisermk1.geo.json");
+        return new ResourceLocation(TankMod.MOD_ID, "geo/cruiser_mk1.geo.json");
     }
 
     public ResourceLocation getTextureLocation(CruiserMk1Entity object) {
-        return new ResourceLocation(TankMod.MOD_ID, "textures/item/cruisermk1.png");
+        return new ResourceLocation(TankMod.MOD_ID, "textures/item/cruiser_mk1.png");
     }
 
     public ResourceLocation getAnimationFileLocation(CruiserMk1Entity animatable) {
-        return new ResourceLocation(TankMod.MOD_ID, "animations/cruisermk1.animation.json");
+        return new ResourceLocation(TankMod.MOD_ID, "animations/cruiser_mk1_animation.json");
     }
 }

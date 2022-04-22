@@ -13,6 +13,7 @@ import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -44,28 +45,18 @@ public class PlatingPressBlock extends HorizontalDirectionalBlock implements Ent
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand,
-                                 BlockHitResult result) {
-        if (!level.isClientSide && level.getBlockEntity(pos) instanceof final PlatingPressBlockEntity crafter) {
-            MenuProvider containerProvider = createContainerProvider(level, pos);
-            NetworkHooks.openGui((ServerPlayer) player, containerProvider, pos);
+    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos,
+                                 Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+        if (!pLevel.isClientSide()) {
+            BlockEntity entity = pLevel.getBlockEntity(pPos);
+            if(entity instanceof PlatingPressBlockEntity) {
+                NetworkHooks.openGui(((ServerPlayer)pPlayer), (PlatingPressBlockEntity)entity, pPos);
+            } else {
+                throw new IllegalStateException("Our Container provider is missing!");
+            }
         }
 
-        return InteractionResult.SUCCESS;
-    }
-
-    private MenuProvider createContainerProvider(Level worldIn, BlockPos pos) {
-        return new MenuProvider() {
-            @Override
-            public TranslatableComponent getDisplayName() {
-                return new TranslatableComponent("Plating Press");
-            }
-
-            @Override
-            public AbstractContainerMenu createMenu(int i, Inventory playerInventory, Player playerEntity) {
-                return new PlatingPressContainer(i, worldIn, pos, playerInventory, playerEntity);
-            }
-        };
+        return InteractionResult.sidedSuccess(pLevel.isClientSide());
     }
 
     @Override

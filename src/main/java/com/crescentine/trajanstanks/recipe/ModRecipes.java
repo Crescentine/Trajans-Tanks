@@ -23,17 +23,27 @@ public class ModRecipes {
     public static final RecipeType<TankCrafterRecipe> PLATING_PRESS_RECIPE_TYPE = new RecipeType<>() {
         @Override
         public String toString() {
-            return TankMod.MOD_ID + ":crafter";
+            return TankMod.MOD_ID + ":plating_press";
+        }
+    };
+    public static final RecipeType<TankCrafterRecipe> ENGINE_FABRICATOR_RECIPE_TYPE = new RecipeType<>() {
+        @Override
+        public String toString() {
+            return TankMod.MOD_ID + ":engine_fabricator";
         }
     };
 
-    public static void init() {
-        FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(RecipeSerializer.class, ModRecipes::registerRecipeSerializers);
-    }
-    public static void registerRecipeSerializers(RegistryEvent.Register<RecipeSerializer<?>> event) {
-        Registry.register(Registry.RECIPE_TYPE, new ResourceLocation(CRAFTER_RECIPE_TYPE.toString()), CRAFTER_RECIPE_TYPE);
-        event.getRegistry().register(TankCrafterRecipe.Serializer.INSTANCE);
-        Registry.register(Registry.RECIPE_TYPE, new ResourceLocation(PLATING_PRESS_RECIPE_TYPE.toString()), PLATING_PRESS_RECIPE_TYPE);
-        event.getRegistry().register(PlatingPressRecipe.Serializer.INSTANCE);
-    }
+
+        public static void init() {
+            FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(RecipeSerializer.class, ModRecipes::registerRecipeSerializers);
+        }
+
+        public static void registerRecipeSerializers(RegistryEvent.Register<RecipeSerializer<?>> event) {
+            Registry.register(Registry.RECIPE_TYPE, new ResourceLocation(CRAFTER_RECIPE_TYPE.toString()), CRAFTER_RECIPE_TYPE);
+            event.getRegistry().register(TankCrafterRecipe.Serializer.INSTANCE);
+            Registry.register(Registry.RECIPE_TYPE, new ResourceLocation(PLATING_PRESS_RECIPE_TYPE.toString()), PLATING_PRESS_RECIPE_TYPE);
+            event.getRegistry().register(PlatingPressRecipe.Serializer.INSTANCE);
+            Registry.register(Registry.RECIPE_TYPE, new ResourceLocation(ENGINE_FABRICATOR_RECIPE_TYPE.toString()), ENGINE_FABRICATOR_RECIPE_TYPE);
+            event.getRegistry().register(EngineFabricatorRecipe.Serializer.INSTANCE);
+        }
 }

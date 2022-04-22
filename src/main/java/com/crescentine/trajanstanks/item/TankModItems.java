@@ -2,6 +2,7 @@ package com.crescentine.trajanstanks.item;
 
 import com.crescentine.trajanstanks.TankMod;
 import com.crescentine.trajanstanks.block.crafter.CrafterBlock;
+import com.crescentine.trajanstanks.block.engine_fabricator.EngineFabricatorBlock;
 import com.crescentine.trajanstanks.block.platingpress.PlatingPressBlock;
 import com.crescentine.trajanstanks.entity.shell.ShellItem;
 import com.crescentine.trajanstanks.entity.TankModEntityTypes;
@@ -37,6 +38,8 @@ public class TankModItems {
         () -> new CrafterBlock(BlockBehaviour.Properties.of(Material.METAL).strength(1.0f)));
     public static final RegistryObject<Block> PLATE_PRESS_BLOCK = registerBlock("plate_press_block",
             () -> new PlatingPressBlock(BlockBehaviour.Properties.of(Material.METAL).strength(1.0f)));
+    public static final RegistryObject<Block> ENGINE_FABRICATOR = registerBlock("engine_fabricator",
+            () -> new EngineFabricatorBlock(BlockBehaviour.Properties.of(Material.METAL).strength(1.0f)));
 
 
     //Parts for Panzer 2

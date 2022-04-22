@@ -2,7 +2,7 @@ package com.crescentine.trajanstanks.block;
 
 import com.crescentine.trajanstanks.TankMod;
 import com.crescentine.trajanstanks.block.crafter.CrafterBlockEntity;
-import com.crescentine.trajanstanks.block.platingpress.PlatingPressBlock;
+import com.crescentine.trajanstanks.block.engine_fabricator.EngineFabricatorBlockEntity;
 import com.crescentine.trajanstanks.block.platingpress.PlatingPressBlockEntity;
 import com.crescentine.trajanstanks.item.TankModItems;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -21,6 +21,10 @@ public class TankModBlockEntities {
     public static RegistryObject<BlockEntityType<PlatingPressBlockEntity>> PLATING_PRESS =
             BLOCK_ENTITIES.register("plating_press", () -> BlockEntityType.Builder.of
                     (PlatingPressBlockEntity::new, TankModItems.PLATE_PRESS_BLOCK.get()).build(null));
+    public static RegistryObject<BlockEntityType<EngineFabricatorBlockEntity>> ENGINE_FABRICATOR_BLOCK_ENTITY =
+            BLOCK_ENTITIES.register("engine_fabricator", () -> BlockEntityType.Builder.of
+                    (EngineFabricatorBlockEntity::new, TankModItems.ENGINE_FABRICATOR.get()).build(null));
+
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

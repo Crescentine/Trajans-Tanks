@@ -15,6 +15,7 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -22,14 +23,14 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
-public class PlatingPressBlockEntity extends InventoryBlockEntity  {
+public class PlatingPressBlockEntity extends InventoryBlockEntity implements MenuProvider  {
+
     public static final Component TITLE = new TranslatableComponent(
             "container." + TankMod.MOD_ID + ".plating_press");
 
     public PlatingPressBlockEntity(BlockPos pos, BlockState state) {
         super(TankModBlockEntities.PLATING_PRESS.get(), pos, state, 5);
     }
-
     public static void tick(Level world, PlatingPressBlockEntity entity) {
         if (hasRecipe(entity)) {
             craftItem(entity);
@@ -81,4 +82,14 @@ public class PlatingPressBlockEntity extends InventoryBlockEntity  {
         return inventory.getItem(4).getMaxStackSize() > inventory.getItem(4).getCount();
     }
 
+    @Override
+    public Component getDisplayName() {
+        return new TextComponent("Plating Press");
+    }
+
+    @Nullable
+    @Override
+    public AbstractContainerMenu createMenu(int id, Inventory inv, Player player) {
+        return new PlatingPressContainer(id, level, getBlockPos(), inv, player);
+    }
 }
