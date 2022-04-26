@@ -4,6 +4,8 @@ import com.crescentine.trajanstanks.TankMod;
 import com.crescentine.trajanstanks.block.crafter.CrafterBlockEntity;
 import com.crescentine.trajanstanks.block.engine_fabricator.EngineFabricatorBlockEntity;
 import com.crescentine.trajanstanks.block.platingpress.PlatingPressBlockEntity;
+import com.crescentine.trajanstanks.block.steelmanufacturer.SteelManufacturerBlockEntity;
+import com.crescentine.trajanstanks.block.turretfactory.TurretFactoryBlockEntity;
 import com.crescentine.trajanstanks.item.TankModItems;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -24,6 +26,12 @@ public class TankModBlockEntities {
     public static RegistryObject<BlockEntityType<EngineFabricatorBlockEntity>> ENGINE_FABRICATOR_BLOCK_ENTITY =
             BLOCK_ENTITIES.register("engine_fabricator", () -> BlockEntityType.Builder.of
                     (EngineFabricatorBlockEntity::new, TankModItems.ENGINE_FABRICATOR.get()).build(null));
+    public static RegistryObject<BlockEntityType<SteelManufacturerBlockEntity>> STEEL_MANUFACTURER =
+            BLOCK_ENTITIES.register("steel_manufacturer", () -> BlockEntityType.Builder.of
+                    (SteelManufacturerBlockEntity::new, TankModItems.STEEL_MANUFACTURER.get()).build(null));
+    public static RegistryObject<BlockEntityType<TurretFactoryBlockEntity>> TURRET_FACTORY =
+            BLOCK_ENTITIES.register("turret_factory", () -> BlockEntityType.Builder.of
+                    (TurretFactoryBlockEntity::new, TankModItems.TURRET_FACTORY.get()).build(null));
 
 
     public static void register(IEventBus eventBus) {

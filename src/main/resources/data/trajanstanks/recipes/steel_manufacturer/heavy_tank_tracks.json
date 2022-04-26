@@ -1,0 +1,38 @@
+{
+  "type" : "trajanstanks:steel_manufacturer",
+  "ingredients" : [
+    {
+      "item": "minecraft:rail"
+    },
+    {
+      "item": "minecraft:rail"
+    },
+    {
+      "item": "minecraft:rail"
+    },
+    {
+      "item": "minecraft:iron_block"
+    },
+    {
+      "item": "minecraft:iron_block"
+    },
+    {
+      "item": "minecraft:iron_block"
+    },
+    {
+      "item": "minecraft:rail"
+    },
+    {
+      "item": "minecraft:rail"
+    },
+    {
+      "item": "minecraft:rail"
+    },
+    {
+      "item": "trajanstanks:blowtorch_tool"
+    }
+  ],
+  "output" : {
+    "item": "trajanstanks:heavy_tank_tracks"
+  }
+}

@@ -13,14 +13,14 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
-public class PlatingPressRecipe implements Recipe<SimpleContainer> {
-    ResourceLocation TYPE_ID = new ResourceLocation(TankMod.MOD_ID, "plating_press");
+public class TurretFactoryRecipe implements Recipe<SimpleContainer> {
+    ResourceLocation TYPE_ID = new ResourceLocation(TankMod.MOD_ID, "turret_factory");
     private final ResourceLocation id;
     private final ItemStack output;
     public final NonNullList<Ingredient> recipeItems;
 
-    public PlatingPressRecipe(ResourceLocation id, ItemStack output,
-                             NonNullList<Ingredient> recipeItems) {
+    public TurretFactoryRecipe(ResourceLocation id, ItemStack output,
+                                   NonNullList<Ingredient> recipeItems) {
         this.id = id;
         this.output = output;
         this.TYPE_ID = TYPE_ID;
@@ -38,8 +38,11 @@ public class PlatingPressRecipe implements Recipe<SimpleContainer> {
             if (recipeItems.get(1).test(inventory.getItem(1))) {
                 if (recipeItems.get(2).test(inventory.getItem(2))) {
                     if (recipeItems.get(3).test(inventory.getItem(3))) {
-                        return (recipeItems.get(4).test(inventory.getItem(4)));
-                                }}}}
+                        if (recipeItems.get(4).test(inventory.getItem(4))) {
+                            if (recipeItems.get(5).test(inventory.getItem(5))) {
+                                if (recipeItems.get(6).test(inventory.getItem(6))) {
+                                            return recipeItems.get(7).test(inventory.getItem(7));
+                                        }}}}}}}
         return false;
     }
 
@@ -74,34 +77,34 @@ public class PlatingPressRecipe implements Recipe<SimpleContainer> {
         return Type.INSTANCE;
     }
 
-    public static class Type implements RecipeType<PlatingPressRecipe> {
+    public static class Type implements RecipeType<TurretFactoryRecipe> {
         public Type() { }
         public static final Type INSTANCE = new Type();
-        public static final String ID = "plating_press";
+        public static final String ID = "turret_factory";
     }
 
-    public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<PlatingPressRecipe> {
+    public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<TurretFactoryRecipe> {
         public static final Serializer INSTANCE = new Serializer();
-        public static final String ID = "plating_press";
+        public static final String ID = "turret_factory";
         public Serializer() {
-            setRegistryName(TankMod.MOD_ID, "plating_press");
+            setRegistryName(TankMod.MOD_ID, "turret_factory");
         }
         @Override
-        public PlatingPressRecipe fromJson(ResourceLocation id, JsonObject json) {
+        public TurretFactoryRecipe fromJson(ResourceLocation id, JsonObject json) {
             ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "output"));
 
             JsonArray ingredients = GsonHelper.getAsJsonArray(json, "ingredients");
-            NonNullList<Ingredient> inputs = NonNullList.withSize(5, Ingredient.EMPTY);
+            NonNullList<Ingredient> inputs = NonNullList.withSize(8, Ingredient.EMPTY);
 
             for (int i = 0; i < inputs.size(); i++) {
                 inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
             }
 
-            return new PlatingPressRecipe(id, output, inputs);
+            return new TurretFactoryRecipe(id, output, inputs);
         }
 
         @Override
-        public PlatingPressRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
+        public TurretFactoryRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
             NonNullList<Ingredient> inputs = NonNullList.withSize(buf.readInt(), Ingredient.EMPTY);
 
             for (int i = 0; i < inputs.size(); i++) {
@@ -109,12 +112,12 @@ public class PlatingPressRecipe implements Recipe<SimpleContainer> {
             }
 
             ItemStack output = buf.readItem();
-            return new PlatingPressRecipe(id, output,
+            return new TurretFactoryRecipe(id, output,
                     inputs);
         }
 
         @Override
-        public void toNetwork(FriendlyByteBuf buf, PlatingPressRecipe recipe) {
+        public void toNetwork(FriendlyByteBuf buf, TurretFactoryRecipe recipe) {
             buf.writeInt(recipe.getIngredients().size());
             for (Ingredient ing : recipe.getIngredients()) {
                 ing.toNetwork(buf);

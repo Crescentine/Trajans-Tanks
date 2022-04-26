@@ -1,0 +1,32 @@
+{
+  "type" : "trajanstanks:turret_factory",
+  "ingredients" : [
+    {
+      "item": "minecraft:iron_trapdoor"
+    },
+    {
+      "item": "minecraft:iron_block"
+    },
+    {
+      "item": "minecraft:dispenser"
+    },
+    {
+      "item": "minecraft:iron_nugget"
+    },
+    {
+      "item": "minecraft:iron_nugget"
+    },
+    {
+      "item": "minecraft:iron_block"
+    },
+    {
+      "item": "minecraft:iron_nugget"
+    },
+    {
+      "item": "trajanstanks:blowtorch_tool"
+    }
+  ],
+  "output" : {
+    "item" : "trajanstanks:light_tank_turret"
+  }
+}

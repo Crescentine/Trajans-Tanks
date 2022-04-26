@@ -1,8 +1,8 @@
 package com.crescentine.trajanstanks.screen;
 
 import com.crescentine.trajanstanks.TankMod;
-import com.crescentine.trajanstanks.container.EngineFabricatorContainer;
 import com.crescentine.trajanstanks.container.PlatingPressContainer;
+import com.crescentine.trajanstanks.container.SteelManufacturerContainer;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -11,13 +11,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-import java.util.logging.Level;
-
-public class PlatingPressScreen extends AbstractContainerScreen<PlatingPressContainer> {
+public class SteelManufacturerScreen extends AbstractContainerScreen<SteelManufacturerContainer> {
     private static final ResourceLocation TEXTURE =
-            new ResourceLocation(TankMod.MOD_ID, "textures/gui/plating_press.png");
+            new ResourceLocation(TankMod.MOD_ID, "textures/gui/steel_manufacturer.png");
 
-    public PlatingPressScreen(PlatingPressContainer pMenu, Inventory pPlayerInventory, Component pTitle) {
+    public SteelManufacturerScreen(SteelManufacturerContainer pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
     }
 
@@ -32,7 +30,7 @@ public class PlatingPressScreen extends AbstractContainerScreen<PlatingPressCont
         this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
 
         if(menu.isCrafting()) {
-            blit(pPoseStack, x + 65, y + 29, 176, 0, menu.getScaledProgress(), 40);
+            blit(pPoseStack, x + 92, y + 35, 176, 0, menu.getScaledProgress(), 14);
         }
     }
 

@@ -32,6 +32,18 @@ public class ModRecipes {
             return TankMod.MOD_ID + ":engine_fabricator";
         }
     };
+    public static final RecipeType<TankCrafterRecipe> STEEL_MANUFACTURER_RECIPE_TYPE = new RecipeType<>() {
+        @Override
+        public String toString() {
+            return TankMod.MOD_ID + ":steel_manufacturer";
+        }
+    };
+    public static final RecipeType<TankCrafterRecipe> TURRET_FACTORY_RECIPE_TYPE = new RecipeType<>() {
+        @Override
+        public String toString() {
+            return TankMod.MOD_ID + ":turret_factory";
+        }
+    };
 
 
         public static void init() {
@@ -45,5 +57,9 @@ public class ModRecipes {
             event.getRegistry().register(PlatingPressRecipe.Serializer.INSTANCE);
             Registry.register(Registry.RECIPE_TYPE, new ResourceLocation(ENGINE_FABRICATOR_RECIPE_TYPE.toString()), ENGINE_FABRICATOR_RECIPE_TYPE);
             event.getRegistry().register(EngineFabricatorRecipe.Serializer.INSTANCE);
+            Registry.register(Registry.RECIPE_TYPE, new ResourceLocation(STEEL_MANUFACTURER_RECIPE_TYPE.toString()), STEEL_MANUFACTURER_RECIPE_TYPE);
+            event.getRegistry().register(SteelManufacturerRecipe.Serializer.INSTANCE);
+            Registry.register(Registry.RECIPE_TYPE, new ResourceLocation(TURRET_FACTORY_RECIPE_TYPE.toString()), TURRET_FACTORY_RECIPE_TYPE);
+            event.getRegistry().register(TurretFactoryRecipe.Serializer.INSTANCE);
         }
 }

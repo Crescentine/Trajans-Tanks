@@ -4,6 +4,9 @@ import com.crescentine.trajanstanks.TankMod;
 import com.crescentine.trajanstanks.block.crafter.CrafterBlock;
 import com.crescentine.trajanstanks.block.engine_fabricator.EngineFabricatorBlock;
 import com.crescentine.trajanstanks.block.platingpress.PlatingPressBlock;
+import com.crescentine.trajanstanks.item.machines.plating_press.PlatingPressItem;
+import com.crescentine.trajanstanks.block.steelmanufacturer.SteelManufacturerBlock;
+import com.crescentine.trajanstanks.block.turretfactory.TurretFactoryBlock;
 import com.crescentine.trajanstanks.entity.shell.ShellItem;
 import com.crescentine.trajanstanks.entity.TankModEntityTypes;
 import net.minecraft.world.item.BlockItem;
@@ -36,10 +39,17 @@ public class TankModItems {
     //Blocks
     public static final RegistryObject<Block> CRAFTER_BLOCK = registerBlock("crafter_block",
         () -> new CrafterBlock(BlockBehaviour.Properties.of(Material.METAL).strength(1.0f)));
-    public static final RegistryObject<Block> PLATE_PRESS_BLOCK = registerBlock("plate_press_block",
-            () -> new PlatingPressBlock(BlockBehaviour.Properties.of(Material.METAL).strength(1.0f)));
+    public static final RegistryObject<Block> PLATE_PRESS_BLOCK = registerBlock("plate_press_block", PlatingPressBlock::new);
+
+    public static final RegistryObject<Item> PLATE_PRESS_BLOCK_ITEM = ITEMS.register("plate_press_block_item",
+            () -> new PlatingPressItem(TankModItems.PLATE_PRESS_BLOCK.get(), new Item.Properties().tab(PartsItemGroup.TANK_MOD_PARTS)));
+
     public static final RegistryObject<Block> ENGINE_FABRICATOR = registerBlock("engine_fabricator",
             () -> new EngineFabricatorBlock(BlockBehaviour.Properties.of(Material.METAL).strength(1.0f)));
+    public static final RegistryObject<Block> STEEL_MANUFACTURER = registerBlock("steel_manufacturer",
+            () -> new SteelManufacturerBlock(BlockBehaviour.Properties.of(Material.METAL).strength(1.0f)));
+    public static final RegistryObject<Block> TURRET_FACTORY = registerBlock("turret_factory",
+            () -> new TurretFactoryBlock(BlockBehaviour.Properties.of(Material.METAL).strength(1.0f)));
 
 
     //Parts for Panzer 2
@@ -66,6 +76,11 @@ public class TankModItems {
     public static final RegistryObject<Item> MEDIUM_TANK_TRACMS = ITEMS.register("medium_tank_tracks", () -> new Item(new Item.Properties().tab(PartsItemGroup.TANK_MOD_PARTS)));
     public static final RegistryObject<Item> T34_BLUEPRINT = ITEMS.register("t34_blueprint", () -> new Item(new Item.Properties().tab(PartsItemGroup.TANK_MOD_PARTS)));
 
+    //Machine Parts
+    public static final RegistryObject<Item> BLOWTORCH_TOOL = ITEMS.register("blowtorch_tool",
+            () -> new Item(new Item.Properties().tab(PartsItemGroup.TANK_MOD_PARTS).durability(35)));
+    public static final RegistryObject<Item> BOLSTER_PLATE = ITEMS.register("bolster_plate",
+            () -> new Item(new Item.Properties().tab(PartsItemGroup.TANK_MOD_PARTS).durability(20)));
 
     private static <T extends Block>RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

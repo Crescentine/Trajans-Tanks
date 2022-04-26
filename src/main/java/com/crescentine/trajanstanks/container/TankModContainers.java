@@ -24,15 +24,14 @@ public class TankModContainers {
                 Level level = inv.player.getCommandSenderWorld();
                 return new CrafterContainer(windowId, level, pos, inv, inv.player);
             })));
-    public static final RegistryObject<MenuType<PlatingPressContainer>> PLATING_PRESS_CONTAINER
-            = CONTAINERS.register("plating_press_container",
-            () -> IForgeMenuType.create(((windowId, inv, data) -> {
-                BlockPos pos = data.readBlockPos();
-                Level level = inv.player.getCommandSenderWorld();
-                return new PlatingPressContainer(windowId, level, pos, inv, inv.player);
-            })));
+    public static final RegistryObject<MenuType<PlatingPressContainer>> PLATING_PRESS_CONTAINER =
+            registerMenuType(PlatingPressContainer::new, "plating_press_container");
     public static final RegistryObject<MenuType<EngineFabricatorContainer>> ENGINE_FABRICATOR_CONTAINER =
             registerMenuType(EngineFabricatorContainer::new, "engine_fabricator_container");
+    public static final RegistryObject<MenuType<SteelManufacturerContainer>> STEEL_MANUFACTURER_CONTAINER =
+            registerMenuType(SteelManufacturerContainer::new, "steel_manufacturer_container");
+    public static final RegistryObject<MenuType<TurretFactoryContainer>> TURRET_FACTORY_CONTAINER =
+            registerMenuType(TurretFactoryContainer::new, "turret_factory_container");
 
 
 

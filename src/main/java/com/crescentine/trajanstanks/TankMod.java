@@ -1,6 +1,7 @@
 package com.crescentine.trajanstanks;
 
 import com.crescentine.trajanstanks.block.TankModBlockEntities;
+import com.crescentine.trajanstanks.block.platingpress.PlatingPressRenderer;
 import com.crescentine.trajanstanks.config.TankModConfig;
 import com.crescentine.trajanstanks.container.TankModContainers;
 import com.crescentine.trajanstanks.entity.*;
@@ -15,10 +16,9 @@ import com.crescentine.trajanstanks.item.TankModItems;
 import com.crescentine.trajanstanks.packet.*;
 
 import com.crescentine.trajanstanks.recipe.ModRecipes;
-import com.crescentine.trajanstanks.screen.CrafterScreen;
-import com.crescentine.trajanstanks.screen.EngineFabricatorScreen;
-import com.crescentine.trajanstanks.screen.PlatingPressScreen;
+import com.crescentine.trajanstanks.screen.*;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
@@ -112,7 +112,10 @@ public class TankMod {
     private void doClientStuff(final FMLClientSetupEvent event) {
         MenuScreens.register(TankModContainers.CRAFTER_CONTAINER.get(), CrafterScreen::new);
         MenuScreens.register(TankModContainers.ENGINE_FABRICATOR_CONTAINER.get(), EngineFabricatorScreen::new);
+        MenuScreens.register(TankModContainers.STEEL_MANUFACTURER_CONTAINER.get(), SteelManufacturerScreen::new);
         MenuScreens.register(TankModContainers.PLATING_PRESS_CONTAINER.get(), PlatingPressScreen::new);
+        MenuScreens.register(TankModContainers.TURRET_FACTORY_CONTAINER.get(), TurretFactoryScreen::new);
+
     }
 
     public void commonSetup(final FMLCommonSetupEvent event) {
@@ -123,7 +126,7 @@ public class TankMod {
         @OnlyIn(Dist.CLIENT)
         @SubscribeEvent
         public static void registerRenderers(final FMLClientSetupEvent event) {
-            Minecraft minecraftClient = Minecraft.getInstance();
+            BlockEntityRenderers.register(TankModBlockEntities.PLATING_PRESS.get(), PlatingPressRenderer::new);
             EntityRenderers.register(TankModEntityTypes.ARTILLERY_ENTITY_TYPE.get(), ArtilleryEntityRenderer::new);
             EntityRenderers.register(TankModEntityTypes.PANZER_TWO_ENTITY_TYPE.get(), Panzer2Renderer::new);
             EntityRenderers.register(TankModEntityTypes.SHELL.get(), ThrownItemRenderer<ShellEntity>::new);

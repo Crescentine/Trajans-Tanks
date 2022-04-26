@@ -27,7 +27,7 @@ public class PlatingPressRecipeCategory implements IRecipeCategory<PlatingPressR
     private final IDrawable icon;
 
     public PlatingPressRecipeCategory(IGuiHelper helper) {
-        this.background = helper.createDrawable(TEXTURE, 0, 0, 95, 40);
+        this.background = helper.createDrawable(TEXTURE, 0, 0, 108, 58);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM, new ItemStack(TankModItems.PLATE_PRESS_BLOCK.get()));
     }
 
@@ -58,11 +58,12 @@ public class PlatingPressRecipeCategory implements IRecipeCategory<PlatingPressR
 
     @Override
     public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull PlatingPressRecipe recipe, @Nonnull IFocusGroup focusGroup) {
-        builder.addSlot(RecipeIngredientRole.INPUT, 3, 3).addIngredients(recipe.getIngredients().get(0));
-        builder.addSlot(RecipeIngredientRole.INPUT, 21, 3).addIngredients(recipe.getIngredients().get(1));
-        builder.addSlot(RecipeIngredientRole.INPUT, 3, 21).addIngredients(recipe.getIngredients().get(2));
-        builder.addSlot(RecipeIngredientRole.INPUT, 21, 21).addIngredients(recipe.getIngredients().get(3));
+        builder.addSlot(RecipeIngredientRole.INPUT, 1, 1).addIngredients(recipe.getIngredients().get(0));
+        builder.addSlot(RecipeIngredientRole.INPUT, 19, 1).addIngredients(recipe.getIngredients().get(1));
+        builder.addSlot(RecipeIngredientRole.INPUT, 1, 19).addIngredients(recipe.getIngredients().get(2));
+        builder.addSlot(RecipeIngredientRole.INPUT, 19, 19).addIngredients(recipe.getIngredients().get(3));
+        builder.addSlot(RecipeIngredientRole.INPUT, 19, 42).addIngredients(recipe.getIngredients().get(4));
 
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 77, 10).addItemStack(recipe.getResultItem());
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 91, 35).addItemStack(recipe.getResultItem());
     }
 }

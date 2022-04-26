@@ -1,0 +1,86 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.plating_press",
+				"texture_width": 128,
+				"texture_height": 128,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 2.5,
+				"visible_bounds_offset": [0, 0.75, 0]
+			},
+			"bones": [
+				{
+					"name": "Structure",
+					"pivot": [0, 0, 0.25]
+				},
+				{
+					"name": "Exterior",
+					"parent": "Structure",
+					"pivot": [0, 0, 0.25],
+					"cubes": [
+						{"origin": [-7, 0, 4.5], "size": [2, 15, 3], "uv": [23, 69]},
+						{"origin": [-4.25, -8, -6.01], "size": [2, 16, 12], "pivot": [0, 0, 0], "rotation": [0, 0, 90], "uv": [31, 41]},
+						{"origin": [-7, 0, -7.5], "size": [2, 15, 3], "uv": [0, 31]},
+						{"origin": [-14.25, -8, -7], "size": [3, 16, 14], "pivot": [0, 0, 0], "rotation": [0, 0, 90], "uv": [0, 0]},
+						{"origin": [5, 0, 4.5], "size": [2, 15, 3], "uv": [34, 70]},
+						{"origin": [5, 0, -7.5], "size": [2, 15, 3], "uv": [45, 72]}
+					]
+				},
+				{
+					"name": "Bars",
+					"parent": "Structure",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{"origin": [-6.4, 4.3, 2.5], "size": [1, 7, 1], "uv": [37, 34]},
+						{"origin": [-6.4, 4.3, 0.5], "size": [1, 7, 1], "uv": [32, 34]},
+						{"origin": [-6.4, 4.3, -1.5], "size": [1, 7, 1], "uv": [27, 34]},
+						{"origin": [-6.4, 4.3, -3.5], "size": [1, 7, 1], "uv": [11, 31]},
+						{"origin": [5.4, 4.3, 2.5], "size": [1, 7, 1], "uv": [26, 0]},
+						{"origin": [5.4, 4.3, 0.5], "size": [1, 7, 1], "uv": [0, 0]},
+						{"origin": [5.4, 4.3, -1.5], "size": [1, 7, 1], "uv": [21, 0]},
+						{"origin": [5.4, 4.3, -3.5], "size": [1, 7, 1], "uv": [5, 0]}
+					]
+				},
+				{
+					"name": "Top",
+					"parent": "Structure",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{"origin": [-4.41, 14.25, -7], "size": [1, 1, 14], "uv": [0, 53]},
+						{"origin": [-2.5, 13.95, -8], "size": [5, 2, 16], "uv": [0, 34]},
+						{"origin": [3.41, 14.25, -7], "size": [1, 1, 14], "uv": [48, 27]},
+						{"origin": [-2.5, 10.8, -8], "size": [5, 2, 16], "uv": [19, 15]}
+					]
+				},
+				{
+					"name": "Bottom",
+					"parent": "Structure",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{"origin": [-4.5, 3.65, -6.15], "size": [9, 1, 12.25], "uv": [21, 0]},
+						{"origin": [-4, 4.05, -5.75], "size": [2, 1, 11.5], "uv": [64, 0]},
+						{"origin": [-1, 4.05, -5.75], "size": [2, 1, 11.5], "uv": [48, 58]},
+						{"origin": [2, 4.05, -5.75], "size": [2, 1, 11.5], "uv": [60, 43]}
+					]
+				},
+				{
+					"name": "Press",
+					"pivot": [0, -3.25, 0],
+					"cubes": [
+						{"origin": [-4.5, 7.6, -5], "size": [9, 2.5, 10], "uv": [46, 14]},
+						{"origin": [-1.5, 8.55, -4], "size": [3, 6.75, 8], "uv": [0, 69]},
+						{"origin": [-4.4, 8.55, -4], "size": [1, 6.5, 1], "uv": [46, 14]},
+						{"origin": [-4.4, 8.55, 3], "size": [1, 6.5, 1], "uv": [11, 40]},
+						{"origin": [3.4, 8.55, -4], "size": [1, 6.5, 1], "uv": [51, 14]},
+						{"origin": [3.4, 8.55, 3], "size": [1, 6.5, 1], "uv": [48, 43]}
+					],
+					"locators": {
+						"locator": [0, 5.25, 0]
+					}
+				}
+			]
+		}
+	]
+}

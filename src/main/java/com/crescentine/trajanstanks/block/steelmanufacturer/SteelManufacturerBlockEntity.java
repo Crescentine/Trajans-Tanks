@@ -1,19 +1,15 @@
-package com.crescentine.trajanstanks.block.platingpress;
+package com.crescentine.trajanstanks.block.steelmanufacturer;
 
 import com.crescentine.trajanstanks.block.TankModBlockEntities;
 import com.crescentine.trajanstanks.container.PlatingPressContainer;
-import com.crescentine.trajanstanks.container.TankModContainers;
-import com.crescentine.trajanstanks.item.machines.plating_press.PlatingPressItem;
+import com.crescentine.trajanstanks.container.SteelManufacturerContainer;
 import com.crescentine.trajanstanks.recipe.PlatingPressRecipe;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.AbstractClientPlayer;
+import com.crescentine.trajanstanks.recipe.SteelManufacturerRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -31,30 +27,14 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.SoundKeyframeEvent;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Optional;
 import java.util.Random;
 
-public class PlatingPressBlockEntity extends BlockEntity implements MenuProvider, IAnimatable {
-    private final AnimationFactory factory = new AnimationFactory(this);
-    @SuppressWarnings("unchecked")
-
-    private <E extends BlockEntity & IAnimatable> PlayState predicate(AnimationEvent<E> event) {
-            event.getController().transitionLengthTicks = 0;
-                event.getController().setAnimation(new AnimationBuilder().addAnimation("pressing", true));
-                return PlayState.CONTINUE;
-    }
-    private final ItemStackHandler itemHandler = new ItemStackHandler(6) {
+public class SteelManufacturerBlockEntity extends BlockEntity implements MenuProvider {
+    private final ItemStackHandler itemHandler = new ItemStackHandler(11) {
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
@@ -65,23 +45,23 @@ public class PlatingPressBlockEntity extends BlockEntity implements MenuProvider
 
     protected final ContainerData data;
     private int progress = 0;
-    private int maxProgress = 60;
+    private int maxProgress = 64;
 
-    public PlatingPressBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
-        super(TankModBlockEntities.PLATING_PRESS.get(), pWorldPosition, pBlockState);
+    public SteelManufacturerBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
+        super(TankModBlockEntities.STEEL_MANUFACTURER.get(), pWorldPosition, pBlockState);
         this.data = new ContainerData() {
             public int get(int index) {
                 switch (index) {
-                    case 0: return PlatingPressBlockEntity.this.progress;
-                    case 1: return PlatingPressBlockEntity.this.maxProgress;
+                    case 0: return SteelManufacturerBlockEntity.this.progress;
+                    case 1: return SteelManufacturerBlockEntity.this.maxProgress;
                     default: return 0;
                 }
             }
 
             public void set(int index, int value) {
                 switch(index) {
-                    case 0: PlatingPressBlockEntity.this.progress = value; break;
-                    case 1: PlatingPressBlockEntity.this.maxProgress = value; break;
+                    case 0: SteelManufacturerBlockEntity.this.progress = value; break;
+                    case 1: SteelManufacturerBlockEntity.this.maxProgress = value; break;
                 }
             }
 
@@ -93,13 +73,13 @@ public class PlatingPressBlockEntity extends BlockEntity implements MenuProvider
 
     @Override
     public Component getDisplayName() {
-        return new TextComponent("Plating Press");
+        return new TextComponent("Steel Manufacturer");
     }
 
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory, Player pPlayer) {
-        return new PlatingPressContainer(pContainerId, pInventory, this, this.data);
+        return new SteelManufacturerContainer(pContainerId, pInventory, this, this.data);
     }
 
     @Nonnull
@@ -127,7 +107,7 @@ public class PlatingPressBlockEntity extends BlockEntity implements MenuProvider
     @Override
     protected void saveAdditional(@NotNull CompoundTag tag) {
         tag.put("inventory", itemHandler.serializeNBT());
-        tag.putInt("plating_press.progress", progress);
+        tag.putInt("steel_manufacturer.progress", progress);
         super.saveAdditional(tag);
     }
 
@@ -135,7 +115,7 @@ public class PlatingPressBlockEntity extends BlockEntity implements MenuProvider
     public void load(CompoundTag nbt) {
         super.load(nbt);
         itemHandler.deserializeNBT(nbt.getCompound("inventory"));
-        progress = nbt.getInt("plating_press.progress");
+        progress = nbt.getInt("steel_manufacturer.progress");
     }
 
     public void drops() {
@@ -147,12 +127,12 @@ public class PlatingPressBlockEntity extends BlockEntity implements MenuProvider
         Containers.dropContents(this.level, this.worldPosition, inventory);
     }
 
-    public static void tick(Level pLevel, BlockPos pPos, BlockState pState, PlatingPressBlockEntity pBlockEntity) {
+    public static void tick(Level pLevel, BlockPos pPos, BlockState pState, SteelManufacturerBlockEntity pBlockEntity) {
         if(hasRecipe(pBlockEntity)) {
             pBlockEntity.progress++;
             setChanged(pLevel, pPos, pState);
             if(pBlockEntity.progress > pBlockEntity.maxProgress) {
-                craftItem(pBlockEntity,pPos, pState);
+                craftItem(pBlockEntity);
             }
         } else {
             pBlockEntity.resetProgress();
@@ -160,40 +140,47 @@ public class PlatingPressBlockEntity extends BlockEntity implements MenuProvider
         }
     }
 
-    private static boolean hasRecipe(PlatingPressBlockEntity entity) {
+    private static boolean hasRecipe(SteelManufacturerBlockEntity entity) {
         Level level = entity.level;
         SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
         for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
             inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
         }
 
-        Optional<PlatingPressRecipe> match = level.getRecipeManager()
-                .getRecipeFor(PlatingPressRecipe.Type.INSTANCE, inventory, level);
+        Optional<SteelManufacturerRecipe> match = level.getRecipeManager()
+                .getRecipeFor(SteelManufacturerRecipe.Type.INSTANCE, inventory, level);
 
         return match.isPresent() && canInsertAmountIntoOutputSlot(inventory)
                 && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem());
     }
-    private static void craftItem(PlatingPressBlockEntity entity, BlockPos pos, BlockState state) {
+    private static void craftItem(SteelManufacturerBlockEntity entity) {
         Level level = entity.level;
         SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
         for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
             inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
         }
 
-        Optional<PlatingPressRecipe> match = level.getRecipeManager()
-                .getRecipeFor(PlatingPressRecipe.Type.INSTANCE, inventory, level);
+        Optional<SteelManufacturerRecipe> match = level.getRecipeManager()
+                .getRecipeFor(SteelManufacturerRecipe.Type.INSTANCE, inventory, level);
 
         if(match.isPresent()) {
-            entity.itemHandler.extractItem(0, 1, false);
-            entity.itemHandler.extractItem(1, 1, false);
-            entity.itemHandler.extractItem(2, 1, false);
-            entity.itemHandler.extractItem(3, 1, false);
-            entity.itemHandler.getStackInSlot(4).hurt(1, new Random(), null);
+            entity.itemHandler.extractItem(0,1, false);
+            entity.itemHandler.extractItem(1,1, false);
+            entity.itemHandler.extractItem(2,1, false);
+            entity.itemHandler.extractItem(3,1, false);
+            entity.itemHandler.extractItem(4,1, false);
+            entity.itemHandler.extractItem(5,1, false);
+            entity.itemHandler.extractItem(6,1, false);
+            entity.itemHandler.extractItem(7,1, false);
+            entity.itemHandler.extractItem(8,1, false);
+
+            entity.itemHandler.getStackInSlot(9).hurt(1, new Random(), null);
 
 
-            entity.itemHandler.setStackInSlot(5, new ItemStack(match.get().getResultItem().getItem(),
-                    entity.itemHandler.getStackInSlot(5).getCount() + 1));
-            level.playSound(null, pos, SoundEvents.ANVIL_LAND, SoundSource.BLOCKS, 1f, 1f);
+            entity.itemHandler.setStackInSlot(10, new ItemStack(match.get().getResultItem().getItem(),
+                    entity.itemHandler.getStackInSlot(10).getCount() + 1));
+
+            entity.resetProgress();
         }
     }
 
@@ -202,28 +189,10 @@ public class PlatingPressBlockEntity extends BlockEntity implements MenuProvider
     }
 
     private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ItemStack output) {
-        return inventory.getItem(5).getItem() == output.getItem() || inventory.getItem(5).isEmpty();
+        return inventory.getItem(10).getItem() == output.getItem() || inventory.getItem(10).isEmpty();
     }
 
     private static boolean canInsertAmountIntoOutputSlot(SimpleContainer inventory) {
-        return inventory.getItem(5).getMaxStackSize() > inventory.getItem(5).getCount();
-    }
-
-    @Override
-    public void registerControllers(AnimationData data) {
-        AnimationController<PlatingPressBlockEntity> controller = new AnimationController<PlatingPressBlockEntity>(this, "controller", 20, this::predicate);
-        controller.registerSoundListener(this::soundListener);
-        data.addAnimationController(controller);
-    }
-    private <ENTITY extends IAnimatable> void soundListener(SoundKeyframeEvent<ENTITY> event) {
-        AbstractClientPlayer player = Minecraft.getInstance().player;
-        if (player != null) {
-            player.playSound(SoundEvents.ANVIL_LAND, 0.1f, 0.1f);
-        }
-    }
-
-    @Override
-    public AnimationFactory getFactory() {
-        return factory;
+        return inventory.getItem(10).getMaxStackSize() > inventory.getItem(10).getCount();
     }
 }

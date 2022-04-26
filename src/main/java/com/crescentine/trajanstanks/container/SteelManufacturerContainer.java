@@ -1,7 +1,6 @@
 package com.crescentine.trajanstanks.container;
 
-import com.crescentine.trajanstanks.block.engine_fabricator.EngineFabricatorBlockEntity;
-import com.crescentine.trajanstanks.block.platingpress.PlatingPressBlockEntity;
+import com.crescentine.trajanstanks.block.steelmanufacturer.SteelManufacturerBlockEntity;
 import com.crescentine.trajanstanks.item.TankModItems;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -13,19 +12,19 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class PlatingPressContainer extends AbstractContainerMenu {
-    private final PlatingPressBlockEntity blockEntity;
+public class SteelManufacturerContainer extends AbstractContainerMenu {
+    private final SteelManufacturerBlockEntity blockEntity;
     private final Level level;
     private final ContainerData data;
 
-    public PlatingPressContainer(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
+    public SteelManufacturerContainer(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
         this(pContainerId, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
     }
 
-    public PlatingPressContainer(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
-        super(TankModContainers.PLATING_PRESS_CONTAINER.get(), pContainerId);
-        checkContainerSize(inv, 6);
-        blockEntity = ((PlatingPressBlockEntity) entity);
+    public SteelManufacturerContainer(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
+        super(TankModContainers.STEEL_MANUFACTURER_CONTAINER.get(), pContainerId);
+        checkContainerSize(inv, 11);
+        blockEntity = ((SteelManufacturerBlockEntity) entity);
         this.level = inv.player.level;
         this.data = data;
 
@@ -41,20 +40,23 @@ public class PlatingPressContainer extends AbstractContainerMenu {
         this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
             this.addSlot(new SlotItemHandler(handler, 0, 26, 17));
             this.addSlot(new SlotItemHandler(handler, 1, 44, 17));
-            this.addSlot(new SlotItemHandler(handler, 2, 26, 35));
-            this.addSlot(new SlotItemHandler(handler, 3, 44, 35));
-
-            //Tool Slot, not output!
-            this.addSlot(new SlotItemHandler(handler, 4, 44, 55));
-
+            this.addSlot(new SlotItemHandler(handler, 2, 62, 17));
+            this.addSlot(new SlotItemHandler(handler, 3, 26, 35));
+            this.addSlot(new SlotItemHandler(handler, 4, 44, 35));
+            this.addSlot(new SlotItemHandler(handler, 5, 62, 35));
+            this.addSlot(new SlotItemHandler(handler, 6, 26, 53));
+            this.addSlot(new SlotItemHandler(handler, 7, 44, 53));
+            this.addSlot(new SlotItemHandler(handler, 8, 62, 53));
+            //Tool
+            this.addSlot(new SlotItemHandler(handler, 9, 98, 53));
             //Output
-            this.addSlot(new SlotItemHandler(handler, 5, 116, 51));
-
+            this.addSlot(new SlotItemHandler(handler, 10, 134, 35));
 
         });
 
         addDataSlots(data);
     }
+
     public boolean isCrafting() {
         return data.get(0) > 0;
     }
@@ -62,7 +64,7 @@ public class PlatingPressContainer extends AbstractContainerMenu {
     public int getScaledProgress() {
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);  // Max Progress
-        int progressArrowSize = 40; // This is the width in pixels of your arrow
+        int progressArrowSize = 32; // This is the width in pixels of your arrow
 
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }
@@ -70,7 +72,7 @@ public class PlatingPressContainer extends AbstractContainerMenu {
     @Override
     public boolean stillValid(Player pPlayer) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, TankModItems.PLATE_PRESS_BLOCK.get());
+                pPlayer, TankModItems.STEEL_MANUFACTURER.get());
     }
 
     // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons
@@ -89,7 +91,7 @@ public class PlatingPressContainer extends AbstractContainerMenu {
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 6;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 11;  // must be the number of slots you have!
 
     @Override
     public ItemStack quickMoveStack(Player playerIn, int index) {
