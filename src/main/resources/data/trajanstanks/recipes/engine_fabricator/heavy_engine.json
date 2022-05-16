@@ -2,13 +2,13 @@
   "type" : "trajanstanks:engine_fabricator",
   "ingredients" : [
     {
-      "item": "minecraft:redstone"
+      "item": "minecraft:redstone_block"
     },
     {
       "item": "minecraft:iron_block"
     },
     {
-      "item": "minecraft:redstone"
+      "item": "minecraft:redstone_block"
     },
     {
       "item": "minecraft:piston"
@@ -30,6 +30,6 @@
     }
   ],
   "output" : {
-    "item" : "trajanstanks:t34_engine"
+    "item" : "trajanstanks:heavy_engine"
   }
 }

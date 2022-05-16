@@ -1,0 +1,32 @@
+{
+  "type" : "trajanstanks:crafter",
+  "ingredients" : [
+    {
+      "item": "trajanstanks:light_tank_turret"
+    },
+    {
+      "item": "trajanstanks:light_engine"
+    },
+    {
+      "item": "trajanstanks:steering_crafting_item"
+    },
+    {
+      "item": "trajanstanks:light_tank_plating"
+    },
+    {
+      "item": "trajanstanks:light_tank_tracks"
+    },
+    {
+      "item": "trajanstanks:light_tank_tracks"
+    },
+    {
+      "item": "trajanstanks:light_tank_tracks"
+    },
+    {
+      "item": "trajanstanks:cruisermk1_blueprint"
+    }
+  ],
+  "output" : {
+    "item" : "trajanstanks:cruiser_mk1_item"
+  }
+}

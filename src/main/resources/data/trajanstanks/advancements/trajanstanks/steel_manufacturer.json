@@ -1,14 +1,15 @@
 {
+  "parent": "trajanstanks:trajanstanks/trajanstanks",
   "display": {
     "icon": {
-      "item": "trajanstanks:crafter_block"
+      "item": "trajanstanks:steel_manufacturer_item"
     },
-    "title": "Trajan's Tanks",
-    "description": "Welcome to Trajan's Tanks",
+    "title": "Wait, what steel?",
+    "description": "Craft the Steel Manufacturer",
     "frame": "task",
     "show_toast": true,
-    "announce_to_chat": true,
-    "background": "trajanstanks:textures/block/anvil.png"
+    "hidden": false,
+    "announce_to_chat": true
   },
   "criteria": {
     "requirement": {
@@ -17,7 +18,7 @@
         "items": [
           {
             "items": [
-              "trajanstanks:crafter_block"
+              "trajanstanks:steel_manufacturer_item"
             ]
           }
         ]

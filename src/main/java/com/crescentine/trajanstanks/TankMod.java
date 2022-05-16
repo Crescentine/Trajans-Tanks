@@ -2,6 +2,8 @@ package com.crescentine.trajanstanks;
 
 import com.crescentine.trajanstanks.block.TankModBlockEntities;
 import com.crescentine.trajanstanks.block.platingpress.PlatingPressRenderer;
+import com.crescentine.trajanstanks.block.steelmanufacturer.SteelManufacturerRenderer;
+import com.crescentine.trajanstanks.block.turretfactory.TurretFactoryRenderer;
 import com.crescentine.trajanstanks.config.TankModConfig;
 import com.crescentine.trajanstanks.container.TankModContainers;
 import com.crescentine.trajanstanks.entity.*;
@@ -107,6 +109,7 @@ public class TankMod {
         TankModContainers.register(eventBus);
         TankModBlockEntities.register(eventBus);
         ModRecipes.init();
+        TankModClient.init();
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
@@ -127,6 +130,9 @@ public class TankMod {
         @SubscribeEvent
         public static void registerRenderers(final FMLClientSetupEvent event) {
             BlockEntityRenderers.register(TankModBlockEntities.PLATING_PRESS.get(), PlatingPressRenderer::new);
+            BlockEntityRenderers.register(TankModBlockEntities.TURRET_FACTORY.get(), TurretFactoryRenderer::new);
+            BlockEntityRenderers.register(TankModBlockEntities.STEEL_MANUFACTURER.get(), SteelManufacturerRenderer::new);
+
             EntityRenderers.register(TankModEntityTypes.ARTILLERY_ENTITY_TYPE.get(), ArtilleryEntityRenderer::new);
             EntityRenderers.register(TankModEntityTypes.PANZER_TWO_ENTITY_TYPE.get(), Panzer2Renderer::new);
             EntityRenderers.register(TankModEntityTypes.SHELL.get(), ThrownItemRenderer<ShellEntity>::new);

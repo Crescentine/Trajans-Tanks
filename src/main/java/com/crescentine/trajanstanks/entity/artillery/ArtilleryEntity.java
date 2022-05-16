@@ -113,7 +113,6 @@ public class ArtilleryEntity extends BaseTankEntity implements IAnimatable {
 
             artilleryShell.setPos(player.getEyePosition());
             world.addFreshEntity(artilleryShell);
-
             itemStack.shrink(ammoUsed);
         }
         time = 0;

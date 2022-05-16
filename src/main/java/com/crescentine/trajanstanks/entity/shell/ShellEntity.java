@@ -21,6 +21,7 @@ import net.minecraftforge.network.NetworkHooks;
 public class ShellEntity extends ThrowableItemProjectile {
     public ShellEntity(EntityType<ShellEntity> entityType, Level world) {
         super(entityType, world);
+        this.setNoGravity(true);
     }
 
     public ShellEntity(double x, double y, double z, Level world) {
@@ -51,6 +52,11 @@ public class ShellEntity extends ThrowableItemProjectile {
                 this.kill();
             }
         }
+    }
+
+    @Override
+    protected float getGravity() {
+        return 0.028f;
     }
 
     @Override

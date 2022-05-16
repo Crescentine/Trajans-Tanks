@@ -3,6 +3,7 @@ package com.crescentine.trajanstanks.block.steelmanufacturer;
 import com.crescentine.trajanstanks.block.TankModBlockEntities;
 import com.crescentine.trajanstanks.block.platingpress.PlatingPressBlockEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -18,22 +19,38 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 
 import javax.annotation.Nullable;
+import java.util.function.ToIntFunction;
 
 public class SteelManufacturerBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
-    public SteelManufacturerBlock(Properties properties) {
-        super(properties);
+    public SteelManufacturerBlock() {
+        super(Properties.of(Material.METAL)
+                .strength(3f)
+                .destroyTime(1.2f)
+                .explosionResistance(8f)
+                .lightLevel(new ToIntFunction<BlockState>() {
+                    @Override
+                    public int applyAsInt(BlockState value) {
+                        return 14;
+                    }
+                })
+                .noOcclusion()
+                .emissiveRendering(new StatePredicate() {
+                    @Override
+                    public boolean test(BlockState state, BlockGetter getter, BlockPos pos) {
+                        return true;
+                    }
+                })
+        );
     }
-
-    private static final VoxelShape SHAPE =  Block.box(0, 0, 0, 16, 16, 16);
-
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext pContext) {
         return SHAPE;
@@ -43,7 +60,7 @@ public class SteelManufacturerBlock extends BaseEntityBlock {
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+        return this.defaultBlockState().setValue(FACING, Direction.SOUTH);
     }
 
     @Override
@@ -62,10 +79,13 @@ public class SteelManufacturerBlock extends BaseEntityBlock {
     }
 
     /* BLOCK ENTITY */
+    private static final VoxelShape SHAPE =  Block.box(0, 0, 0, 32, 16, 16);
+
+    /* BLOCK ENTITY */
 
     @Override
     public RenderShape getRenderShape(BlockState state) {
-        return RenderShape.MODEL;
+        return RenderShape.ENTITYBLOCK_ANIMATED;
     }
 
     @Override

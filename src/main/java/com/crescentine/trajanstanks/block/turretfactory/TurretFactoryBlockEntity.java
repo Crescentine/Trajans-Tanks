@@ -27,13 +27,16 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
+import software.bernie.geckolib3.core.IAnimatable;
+import software.bernie.geckolib3.core.manager.AnimationData;
+import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Optional;
 import java.util.Random;
 
-public class TurretFactoryBlockEntity extends BlockEntity implements MenuProvider {
+public class TurretFactoryBlockEntity extends BlockEntity implements MenuProvider, IAnimatable {
     private final ItemStackHandler itemHandler = new ItemStackHandler(9) {
         @Override
         protected void onContentsChanged(int slot) {
@@ -191,5 +194,16 @@ public class TurretFactoryBlockEntity extends BlockEntity implements MenuProvide
 
     private static boolean canInsertAmountIntoOutputSlot(SimpleContainer inventory) {
         return inventory.getItem(8).getMaxStackSize() > inventory.getItem(8).getCount();
+    }
+
+    @Override
+    public void registerControllers(AnimationData data) {
+    }
+    private final AnimationFactory factory = new AnimationFactory(this);
+
+
+    @Override
+    public AnimationFactory getFactory() {
+        return factory;
     }
 }

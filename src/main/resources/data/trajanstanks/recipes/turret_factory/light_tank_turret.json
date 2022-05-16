@@ -11,19 +11,19 @@
       "item": "minecraft:dispenser"
     },
     {
-      "item": "minecraft:iron_nugget"
-    },
-    {
-      "item": "minecraft:iron_nugget"
-    },
-    {
       "item": "minecraft:iron_block"
     },
     {
       "item": "minecraft:iron_nugget"
     },
     {
-      "item": "trajanstanks:blowtorch_tool"
+      "item": "minecraft:iron_nugget"
+    },
+    {
+      "item": "minecraft:iron_nugget"
+    },
+    {
+      "item": "trajanstanks:hammer"
     }
   ],
   "output" : {

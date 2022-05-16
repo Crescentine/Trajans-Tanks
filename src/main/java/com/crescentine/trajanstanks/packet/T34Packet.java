@@ -29,7 +29,7 @@ public class T34Packet {
                     if (player == null || !player.isAlive()) return;
                     if (player.getVehicle() instanceof T34Entity) {
                         T34Entity mediumTank = (T34Entity) player.getVehicle();
-                        mediumTank.shoot(player, player.level);
+                        mediumTank.shoot(player, mediumTank, player.level);
                     }
                 }
         );

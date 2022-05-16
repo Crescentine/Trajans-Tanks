@@ -20,8 +20,10 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.Pig;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.event.world.NoteBlockEvent;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -40,7 +42,6 @@ public class CruiserMk1Entity extends BaseTankEntity implements IAnimatable {
     }
     public static AttributeSupplier.Builder createAttributes() {
         return Pig.createLivingAttributes()
-                .add(Attributes.MAX_HEALTH, 250.0)
                 .add(Attributes.ARMOR, 3.0f)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 10.0D)
                 .add(Attributes.FOLLOW_RANGE, 0.0D);
@@ -52,17 +53,17 @@ public class CruiserMk1Entity extends BaseTankEntity implements IAnimatable {
                 return PlayState.CONTINUE;
             }
             return PlayState.STOP;
-        }
-
+}
         @Override
         public void registerControllers(AnimationData animationData) {
             animationData.addAnimationController(new AnimationController<>(this, "controller", 0, this::predicate));
+        //    animationData.addAnimationController(new AnimationController<>(this, "controller", 0, this::shootPredicate));
         }
         double speed = TankModConfig.cruisermk1_speed.get();
         float speedFloat = (float)speed;
         @Override
         public float getSteeringSpeed() {
-            if (TankModClient.STARTMOVING.isDown()) {
+            if (TankModClient.startMoving.isDown()) {
                 return speedFloat;
             }
             return 0.0f;
@@ -80,12 +81,19 @@ public class CruiserMk1Entity extends BaseTankEntity implements IAnimatable {
         protected boolean isImmobile() {
             return false;
         }
-        @Override
-        public InteractionResult interactAt(Player player, Vec3 hitPos, InteractionHand hand) {
-            player.startRiding(this, true);
+    @Override
+    public InteractionResult interactAt(Player player, Vec3 hitPos, InteractionHand hand) {
+        ItemStack itemstack = player.getItemInHand(hand);
+        if (itemstack.is(Items.IRON_BLOCK)) {
+            this.heal(10.0f);
+            itemstack.shrink(1);
             return InteractionResult.SUCCESS;
         }
-        static int shellsUsed = 1;
+        player.startRiding(this, true);
+        return InteractionResult.FAIL;
+    }
+
+    static int shellsUsed = 1;
         public void tick() {
             super.tick();
 
@@ -113,9 +121,8 @@ public class CruiserMk1Entity extends BaseTankEntity implements IAnimatable {
                 return false;
             }
             if (!itemStack.isEmpty()) {
-                ShellEntity shellEntity = new ShellEntity(playerEntity, world);
-                shellEntity.shootFromRotation(playerEntity, playerEntity.getXRot(), tankEntity.getYRot(), 0.0F, 2.0F, 0F);
-                shellEntity.setPos(player.getEyePosition());
+                ShellEntity shellEntity = new ShellEntity(tankEntity, world);
+                shellEntity.shootFromRotation(tankEntity, tankEntity.getXRot(), tankEntity.getYRot(), 0.0F, 2.0F, 0F);
                 world.addFreshEntity(shellEntity);
                 itemStack.shrink(shellsUsed);
             }

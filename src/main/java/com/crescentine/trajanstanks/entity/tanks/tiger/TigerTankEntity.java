@@ -4,6 +4,7 @@ import com.crescentine.trajanstanks.TankModClient;
 import com.crescentine.trajanstanks.config.TankModConfig;
 import com.crescentine.trajanstanks.entity.BaseTankEntity;
 import com.crescentine.trajanstanks.entity.shell.ShellEntity;
+import com.crescentine.trajanstanks.entity.tanks.panzer2.Panzer2Entity;
 import com.crescentine.trajanstanks.item.TankModItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
@@ -19,6 +20,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.Pig;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import software.bernie.geckolib3.core.IAnimatable;
@@ -56,7 +58,7 @@ public class TigerTankEntity extends BaseTankEntity implements IAnimatable {
     float speedFloat = (float)speed;
     @Override
     public float getSteeringSpeed() {
-        if (TankModClient.STARTMOVING.isDown()) {
+        if (TankModClient.startMoving.isDown()) {
             return speedFloat;
         }
         return 0.0f;
@@ -82,18 +84,26 @@ public class TigerTankEntity extends BaseTankEntity implements IAnimatable {
     }
     @Override
     public InteractionResult interactAt(Player player, Vec3 hitPos, InteractionHand hand) {
+        ItemStack itemstack = player.getItemInHand(hand);
+        if (itemstack.is(Items.IRON_BLOCK)) {
+            this.heal(10.0f);
+            itemstack.shrink(1);
+            return InteractionResult.SUCCESS;
+        }
         player.startRiding(this, true);
-        return InteractionResult.SUCCESS;
+        return InteractionResult.FAIL;
     }
+
     static int shellsUsed = 1;
     public void tick() {
         super.tick();
 
         if (time < cooldown) time++;
     }
-    public boolean shoot(Player player, Level world) {
+    public boolean shoot(Player player, TigerTankEntity tank, Level world) {
         ItemStack itemStack = ItemStack.EMPTY;
         Player playerEntity = (Player) player;
+        TigerTankEntity tankEntity = (TigerTankEntity) tank;
         for (int i = 0; i < playerEntity.getInventory().getContainerSize(); ++i) {
             ItemStack stack = playerEntity.getInventory().getItem(i);
             if (stack.getItem() == TankModItems.SHELL_ITEM.get() && stack.getCount() >= shellsUsed) {
@@ -113,18 +123,9 @@ public class TigerTankEntity extends BaseTankEntity implements IAnimatable {
             return false;
         }
         if (!itemStack.isEmpty()) {
-            ShellEntity shellEntity = new ShellEntity(player, world);
-            shellEntity.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.5F, 0F);
-
-            double distance = 1.0D;
-
-            double x = -Mth.sin((float) (player.getEyeY() / 180.0F * (float) Math.PI)) * distance;
-            double z = -Mth.cos((float) (player.getEyeY() / 180.0F * (float) Math.PI)) * distance;
-
-
-            shellEntity.setPos(player.getEyePosition());
+            ShellEntity shellEntity = new ShellEntity(tankEntity, world);
+            shellEntity.shootFromRotation(tankEntity, tankEntity.getXRot(), tankEntity.getYRot(), 0.0F, 2.0F, 0F);
             world.addFreshEntity(shellEntity);
-
             itemStack.shrink(shellsUsed);
         }
         time = 0;

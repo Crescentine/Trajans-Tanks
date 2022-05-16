@@ -48,6 +48,7 @@ public class ArtilleryShell extends ThrowableItemProjectile {
         }
     }
 
+
     @Override
     protected void onHit(HitResult p_70227_1_) {
         super.onHit(p_70227_1_);

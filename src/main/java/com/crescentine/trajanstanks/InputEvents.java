@@ -26,7 +26,7 @@ public class InputEvents {
     }
 
     private static void onInput(Minecraft mc, int key, int action) {
-        if (mc.screen == null && TankModClient.shootkey.consumeClick()) {
+        if (mc.screen == null && TankModClient.shootKey.consumeClick()) {
             TankModNetwork.PANZER2.sendToServer(new Panzer2Packet(key));
             TankModNetwork.ARTILLERY.sendToServer(new ArtilleryPacket(key));
             TankModNetwork.TIGER.sendToServer(new TigerPacket(key));

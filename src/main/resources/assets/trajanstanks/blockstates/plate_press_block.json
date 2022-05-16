@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "trajanstanks:geo/plate_press_block"
+      "model": "trajanstanks:block/plate_press_block"
     }
   }
 }

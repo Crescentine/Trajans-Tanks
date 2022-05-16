@@ -39,7 +39,7 @@ public class BaseTankEntity extends Pig {
         if (!FMLEnvironment.dist.isClient()) {
             return true;
         }
-        if (TankModClient.STARTMOVING.isDown()) {
+        if (TankModClient.startMoving.isDown()) {
             return true;
         }
         return false;

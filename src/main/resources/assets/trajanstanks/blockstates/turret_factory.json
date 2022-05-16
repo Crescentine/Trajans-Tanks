@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "trajanstanks:block/turret_factory"
+    }
+  }
+}

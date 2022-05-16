@@ -1,12 +1,12 @@
 {
   "parent": "block/cube",
   "textures": {
-    "down": "trajanstanks:block/crafter_top",
-    "up": "trajanstanks:block/crafter_top",
-    "north": "trajanstanks:block/crafter_side",
-    "east": "trajanstanks:block/crafter_side",
-    "south": "trajanstanks:block/crafter_side",
-    "west": "trajanstanks:block/crafter_side",
-    "particle": "trajanstanks:block/crafter_top"
+    "down": "trajanstanks:block/tank_crafter_bottom",
+    "up": "trajanstanks:block/tank_crafter_top",
+    "north": "trajanstanks:block/tank_crafter_front",
+    "east": "trajanstanks:block/tank_crafter_side",
+    "south": "trajanstanks:block/tank_crafter_front",
+    "west": "trajanstanks:block/tank_crafter_side",
+    "particle": "trajanstanks:block/tank_crafter_top"
   }
 }

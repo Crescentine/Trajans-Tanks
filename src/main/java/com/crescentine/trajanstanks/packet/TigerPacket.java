@@ -29,7 +29,7 @@ public class TigerPacket {
                     if (player == null || !player.isAlive()) return;
                     if (player.getVehicle() instanceof TigerTankEntity) {
                         TigerTankEntity heavyTank = (TigerTankEntity) player.getVehicle();
-                        heavyTank.shoot(player, player.level);
+                        heavyTank.shoot(player, heavyTank, player.level);
                     }
                 }
         );

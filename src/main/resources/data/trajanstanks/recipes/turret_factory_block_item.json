@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#I#",
+        "i i",
+        "i i"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:stone"
+        },
+        "I": {
+            "item": "minecraft:iron_block"
+        },
+        "i": {
+            "item": "minecraft:iron_ingot"
+        }
+    },
+    "result": {
+        "item": "trajanstanks:turret_factory_block_item",
+        "count": 1
+    }
+}
