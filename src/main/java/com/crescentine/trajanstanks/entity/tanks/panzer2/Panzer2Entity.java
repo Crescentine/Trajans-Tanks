@@ -1,9 +1,7 @@
 package com.crescentine.trajanstanks.entity.tanks.panzer2;
 
 import com.crescentine.trajanstanks.TankModClient;
-import com.crescentine.trajanstanks.block.turretfactory.TurretFactoryModel;
 import com.crescentine.trajanstanks.config.TankModConfig;
-import com.crescentine.trajanstanks.container.TurretFactoryContainer;
 import com.crescentine.trajanstanks.entity.BaseTankEntity;
 import com.crescentine.trajanstanks.entity.shell.ShellEntity;
 import com.crescentine.trajanstanks.item.TankModItems;

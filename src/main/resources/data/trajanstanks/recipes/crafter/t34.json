@@ -2,31 +2,31 @@
   "type" : "trajanstanks:crafter",
   "ingredients" : [
     {
-      "item": "trajanstanks:medium_tank_turret"
+      "item": "trajanscore:medium_tank_turret"
     },
     {
-      "item": "trajanstanks:medium_engine"
+      "item": "trajanscore:medium_engine"
     },
     {
-      "item": "trajanstanks:steering_crafting_item"
+      "item": "trajanscore:steering_crafting_item"
     },
     {
-      "item": "trajanstanks:medium_tank_plating"
+      "item": "trajanscore:medium_tank_plating"
     },
     {
-      "item": "trajanstanks:medium_tank_tracks"
+      "item": "trajanscore:medium_tank_tracks"
     },
     {
-      "item": "trajanstanks:medium_tank_tracks"
+      "item": "trajanscore:medium_tank_tracks"
     },
     {
-      "item": "trajanstanks:medium_tank_tracks"
+      "item": "trajanscore:medium_tank_tracks"
     },
     {
-      "item": "trajanstanks:t34_blueprint"
+      "item": "trajanscore:t34_blueprint"
     }
   ],
   "output" : {
-    "item" : "trajanstanks:medium_tank_item"
+    "item" : "trajanscore:medium_tank_item"
   }
 }

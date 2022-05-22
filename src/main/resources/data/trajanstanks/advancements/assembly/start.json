@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "trajanstanks:crafter_block"
+    },
+    "title": "Tank Crafting Capabilities",
+    "description": "Finally making the tanks!",
+    "frame": "challenge",
+    "hidden": false,
+    "show_toast": true,
+    "announce_to_chat": true,
+    "background": "trajanstanks:textures/block/anvil.png"
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "trajanstanks:crafter_block"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

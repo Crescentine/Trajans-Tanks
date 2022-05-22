@@ -1,32 +1,32 @@
 {
-  "type" : "trajanstanks:crafter",
+  "type" : "trajanscore:crafter",
   "ingredients" : [
     {
-      "item": "trajanstanks:heavy_tank_turret"
+      "item": "trajanscore:heavy_tank_turret"
     },
     {
-      "item": "trajanstanks:heavy_engine"
+      "item": "trajanscore:heavy_engine"
     },
     {
-      "item": "trajanstanks:steering_crafting_item"
+      "item": "trajanscore:steering_crafting_item"
     },
     {
-      "item": "trajanstanks:heavy_tank_plating"
+      "item": "trajanscore:heavy_tank_plating"
     },
     {
-      "item": "trajanstanks:heavy_tank_tracks"
+      "item": "trajanscore:heavy_tank_tracks"
     },
     {
-      "item": "trajanstanks:heavy_tank_tracks"
+      "item": "trajanscore:heavy_tank_tracks"
     },
     {
-      "item": "trajanstanks:heavy_tank_tracks"
+      "item": "trajanscore:heavy_tank_tracks"
     },
     {
-      "item": "trajanstanks:tiger_blueprint"
+      "item": "trajanscore:tiger_blueprint"
     }
   ],
   "output" : {
-    "item" : "trajanstanks:heavy_tank_item"
+    "item" : "trajanscore:heavy_tank_item"
   }
 }

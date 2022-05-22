@@ -13,6 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.processor.IBone;
+import software.bernie.geckolib3.geo.render.built.GeoBone;
 import software.bernie.geckolib3.geo.render.built.GeoModel;
 import software.bernie.geckolib3.renderers.geo.ExtendedGeoEntityRenderer;
 import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
@@ -26,6 +27,11 @@ public class CruiserMk1Renderer extends ExtendedGeoEntityRenderer<CruiserMk1Enti
     @Override
     protected float getHeightScale(CruiserMk1Entity entity) {
         return 1.4f;
+    }
+
+    @Override
+    protected boolean isArmorBone(GeoBone bone) {
+        return false;
     }
 
     @Override

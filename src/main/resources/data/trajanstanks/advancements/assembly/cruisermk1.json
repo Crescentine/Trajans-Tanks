@@ -1,0 +1,28 @@
+{
+  "parent": "trajanstanks:assembly/start",
+  "display": {
+    "icon": {
+      "item": "trajanstanks:cruiser_mk1_item"
+    },
+    "title": "Just Cruisin'",
+    "description": "Craft the Cruiser MK 1",
+    "frame": "task",
+    "show_toast": true,
+    "hidden": false,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "trajanstanks:cruiser_mk1_item"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

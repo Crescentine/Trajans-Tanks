@@ -1,0 +1,28 @@
+{
+  "parent": "trajanstanks:assembly/start",
+  "display": {
+    "icon": {
+      "item": "trajanstanks:medium_tank_item"
+    },
+    "title": "The Pride of the Red Army",
+    "description": "Craft the T-34",
+    "frame": "task",
+    "show_toast": true,
+    "hidden": false,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "trajanstanks:medium_tank_item"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

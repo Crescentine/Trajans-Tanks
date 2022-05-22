@@ -2,7 +2,10 @@ package com.crescentine.trajanstanks.entity.shell;
 
 import com.crescentine.trajanstanks.config.TankModConfig;
 import com.crescentine.trajanstanks.entity.TankModEntityTypes;
+import com.crescentine.trajanstanks.entity.tanks.cruisermk1.CruiserMk1Entity;
 import com.crescentine.trajanstanks.entity.tanks.panzer2.Panzer2Entity;
+import com.crescentine.trajanstanks.entity.tanks.t34.T34Entity;
+import com.crescentine.trajanstanks.entity.tanks.tiger.TigerTankEntity;
 import com.crescentine.trajanstanks.item.TankModItems;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.world.damagesource.DamageSource;
@@ -46,8 +49,20 @@ public class ArtilleryShell extends ThrowableItemProjectile {
         if (entity instanceof Panzer2Entity) {
             entity.hurt(DamageSource.thrown(this, this.getOwner()), (float) (TankModConfig.anti_tank_shell_damage_to_tank.get() * 1.0f));
         }
+        if (entity instanceof CruiserMk1Entity) {
+            entity.hurt(DamageSource.thrown(this, this.getOwner()), (float) (TankModConfig.anti_tank_shell_damage_to_tank.get() * 1.0f));
+        }
+        if (entity instanceof TigerTankEntity) {
+            entity.hurt(DamageSource.thrown(this, this.getOwner()), (float) (TankModConfig.anti_tank_shell_damage_to_tank.get() * 1.0f));
+        }
+        if (entity instanceof T34Entity) {
+            entity.hurt(DamageSource.thrown(this, this.getOwner()), (float) (TankModConfig.anti_tank_shell_damage_to_tank.get() * 1.0f));
+        }
     }
-
+    @Override
+    protected float getGravity() {
+        return 0.026f;
+    }
 
     @Override
     protected void onHit(HitResult p_70227_1_) {

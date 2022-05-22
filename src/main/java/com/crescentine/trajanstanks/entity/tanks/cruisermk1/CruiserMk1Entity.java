@@ -2,7 +2,6 @@ package com.crescentine.trajanstanks.entity.tanks.cruisermk1;
 
 import com.crescentine.trajanstanks.TankModClient;
 import com.crescentine.trajanstanks.config.TankModConfig;
-import com.crescentine.trajanstanks.container.EngineFabricatorContainer;
 import com.crescentine.trajanstanks.entity.BaseTankEntity;
 import com.crescentine.trajanstanks.entity.shell.ShellEntity;
 import com.crescentine.trajanstanks.entity.tanks.panzer2.Panzer2Entity;
@@ -59,6 +58,7 @@ public class CruiserMk1Entity extends BaseTankEntity implements IAnimatable {
             animationData.addAnimationController(new AnimationController<>(this, "controller", 0, this::predicate));
         //    animationData.addAnimationController(new AnimationController<>(this, "controller", 0, this::shootPredicate));
         }
+
         double speed = TankModConfig.cruisermk1_speed.get();
         float speedFloat = (float)speed;
         @Override

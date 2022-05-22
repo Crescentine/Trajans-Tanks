@@ -1,11 +1,7 @@
 package com.crescentine.trajanstanks;
 
-import com.crescentine.trajanstanks.block.TankModBlockEntities;
-import com.crescentine.trajanstanks.block.platingpress.PlatingPressRenderer;
-import com.crescentine.trajanstanks.block.steelmanufacturer.SteelManufacturerRenderer;
-import com.crescentine.trajanstanks.block.turretfactory.TurretFactoryRenderer;
+
 import com.crescentine.trajanstanks.config.TankModConfig;
-import com.crescentine.trajanstanks.container.TankModContainers;
 import com.crescentine.trajanstanks.entity.*;
 import com.crescentine.trajanstanks.entity.artillery.ArtilleryEntityRenderer;
 import com.crescentine.trajanstanks.entity.shell.ArtilleryShell;
@@ -16,9 +12,6 @@ import com.crescentine.trajanstanks.entity.tanks.panzer2.Panzer2Renderer;
 import com.crescentine.trajanstanks.entity.tanks.t34.T34Renderer;
 import com.crescentine.trajanstanks.item.TankModItems;
 import com.crescentine.trajanstanks.packet.*;
-
-import com.crescentine.trajanstanks.recipe.ModRecipes;
-import com.crescentine.trajanstanks.screen.*;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -102,24 +95,12 @@ public class TankMod {
         eventBus.addListener(this::commonSetup);
         TankModItems.ITEMS.register(eventBus);
         TankModItems.BLOCKS.register(eventBus);
-        eventBus.addListener(this::doClientStuff);
         TankModEntityTypes.ENTITY_TYPES.register(eventBus);
         MinecraftForge.EVENT_BUS.register(this);
         TankModNetwork.init();
-        TankModContainers.register(eventBus);
-        TankModBlockEntities.register(eventBus);
-        ModRecipes.init();
         TankModClient.init();
     }
 
-    private void doClientStuff(final FMLClientSetupEvent event) {
-        MenuScreens.register(TankModContainers.CRAFTER_CONTAINER.get(), CrafterScreen::new);
-        MenuScreens.register(TankModContainers.ENGINE_FABRICATOR_CONTAINER.get(), EngineFabricatorScreen::new);
-        MenuScreens.register(TankModContainers.STEEL_MANUFACTURER_CONTAINER.get(), SteelManufacturerScreen::new);
-        MenuScreens.register(TankModContainers.PLATING_PRESS_CONTAINER.get(), PlatingPressScreen::new);
-        MenuScreens.register(TankModContainers.TURRET_FACTORY_CONTAINER.get(), TurretFactoryScreen::new);
-
-    }
 
     public void commonSetup(final FMLCommonSetupEvent event) {
         TankModNetwork.init();
@@ -129,10 +110,6 @@ public class TankMod {
         @OnlyIn(Dist.CLIENT)
         @SubscribeEvent
         public static void registerRenderers(final FMLClientSetupEvent event) {
-            BlockEntityRenderers.register(TankModBlockEntities.PLATING_PRESS.get(), PlatingPressRenderer::new);
-            BlockEntityRenderers.register(TankModBlockEntities.TURRET_FACTORY.get(), TurretFactoryRenderer::new);
-            BlockEntityRenderers.register(TankModBlockEntities.STEEL_MANUFACTURER.get(), SteelManufacturerRenderer::new);
-
             EntityRenderers.register(TankModEntityTypes.ARTILLERY_ENTITY_TYPE.get(), ArtilleryEntityRenderer::new);
             EntityRenderers.register(TankModEntityTypes.PANZER_TWO_ENTITY_TYPE.get(), Panzer2Renderer::new);
             EntityRenderers.register(TankModEntityTypes.SHELL.get(), ThrownItemRenderer<ShellEntity>::new);

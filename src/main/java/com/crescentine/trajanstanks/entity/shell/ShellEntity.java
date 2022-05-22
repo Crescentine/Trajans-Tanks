@@ -56,8 +56,9 @@ public class ShellEntity extends ThrowableItemProjectile {
 
     @Override
     protected float getGravity() {
-        return 0.028f;
+        return 0.026f;
     }
+
 
     @Override
     protected void onHitEntity(EntityHitResult entityHitResult) {
