@@ -27,6 +27,6 @@
     }
   ],
   "output" : {
-    "item" : "trajanscore:heavy_tank_item"
+    "item" : "trajanstanks:heavy_tank_item"
   }
 }

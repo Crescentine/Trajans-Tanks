@@ -1,17 +1,17 @@
 package com.crescentine.trajanstanks.entity.tanks.tiger;
 
-import com.crescentine.trajanstanks.TankModClient;
+import com.crescentine.trajanscore.TankModClient;
+import com.crescentine.trajanscore.entity.BaseTankEntity;
 import com.crescentine.trajanstanks.config.TankModConfig;
-import com.crescentine.trajanstanks.entity.BaseTankEntity;
 import com.crescentine.trajanstanks.entity.shell.ShellEntity;
-import com.crescentine.trajanstanks.entity.tanks.panzer2.Panzer2Entity;
 import com.crescentine.trajanstanks.item.TankModItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.Mth;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.*;
@@ -22,7 +22,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -63,7 +65,12 @@ public class TigerTankEntity extends BaseTankEntity implements IAnimatable {
         }
         return 0.0f;
     }
-
+    @Override
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_, MobSpawnType p_146748_, @Nullable SpawnGroupData p_146749_, @Nullable CompoundTag p_146750_) {
+        this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(TankModConfig.tiger_health.get());
+        this.setHealth(TankModConfig.tiger_health.get().floatValue());
+        return super.finalizeSpawn(p_146746_, p_146747_, p_146748_, p_146749_, p_146750_);
+    }
     @Override
     public boolean canBeControlledByRider() {
         return true;

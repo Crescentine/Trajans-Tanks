@@ -1,5 +1,6 @@
 package com.crescentine.trajanstanks;
 
+import com.crescentine.trajanscore.TankModClient;
 import com.crescentine.trajanstanks.config.TankModConfig;
 import com.crescentine.trajanstanks.entity.artillery.ArtilleryEntity;
 import com.crescentine.trajanstanks.entity.tanks.cruisermk1.CruiserMk1Entity;
@@ -32,30 +33,6 @@ public class InputEvents {
             TankModNetwork.TIGER.sendToServer(new TigerPacket(key));
             TankModNetwork.T34.sendToServer(new T34Packet(key));
             TankModNetwork.CRUISERMK1.sendToServer(new CruiserMk1Packet(key));
-        }
-    }
-    @SubscribeEvent
-    public static void OnTankJoinWorld(EntityJoinWorldEvent event) {
-        Entity entity = event.getEntity();
-        if (entity instanceof Panzer2Entity) {
-            ((Panzer2Entity) entity).getAttribute
-                    (Attributes.MAX_HEALTH).setBaseValue(TankModConfig.panzer2_health.get());
-        }
-        if (entity instanceof TigerTankEntity) {
-            ((TigerTankEntity) entity).getAttribute
-                    (Attributes.MAX_HEALTH).setBaseValue(TankModConfig.tiger_health.get());
-        }
-        if (entity instanceof ArtilleryEntity) {
-            ((ArtilleryEntity) entity).getAttribute
-                    (Attributes.MAX_HEALTH).setBaseValue(TankModConfig.mounted_gun_health.get());
-        }
-        if (entity instanceof T34Entity) {
-            ((T34Entity) entity).getAttribute
-                    (Attributes.MAX_HEALTH).setBaseValue(TankModConfig.t34_health.get());
-        }
-        if (entity instanceof CruiserMk1Entity) {
-            ((CruiserMk1Entity) entity).getAttribute
-                    (Attributes.MAX_HEALTH).setBaseValue(TankModConfig.cruisermk1_health.get());
         }
     }
 }

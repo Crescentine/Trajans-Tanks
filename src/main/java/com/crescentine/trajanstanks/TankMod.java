@@ -98,7 +98,6 @@ public class TankMod {
         TankModEntityTypes.ENTITY_TYPES.register(eventBus);
         MinecraftForge.EVENT_BUS.register(this);
         TankModNetwork.init();
-        TankModClient.init();
     }
 
 
@@ -117,7 +116,6 @@ public class TankMod {
             EntityRenderers.register(TankModEntityTypes.TIGER_ENTITY_TYPE.get(), TigerTankRenderer::new);
             EntityRenderers.register(TankModEntityTypes.T34_ENTITY_TYPE.get(), T34Renderer::new);
             EntityRenderers.register(TankModEntityTypes.CRUISERMK1_ENTITY_TYPE.get(), CruiserMk1Renderer::new);
-
         }
     }
 }

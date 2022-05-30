@@ -1,21 +1,19 @@
 package com.crescentine.trajanstanks.entity.artillery;
 
+import com.crescentine.trajanscore.entity.BaseTankEntity;
 import com.crescentine.trajanstanks.config.TankModConfig;
-import com.crescentine.trajanstanks.entity.BaseTankEntity;
 import com.crescentine.trajanstanks.entity.shell.ArtilleryShell;
-import com.crescentine.trajanstanks.entity.shell.ShellEntity;
 import com.crescentine.trajanstanks.item.TankModItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.TextComponent;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -23,9 +21,9 @@ import net.minecraft.world.entity.animal.Pig;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.material.Fluid;
-import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
@@ -64,6 +62,12 @@ public class ArtilleryEntity extends BaseTankEntity implements IAnimatable {
     public InteractionResult interactAt(Player player, Vec3 hitPos, InteractionHand hand) {
         player.startRiding(this, true);
         return InteractionResult.SUCCESS;
+    }
+    @Override
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_, MobSpawnType p_146748_, @Nullable SpawnGroupData p_146749_, @Nullable CompoundTag p_146750_) {
+        this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(TankModConfig.mounted_gun_health.get());
+        this.setHealth(TankModConfig.mounted_gun_health.get().floatValue());
+        return super.finalizeSpawn(p_146746_, p_146747_, p_146748_, p_146749_, p_146750_);
     }
     @Override
     public void registerControllers(AnimationData data) {

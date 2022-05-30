@@ -127,6 +127,9 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
+    maven {
+        url "https://cursemaven.com"
+    }
     maven { url "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/" }
     // Put repositories for dependencies here
     // ForgeGradle automatically adds the Forge maven and Maven Central for you
@@ -147,6 +150,7 @@ dependencies {
     compileOnly fg.deobf("mezz.jei:jei-1.18.2:9.5.5.174:api")
     // at runtime, use the full JEI jar
     runtimeOnly fg.deobf("mezz.jei:jei-1.18.2:9.5.5.174")
+    implementation fg.deobf("curse.maven:trajanscore-626570:3801944")
     // Real mod deobf dependency examples - these get remapped to your current mappings
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api") // Adds JEI API as a compile dependency
     // runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}") // Adds the full JEI mod as a runtime dependency

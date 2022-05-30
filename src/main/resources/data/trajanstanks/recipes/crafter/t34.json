@@ -1,5 +1,5 @@
 {
-  "type" : "trajanstanks:crafter",
+  "type" : "trajanscore:crafter",
   "ingredients" : [
     {
       "item": "trajanscore:medium_tank_turret"
@@ -27,6 +27,6 @@
     }
   ],
   "output" : {
-    "item" : "trajanscore:medium_tank_item"
+    "item" : "trajanstanks:medium_tank_item"
   }
 }
