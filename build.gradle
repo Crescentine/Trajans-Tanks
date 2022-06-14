@@ -150,7 +150,7 @@ dependencies {
     compileOnly fg.deobf("mezz.jei:jei-1.18.2:9.5.5.174:api")
     // at runtime, use the full JEI jar
     runtimeOnly fg.deobf("mezz.jei:jei-1.18.2:9.5.5.174")
-    implementation fg.deobf("curse.maven:trajanscore-626570:3801944")
+    implementation fg.deobf("curse.maven:trajanscore-626570:3831530")
     // Real mod deobf dependency examples - these get remapped to your current mappings
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api") // Adds JEI API as a compile dependency
     // runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}") // Adds the full JEI mod as a runtime dependency

@@ -1,8 +1,8 @@
 package com.crescentine.trajanstanks.entity.artillery;
 
-import com.crescentine.trajanscore.entity.BaseTankEntity;
 import com.crescentine.trajanstanks.config.TankModConfig;
 import com.crescentine.trajanstanks.entity.shell.ArtilleryShell;
+import com.crescentine.trajanstanks.entity.tanks.basetank.BaseTankEntity;
 import com.crescentine.trajanstanks.item.TankModItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
@@ -121,5 +121,10 @@ public class ArtilleryEntity extends BaseTankEntity implements IAnimatable {
         }
         time = 0;
         return true;
+    }
+
+    @Override
+    public boolean shoot(Player player, BaseTankEntity tank, Level world) {
+        return super.shoot(player, tank, world);
     }
 }

@@ -12,10 +12,7 @@ import com.crescentine.trajanstanks.entity.tanks.panzer2.Panzer2Renderer;
 import com.crescentine.trajanstanks.entity.tanks.t34.T34Renderer;
 import com.crescentine.trajanstanks.item.TankModItems;
 import com.crescentine.trajanstanks.packet.*;
-import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -48,9 +45,9 @@ public class TankMod {
     private static final Logger LOGGER = LogManager.getLogger();
     public TankMod() {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, TankModConfig.SPEC, "trajanstanks-config.toml");
-        NETWORK_INSTANCE.registerMessage(0, Panzer2Packet.class,
-                Panzer2Packet::writePacketData,
-                Panzer2Packet::new,
+        NETWORK_INSTANCE.registerMessage(0, TankPacket.class,
+                TankPacket::writePacketData,
+                TankPacket::new,
                 (packet, ctx) -> {
                     ctx.get().setPacketHandled(true);
                     packet.handle(packet, null);
@@ -59,30 +56,6 @@ public class TankMod {
         NETWORK_INSTANCE.registerMessage(1, ArtilleryPacket.class,
                 ArtilleryPacket::writePacketData,
                 ArtilleryPacket::new,
-                (packet, ctx) -> {
-                    ctx.get().setPacketHandled(true);
-                    packet.handle(packet, null);
-                }
-        );
-        NETWORK_INSTANCE.registerMessage(2, TigerPacket.class,
-                TigerPacket::writePacketData,
-                TigerPacket::new,
-                (packet, ctx) -> {
-                    ctx.get().setPacketHandled(true);
-                    packet.handle(packet, null);
-                }
-        );
-        NETWORK_INSTANCE.registerMessage(3, T34Packet.class,
-                T34Packet::writePacketData,
-                T34Packet::new,
-                (packet, ctx) -> {
-                    ctx.get().setPacketHandled(true);
-                    packet.handle(packet, null);
-                }
-        );
-        NETWORK_INSTANCE.registerMessage(4, CruiserMk1Packet.class,
-                CruiserMk1Packet::writePacketData,
-                CruiserMk1Packet::new,
                 (packet, ctx) -> {
                     ctx.get().setPacketHandled(true);
                     packet.handle(packet, null);

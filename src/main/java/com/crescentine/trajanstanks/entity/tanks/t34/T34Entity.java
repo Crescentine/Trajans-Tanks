@@ -1,9 +1,9 @@
 package com.crescentine.trajanstanks.entity.tanks.t34;
 
 import com.crescentine.trajanscore.TankModClient;
-import com.crescentine.trajanscore.entity.BaseTankEntity;
 import com.crescentine.trajanstanks.config.TankModConfig;
 import com.crescentine.trajanstanks.entity.shell.ShellEntity;
+import com.crescentine.trajanstanks.entity.tanks.basetank.BaseTankEntity;
 import com.crescentine.trajanstanks.item.TankModItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
@@ -37,10 +37,9 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 public class T34Entity extends BaseTankEntity implements IAnimatable {
     private final AnimationFactory factory = new AnimationFactory(this);
-    private final int cooldown = TankModConfig.t34_shot_cooldown.get();
-    private int time = cooldown;
     public T34Entity(EntityType<?> entityType, Level world) {
         super((EntityType<? extends Pig>) entityType, world);
+        this.shootingCooldown = TankModConfig.t34_shot_cooldown.get();
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -102,44 +101,5 @@ public class T34Entity extends BaseTankEntity implements IAnimatable {
         }
         player.startRiding(this, true);
         return InteractionResult.FAIL;
-    }
-
-    static int shellsUsed = 1;
-    public void tick() {
-        super.tick();
-
-        if (time < cooldown) time++;
-    }
-
-    public boolean shoot(Player player, T34Entity tank, Level world) {
-        ItemStack itemStack = ItemStack.EMPTY;
-        Player playerEntity = (Player) player;
-        T34Entity tankEntity = (T34Entity) tank;
-        for (int i = 0; i < playerEntity.getInventory().getContainerSize(); ++i) {
-            ItemStack stack = playerEntity.getInventory().getItem(i);
-            if (stack.getItem() == TankModItems.SHELL_ITEM.get() && stack.getCount() >= shellsUsed) {
-                itemStack = stack;
-                break;
-            }
-        }
-
-        if (time < cooldown) {
-            player.sendMessage(new TextComponent("Please wait " + (cooldown - time) / 20 + " s !").withStyle(ChatFormatting.AQUA), Util.NIL_UUID);
-            world.playSound(null, player.blockPosition(), SoundEvents.DISPENSER_FAIL, SoundSource.BLOCKS, 1.0f, 1.0f);
-            return false;
-        }
-        if (itemStack.isEmpty()) {
-            player.sendMessage(new TextComponent("You don't have any ammo!" ).withStyle(ChatFormatting.RED), Util.NIL_UUID);
-            world.playSound(null, player.blockPosition(), SoundEvents.DISPENSER_FAIL, SoundSource.BLOCKS, 1.0f, 1.0f);
-            return false;
-        }
-        if (!itemStack.isEmpty()) {
-            ShellEntity shellEntity = new ShellEntity(tankEntity, world);
-            shellEntity.shootFromRotation(tankEntity, tankEntity.getXRot(), tankEntity.getYRot(), 0.0F, 2.0F, 0F);
-            world.addFreshEntity(shellEntity);
-            itemStack.shrink(shellsUsed);
-        }
-        time = 0;
-        return true;
     }
 }

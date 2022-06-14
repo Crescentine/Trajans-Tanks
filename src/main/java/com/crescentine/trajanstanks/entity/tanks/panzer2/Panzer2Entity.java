@@ -1,9 +1,9 @@
 package com.crescentine.trajanstanks.entity.tanks.panzer2;
 
 import com.crescentine.trajanscore.TankModClient;
-import com.crescentine.trajanscore.entity.BaseTankEntity;
 import com.crescentine.trajanstanks.config.TankModConfig;
 import com.crescentine.trajanstanks.entity.shell.ShellEntity;
+import com.crescentine.trajanstanks.entity.tanks.basetank.BaseTankEntity;
 import com.crescentine.trajanstanks.item.TankModItems;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.DifficultyInstance;
@@ -36,10 +36,10 @@ import net.minecraft.world.InteractionResult;
 
 public class Panzer2Entity extends BaseTankEntity implements IAnimatable {
     private final AnimationFactory factory = new AnimationFactory(this);
-    private final int cooldown = TankModConfig.panzer2_shot_cooldown.get();
-    private int time = cooldown;
+
     public Panzer2Entity(EntityType<?> entityType, Level world) {
         super((EntityType<? extends Pig>) entityType, world);
+        this.shootingCooldown = TankModConfig.panzer2_shot_cooldown.get();
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -49,7 +49,8 @@ public class Panzer2Entity extends BaseTankEntity implements IAnimatable {
                 .add(Attributes.KNOCKBACK_RESISTANCE, 10.0D)
                 .add(Attributes.FOLLOW_RANGE, 0.0D);
     }
-   private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
+
+    private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
         if (event.isMoving()) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.tank.walking", true));
             return PlayState.CONTINUE;
@@ -61,8 +62,10 @@ public class Panzer2Entity extends BaseTankEntity implements IAnimatable {
     public void registerControllers(AnimationData animationData) {
         animationData.addAnimationController(new AnimationController<>(this, "controller", 0, this::predicate));
     }
+
     double speed = TankModConfig.panzer2_speed.get();
-    float speedFloat = (float)speed;
+    float speedFloat = (float) speed;
+
     @Override
     public float getSteeringSpeed() {
         if (TankModClient.startMoving.isDown()) {
@@ -87,10 +90,12 @@ public class Panzer2Entity extends BaseTankEntity implements IAnimatable {
     public AnimationFactory getFactory() {
         return this.factory;
     }
+
     @Override
     protected boolean isImmobile() {
         return false;
     }
+
     @Override
     public InteractionResult interactAt(Player player, Vec3 hitPos, InteractionHand hand) {
         ItemStack itemstack = player.getItemInHand(hand);
@@ -102,44 +107,4 @@ public class Panzer2Entity extends BaseTankEntity implements IAnimatable {
         player.startRiding(this, true);
         return InteractionResult.FAIL;
     }
-
-    static int shellsUsed = 1;
-    public void tick() {
-         super.tick();
-
-         if (time < cooldown) time++;
-    }
-
-    public boolean shoot(Player player, Panzer2Entity tank, Level world) {
-        ItemStack itemStack = ItemStack.EMPTY;
-        Player playerEntity = (Player) player;
-        Panzer2Entity tankEntity = (Panzer2Entity) tank;
-        for (int i = 0; i < playerEntity.getInventory().getContainerSize(); ++i) {
-            ItemStack stack = playerEntity.getInventory().getItem(i);
-            if (stack.getItem() == TankModItems.SHELL_ITEM.get() && stack.getCount() >= shellsUsed) {
-                itemStack = stack;
-                break;
-            }
-        }
-
-        if (time < cooldown) {
-            player.sendMessage(new TextComponent("Please wait " + (cooldown - time) / 20 + " s !").withStyle(ChatFormatting.AQUA), Util.NIL_UUID);
-            world.playSound(null, player.blockPosition(), SoundEvents.DISPENSER_FAIL, SoundSource.BLOCKS, 1.0f, 1.0f);
-            return false;
-        }
-        if (itemStack.isEmpty()) {
-            player.sendMessage(new TextComponent("You don't have any ammo!" ).withStyle(ChatFormatting.RED), Util.NIL_UUID);
-            world.playSound(null, player.blockPosition(), SoundEvents.DISPENSER_FAIL, SoundSource.BLOCKS, 1.0f, 1.0f);
-            return false;
-        }
-        if (!itemStack.isEmpty()) {
-            ShellEntity shellEntity = new ShellEntity(tankEntity, world);
-            shellEntity.shootFromRotation(tankEntity, tankEntity.getXRot(), tankEntity.getYRot(), 0.0F, 2.0F, 0F);
-            world.addFreshEntity(shellEntity);
-            itemStack.shrink(shellsUsed);
-        }
-        time = 0;
-            return true;
-        }
 }
-
