@@ -1,8 +1,12 @@
 package com.crescentine.trajanstanks;
 
 import com.crescentine.trajanscore.TankModClient;
+import com.crescentine.trajanstanks.entity.tanks.basetank.BaseTankEntity;
 import com.crescentine.trajanstanks.packet.*;
 import net.minecraft.client.Minecraft;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -21,6 +25,9 @@ public class InputEvents {
         if (mc.screen == null && TankModClient.shootKey.consumeClick()) {
             TankModNetwork.TANK.sendToServer(new TankPacket(key));
             TankModNetwork.ARTILLERY.sendToServer(new ArtilleryPacket(key));
+        }
+        if (mc.screen == null && TankModClient.fuelRemaining.consumeClick()) {
+            TankModNetwork.FUEL_REMAINING.sendToServer(new FuelRemainingPacket(key));
         }
     }
 }

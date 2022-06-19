@@ -8,18 +8,23 @@ public class TankModConfig {
     public static final ForgeConfigSpec.ConfigValue<Double> panzer2_health;
     public static final ForgeConfigSpec.ConfigValue<Double> panzer2_speed;
     public static final ForgeConfigSpec.ConfigValue<Integer> panzer2_shot_cooldown;
+    public static final ForgeConfigSpec.ConfigValue<Double> panzer2_heal_amount;
 
     public static final ForgeConfigSpec.ConfigValue<Double> t34_health;
     public static final ForgeConfigSpec.ConfigValue<Double> t34_speed;
     public static final ForgeConfigSpec.ConfigValue<Integer> t34_shot_cooldown;
+    public static final ForgeConfigSpec.ConfigValue<Double> t34_heal_amount;
+
 
     public static final ForgeConfigSpec.ConfigValue<Double> tiger_health;
     public static final ForgeConfigSpec.ConfigValue<Double> tiger_speed;
     public static final ForgeConfigSpec.ConfigValue<Integer> tiger_shot_cooldown;
+    public static final ForgeConfigSpec.ConfigValue<Double> tiger_heal_amount;
 
     public static final ForgeConfigSpec.ConfigValue<Double> cruisermk1_health;
     public static final ForgeConfigSpec.ConfigValue<Double> cruisermk1_speed;
     public static final ForgeConfigSpec.ConfigValue<Integer> cruisermk1_shot_cooldown;
+    public static final ForgeConfigSpec.ConfigValue<Double> cruisermk1_heal_amount;
 
     public static final ForgeConfigSpec.ConfigValue<Double> mounted_gun_health;
     public static final ForgeConfigSpec.ConfigValue<Integer> mounted_gun_shot_cooldown;
@@ -42,24 +47,30 @@ public class TankModConfig {
         panzer2_health = BUILDER.define("Panzer 2 Health (0-250)" , 80.0);
         panzer2_speed = BUILDER.define("Panzer 2 Speed" , 0.17);
         panzer2_shot_cooldown = BUILDER.define("Panzer 2 Shot Cooldown (1 = 1/20 second)", 60);
+        panzer2_heal_amount = BUILDER.define("Panzer 2 Healing Amount (on right click)", 10.0);
         BUILDER.pop();
 
         BUILDER.push("Tiger Stats");
         tiger_health = BUILDER.define("Tiger Health (0-250)" , 110.0);
         tiger_speed = BUILDER.define("Tiger Speed" , 0.12);
         tiger_shot_cooldown = BUILDER.define("Tiger Shoot Cooldown (1 = 1/20 second", 80);
+        tiger_heal_amount = BUILDER.define("Tiger Healing Amount (on right click)", 10.0);
+
         BUILDER.pop();
 
         BUILDER.push("T-34 Stats");
         t34_health = BUILDER.define("T-34 Health (0-250)" , 95.0);
         t34_speed = BUILDER.define("T-34 Speed" , 0.14);
         t34_shot_cooldown = BUILDER.define("T-34 Shoot Cooldown (1 = 1/20 second", 70);
+        t34_heal_amount = BUILDER.define("T-34 Healing Amount (on right click)", 10.0);
+
         BUILDER.pop();
 
         BUILDER.push("Cruiser MK1 Stats");
         cruisermk1_health = BUILDER.define("Cruiser MK1 Health (0-250)" , 80.0);
         cruisermk1_speed = BUILDER.define("Cruiser MK1 Speed" , 0.17);
         cruisermk1_shot_cooldown = BUILDER.define("Cruiser MK1 Shoot Cooldown (1 = 1/20 second", 60);
+        cruisermk1_heal_amount = BUILDER.define("Cruiser MK1 Healing Amount (on right click)", 10.0);
         BUILDER.pop();
 
         BUILDER.push("Anti-Tank Stats");
