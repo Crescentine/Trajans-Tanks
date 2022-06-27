@@ -1,5 +1,6 @@
 package com.crescentine.trajanstanks.packet;
 
+import com.crescentine.trajanstanks.entity.artillery.ArtilleryEntity;
 import com.crescentine.trajanstanks.entity.tanks.basetank.BaseTankEntity;
 import com.crescentine.trajanstanks.entity.tanks.panzer2.Panzer2Entity;
 import net.minecraft.world.entity.player.Player;
@@ -28,7 +29,7 @@ public class TankPacket {
         context.enqueueWork(() -> {
                     Player player = context.getSender();
                     if (player == null || !player.isAlive()) return;
-                    if (player.getVehicle() instanceof BaseTankEntity) {
+                    if (player.getVehicle() instanceof BaseTankEntity && !(player.getVehicle() instanceof ArtilleryEntity)) {
                         BaseTankEntity Tank = (BaseTankEntity) player.getVehicle();
                         Tank.shoot(player, Tank, player.level);
                     }

@@ -36,6 +36,7 @@
   "block.trajanstanks.engine_fabricator" : "Engine Fabricator",
   "block.trajanstanks.steel_manufacturer" : "Steel Manufacturer",
   "item.trajanstanks.cruiser_mk1_item" : "Cruiser MK1",
+  "item.trajanstanks.m4sherman_item" : "M4 Sherman",
 
   "entity.trajanstanks.artillery_entity_type" : "Anti Tank Artillery",
   "entity.trajanstanks.artillery_shell" : "Anti Tank Shell",
@@ -44,6 +45,7 @@
   "entity.trajanstanks.shell" : "Shell",
   "entity.trajanstanks.t34_entity_type" : "T-34",
   "entity.trajanstanks.tiger_tank_entity_type": "Tiger",
+  "entity.trajanstanks.m4sherman_entity_type" : "M4 Sherman",
 
   "key.trajanstanks.shootKey" : "Tank Firing Key",
   "key.trajanstanks.tankMovement" : "Tank Movement"

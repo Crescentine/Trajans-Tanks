@@ -1,4 +1,4 @@
-package com.crescentine.trajanstanks.entity.tanks.t34;
+package com.crescentine.trajanstanks.entity.tanks.m4sherman;
 
 import com.crescentine.trajanstanks.config.TankModConfig;
 import com.crescentine.trajanstanks.entity.tanks.basetank.BaseTankEntity;
@@ -9,15 +9,15 @@ import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 
-public class T34Entity extends BaseTankEntity {
-    public T34Entity(EntityType<?> entityType, Level world) {
+public class M4ShermanEntity extends BaseTankEntity {
+    public M4ShermanEntity(EntityType<?> entityType, Level world) {
         super(entityType, world);
-        this.health = TankModConfig.t34_health.get();
-        this.speed = TankModConfig.t34_speed.get();
-        this.shootingCooldown = TankModConfig.t34_shot_cooldown.get();
+        this.health = TankModConfig.m4sherman_health.get();
+        this.speed = TankModConfig.m4sherman_speed.get();
+        this.shootingCooldown = TankModConfig.m4sherman_shot_cooldown.get();
         this.armor = 4.0;
-        this.healAmount = TankModConfig.t34_heal_amount.get();
-        this.maxFuel = TankModConfig.t34_maxfuel.get() * 20;
+        this.healAmount = TankModConfig.m4sherman_heal_amount.get();
+        this.maxFuel = TankModConfig.m4sherman_maxfuel.get() * 20;
     }
     @Override
     protected <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {

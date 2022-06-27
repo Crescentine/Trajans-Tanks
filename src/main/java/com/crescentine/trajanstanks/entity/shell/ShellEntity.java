@@ -48,7 +48,7 @@ public class ShellEntity extends ThrowableItemProjectile {
         if (!this.level.isClientSide) { // checks if the world is client
             this.level.broadcastEntityEvent(this, (byte) 3); // particle?
             if (!level.isClientSide) {
-                level.explode(this, getX(), getY(), getZ(), TankModConfig.shell_explosion_radius.get(), Explosion.BlockInteraction.DESTROY);
+                this.level.explode(this, getX(), getY(), getZ(), TankModConfig.shell_explosion_radius.get(), TankModConfig.shell_makes_fire.get(), Explosion.BlockInteraction.BREAK);
                 this.kill();
             }
         }

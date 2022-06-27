@@ -7,7 +7,7 @@ import software.bernie.geckolib3.model.AnimatedGeoModel;
 public class TigerTankModel extends AnimatedGeoModel<TigerTankEntity>
 {
     public ResourceLocation getModelLocation(TigerTankEntity object) {
-        return new ResourceLocation(TankMod.MOD_ID, "geo/heavytank.geo.json");
+        return new ResourceLocation(TankMod.MOD_ID, "geo/tiger.geo.json");
     }
 
     public ResourceLocation getTextureLocation(TigerTankEntity object) {
@@ -15,6 +15,6 @@ public class TigerTankModel extends AnimatedGeoModel<TigerTankEntity>
     }
 
     public ResourceLocation getAnimationFileLocation(TigerTankEntity animatable) {
-        return new ResourceLocation(TankMod.MOD_ID, "animations/heavytank.animation.json");
+        return new ResourceLocation(TankMod.MOD_ID, "animations/tiger.animation.json");
     }
 }

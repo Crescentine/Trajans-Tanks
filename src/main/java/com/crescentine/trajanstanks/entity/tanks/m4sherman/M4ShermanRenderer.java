@@ -1,11 +1,11 @@
-package com.crescentine.trajanstanks.entity.tanks.cruisermk1;
+package com.crescentine.trajanstanks.entity.tanks.m4sherman;
 
+import com.crescentine.trajanstanks.entity.tanks.cruisermk1.CruiserMk1Entity;
+import com.crescentine.trajanstanks.entity.tanks.cruisermk1.CruiserMk1Model;
 import com.crescentine.trajanstanks.entity.tanks.panzer2.Panzer2Entity;
 import com.crescentine.trajanstanks.entity.tanks.panzer2.Panzer2Model;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
@@ -14,19 +14,18 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.processor.IBone;
 import software.bernie.geckolib3.geo.render.built.GeoBone;
-import software.bernie.geckolib3.geo.render.built.GeoModel;
 import software.bernie.geckolib3.renderers.geo.ExtendedGeoEntityRenderer;
 import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
 
-public class CruiserMk1Renderer extends ExtendedGeoEntityRenderer<CruiserMk1Entity> {
-    public CruiserMk1Renderer(EntityRendererProvider.Context renderManagerIn) {
-        super(renderManagerIn, new CruiserMk1Model());
+public class M4ShermanRenderer extends ExtendedGeoEntityRenderer<M4ShermanEntity> {
+    public M4ShermanRenderer(EntityRendererProvider.Context renderManagerIn) {
+        super(renderManagerIn, new M4ShermanModel());
         this.shadowRadius = 0.7F;
     }
 
     @Override
-    protected float getHeightScale(CruiserMk1Entity entity) {
-        return 1.4f;
+    protected float getHeightScale(M4ShermanEntity entity) {
+        return 1.2F;
     }
 
     @Override
@@ -35,18 +34,18 @@ public class CruiserMk1Renderer extends ExtendedGeoEntityRenderer<CruiserMk1Enti
     }
 
     @Override
-    protected float getWidthScale(CruiserMk1Entity entity) {
-        return 1.4f;
+    protected float getWidthScale(M4ShermanEntity entity) {
+        return 1.2f;
     }
 
     @Nullable
     @Override
-    protected ResourceLocation getTextureForBone(String boneName, CruiserMk1Entity currentEntity) {
+    protected ResourceLocation getTextureForBone(String boneName, M4ShermanEntity currentEntity) {
         return null;
     }
     @Nullable
     @Override
-    protected ItemStack getHeldItemForBone(String boneName, CruiserMk1Entity currentEntity) {
+    protected ItemStack getHeldItemForBone(String boneName, M4ShermanEntity currentEntity) {
         return null;
     }
     @Override
@@ -55,20 +54,20 @@ public class CruiserMk1Renderer extends ExtendedGeoEntityRenderer<CruiserMk1Enti
     }
     @Nullable
     @Override
-    protected BlockState getHeldBlockForBone(String boneName, CruiserMk1Entity currentEntity) {
+    protected BlockState getHeldBlockForBone(String boneName, M4ShermanEntity currentEntity) {
         return null;
     }
     @Override
-    protected void preRenderItem(PoseStack matrixStack, ItemStack item, String boneName, CruiserMk1Entity currentEntity, IBone bone) {
+    protected void preRenderItem(PoseStack matrixStack, ItemStack item, String boneName, M4ShermanEntity currentEntity, IBone bone) {
     }
     @Override
-    protected void preRenderBlock(BlockState block, String boneName, CruiserMk1Entity currentEntity) {
+    protected void preRenderBlock(BlockState block, String boneName, M4ShermanEntity currentEntity) {
     }
     @Override
-    protected void postRenderItem(PoseStack matrixStack, ItemStack item, String boneName, CruiserMk1Entity currentEntity, IBone bone) {
+    protected void postRenderItem(PoseStack matrixStack, ItemStack item, String boneName, M4ShermanEntity currentEntity, IBone bone) {
     }
     @Override
-    protected void postRenderBlock(BlockState block, String boneName, CruiserMk1Entity currentEntity) {
+    protected void postRenderBlock(BlockState block, String boneName, M4ShermanEntity currentEntity) {
     }
 
     @Override

@@ -17,12 +17,12 @@ public class TigerTankEntity extends BaseTankEntity {
         this.shootingCooldown = TankModConfig.tiger_shot_cooldown.get();
         this.armor = 5.0;
         this.healAmount = TankModConfig.tiger_heal_amount.get();
-        this.tankName = "tiger";
+        this.maxFuel = TankModConfig.tiger_maxfuel.get() * 20;
     }
     @Override
     protected <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
-        if (event.isMoving()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.model.tank Movement", true));
+        if (event.getLimbSwingAmount() > 0.1F) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
             return PlayState.CONTINUE;
         }
         return PlayState.STOP;

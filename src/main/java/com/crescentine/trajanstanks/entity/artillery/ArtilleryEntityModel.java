@@ -11,10 +11,10 @@ public class ArtilleryEntityModel extends AnimatedGeoModel<ArtilleryEntity>
     }
 
     public ResourceLocation getTextureLocation(ArtilleryEntity object) {
-        return new ResourceLocation(TankMod.MOD_ID, "textures/item/texture.png");
+        return new ResourceLocation(TankMod.MOD_ID, "textures/item/artillery.png");
     }
 
     public ResourceLocation getAnimationFileLocation(ArtilleryEntity animatable) {
-        return new ResourceLocation(TankMod.MOD_ID, "animations/artillery.animation.json");
+        return new ResourceLocation(TankMod.MOD_ID, "animations/artillery_animation.json");
     }
 }

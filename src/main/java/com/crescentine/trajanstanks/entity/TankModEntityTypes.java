@@ -5,6 +5,7 @@ import com.crescentine.trajanstanks.entity.artillery.ArtilleryEntity;
 import com.crescentine.trajanstanks.entity.shell.ArtilleryShell;
 import com.crescentine.trajanstanks.entity.shell.ShellEntity;
 import com.crescentine.trajanstanks.entity.tanks.cruisermk1.CruiserMk1Entity;
+import com.crescentine.trajanstanks.entity.tanks.m4sherman.M4ShermanEntity;
 import com.crescentine.trajanstanks.entity.tanks.tiger.TigerTankEntity;
 import com.crescentine.trajanstanks.entity.tanks.panzer2.Panzer2Entity;
 import com.crescentine.trajanstanks.entity.tanks.t34.T34Entity;
@@ -35,6 +36,10 @@ public class TankModEntityTypes {
     public static final RegistryObject<EntityType<TigerTankEntity>> TIGER_ENTITY_TYPE = ENTITY_TYPES.register("tiger_tank_entity_type",
             () -> EntityType.Builder.<TigerTankEntity>of(TigerTankEntity::new, MobCategory.MISC).sized(4.5F, 2.2F)
                     .clientTrackingRange(10).build("tiger_tank_entity_type"));
+
+    public static final RegistryObject<EntityType<M4ShermanEntity>> M4SHERMAN_ENTITY_TYPE = ENTITY_TYPES.register("m4sherman_entity_type",
+            () -> EntityType.Builder.<M4ShermanEntity>of(M4ShermanEntity::new, MobCategory.MISC).sized(4.5F, 2.4F)
+                    .clientTrackingRange(10).build("m4sherman_entity_type"));
 
     public static final RegistryObject<EntityType<T34Entity>> T34_ENTITY_TYPE = ENTITY_TYPES.register("t34_entity_type",
             () -> EntityType.Builder.<T34Entity>of(T34Entity::new, MobCategory.MISC).sized(3.8F, 2.1f)
@@ -68,6 +73,7 @@ public class TankModEntityTypes {
         event.put(ARTILLERY_ENTITY_TYPE.get(), ArtilleryEntity.createAttributes().build());
         event.put(T34_ENTITY_TYPE.get(), T34Entity.createAttributes().build());
         event.put(CRUISERMK1_ENTITY_TYPE.get(), CruiserMk1Entity.createAttributes().build());
+        event.put(M4SHERMAN_ENTITY_TYPE.get(), M4ShermanEntity.createAttributes().build());
 
     }
 

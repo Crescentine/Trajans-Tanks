@@ -1,6 +1,7 @@
 package com.crescentine.trajanstanks.packet;
 
 import com.crescentine.trajanstanks.entity.artillery.ArtilleryEntity;
+import com.crescentine.trajanstanks.entity.tanks.basetank.BaseTankEntity;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.network.NetworkEvent;
@@ -27,8 +28,8 @@ public class ArtilleryPacket {
                     Player player = context.getSender();
                     if (player == null || !player.isAlive()) return;
                     if (player.getVehicle() instanceof ArtilleryEntity) {
-                        ArtilleryEntity artilleryEntity = (ArtilleryEntity) player.getVehicle();
-                        artilleryEntity.shoot(player, player.level);
+                        BaseTankEntity artilleryEntity = (ArtilleryEntity) player.getVehicle();
+                        artilleryEntity.shoot(player, artilleryEntity, player.level);
                     }
                 }
         );
