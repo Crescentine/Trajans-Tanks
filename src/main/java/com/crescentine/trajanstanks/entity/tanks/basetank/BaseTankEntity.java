@@ -5,6 +5,7 @@ import com.crescentine.trajanstanks.TankMod;
 import com.crescentine.trajanstanks.config.TankModConfig;
 import com.crescentine.trajanstanks.entity.shell.ShellEntity;
 import com.crescentine.trajanstanks.item.TankModItems;
+import com.google.common.collect.ImmutableList;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.core.particles.ParticleTypes;
@@ -63,7 +64,9 @@ public class BaseTankEntity extends Pig implements IAnimatable {
     double d1 = this.random.nextGaussian() * 0.03D;
     double d2 = this.random.nextGaussian() * 0.03D;
     private static final Ingredient COAL_FUEL = Ingredient.of(Items.COAL, Items.CHARCOAL);
+    private static final Ingredient COAL_BLOCK_FUEL = Ingredient.of(Items.COAL_BLOCK);
     private static final Ingredient LAVA_FUEL = Ingredient.of(Items.LAVA_BUCKET);
+    private ImmutableList<Entity> passengers = ImmutableList.of();
 
     public BaseTankEntity(EntityType<?> entityType, Level world) {
         super((EntityType<? extends Pig>) entityType, world);
@@ -79,33 +82,52 @@ public class BaseTankEntity extends Pig implements IAnimatable {
     @Override
     public InteractionResult interactAt(Player player, Vec3 hitPos, InteractionHand hand) {
         ItemStack itemstack = player.getItemInHand(hand);
-        Inventory inventory = player.getInventory();
-        if (itemstack.is(Items.IRON_BLOCK)) {
-            this.heal((float) healAmount);
+        if (itemstack.is(Items.IRON_BLOCK) && this.getHealth() < this.health) {
+            healTank(healAmount);
             itemstack.shrink(1);
-            this.level.addParticle(ParticleTypes.FLAME, this.getRandomX(1.0D), this.getRandomY() + 0.5D, this.getRandomZ(1.0D), d0, d1, d2);
             return InteractionResult.SUCCESS;
         }
-        if (COAL_FUEL.test(itemstack) && getFuelAmount() < maxFuel && TankModConfig.fuelSystemEnabled.get()) {
-            addFuel((int) coalFuelAmount * 20);
+        if (itemstack.is(Items.IRON_INGOT) && this.getHealth() < this.health) {
+            healTank(healAmount / 9);
             itemstack.shrink(1);
-            this.level.addParticle(ParticleTypes.LARGE_SMOKE, this.getX() + 1.0D, this.getY() + 1.0D, this.getZ(), d0, d1, d2);
             return InteractionResult.SUCCESS;
         }
-        if (LAVA_FUEL.test(itemstack) && getFuelAmount() < maxFuel && TankModConfig.fuelSystemEnabled.get()) {
-            addFuel((int) lavaFuelAmount * 20);
-            itemstack.shrink(1);
-            player.setItemInHand(hand, new ItemStack(Items.BUCKET));
-            this.level.addParticle(ParticleTypes.LARGE_SMOKE, this.getX() + 1.0D, this.getY() + 1.0D, this.getZ(), d0, d1, d2);
-            return InteractionResult.SUCCESS;
+        if (TankModConfig.fuelSystemEnabled.get() && getFuelAmount() < maxFuel) {
+            if (COAL_FUEL.test(itemstack) && getFuelAmount() < maxFuel && TankModConfig.fuelSystemEnabled.get()) {
+                fuelTankWithItem((int) coalFuelAmount * 20);
+                itemstack.shrink(1);
+                return InteractionResult.SUCCESS;
+            }
+            if (COAL_BLOCK_FUEL.test(itemstack) && getFuelAmount() < maxFuel && TankModConfig.fuelSystemEnabled.get()) {
+                fuelTankWithItem((int) coalFuelAmount * 180);
+                itemstack.shrink(1);
+                return InteractionResult.SUCCESS;
+            }
+            if (LAVA_FUEL.test(itemstack) && getFuelAmount() < maxFuel && TankModConfig.fuelSystemEnabled.get()) {
+                fuelTankWithItem((int) lavaFuelAmount * 20);
+                itemstack.shrink(1);
+                player.setItemInHand(hand, new ItemStack(Items.BUCKET));
+                return InteractionResult.SUCCESS;
+            }
         }
-        player.startRiding(this, true);
+        if (canAddPassenger(player)) {
+            player.startRiding(this, true);
+            return InteractionResult.FAIL;
+        }
         return InteractionResult.FAIL;
+    }
+    public void healTank(double healAmount) {
+        this.heal((float) healAmount);
+        this.level.addParticle(ParticleTypes.FLAME, this.getRandomX(1.0D), this.getRandomY() + 0.5D, this.getRandomZ(1.0D), d0, d1, d2);
+    }
+    public void fuelTankWithItem(int fuelAmount) {
+        addFuel(fuelAmount);
+        this.level.addParticle(ParticleTypes.LARGE_SMOKE, this.getX() + 1.0D, this.getY() + 1.0D, this.getZ(), d0, d1, d2);
     }
 
     @Override
-    protected boolean canAddPassenger(Entity p_20354_) {
-        return !this.isVehicle();
+    protected boolean canAddPassenger(Entity entity) {
+        return this.passengers.isEmpty();
     }
 
     @Override
@@ -217,7 +239,7 @@ public class BaseTankEntity extends Pig implements IAnimatable {
         age++;
         if (time < shootingCooldown) time++;
         fuelTick();
-        if (this.isVehicle() && this.age % 10 == 0 && getFuelAmount() > 0) {
+        if (level.isClientSide() && this.isVehicle() && this.age % 10 == 0 && getFuelAmount() > 0) {
             this.level.addParticle(ParticleTypes.LARGE_SMOKE, this.getX() + 1.0D, this.getY() + 1.0D, this.getZ(), d0, d1, d2);
             this.level.addParticle(ParticleTypes.LARGE_SMOKE, this.getX() + 1.0D, this.getY() + 1.0D, this.getZ(), d0, d1, d2);
         }
@@ -225,8 +247,13 @@ public class BaseTankEntity extends Pig implements IAnimatable {
 
     protected void fuelTick() {
         int fuel = getFuelAmount();
-        if (this.isVehicle() && fuel > 0 && TankModClient.startMoving.isDown()) {
-            removeFuel(1);
+        if (level.isClientSide) {
+            if (this.isVehicle() && fuel > 0 && TankModClient.startMoving.isDown()) {
+                removeFuel(1);
+            }
+        if (!level.isClientSide) {
+                removeFuel(0);
+            }
         }
     }
 

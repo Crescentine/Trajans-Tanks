@@ -44,6 +44,7 @@ public class TankMod {
     );
     public static final String MOD_ID = "trajanstanks";
     private static final Logger LOGGER = LogManager.getLogger();
+
     public TankMod() {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, TankModConfig.SPEC, "trajanstanks-config.toml");
         NETWORK_INSTANCE.registerMessage(0, TankPacket.class,
@@ -63,22 +64,23 @@ public class TankMod {
                 }
         );
 
-                    GeckoLib.initialize();
-
+        GeckoLib.initialize();
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        eventBus.addListener(this::onClientSetup);
         eventBus.addListener(this::commonSetup);
         TankModItems.ITEMS.register(eventBus);
         TankModItems.BLOCKS.register(eventBus);
         TankModEntityTypes.ENTITY_TYPES.register(eventBus);
         MinecraftForge.EVENT_BUS.register(this);
         TankModNetwork.init();
-        ClientEventHandler.setup();
+
     }
 
 
     public void commonSetup(final FMLCommonSetupEvent event) {
         TankModNetwork.init();
     }
+
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistryEvents {
         @OnlyIn(Dist.CLIENT)
@@ -93,5 +95,8 @@ public class TankMod {
             EntityRenderers.register(TankModEntityTypes.CRUISERMK1_ENTITY_TYPE.get(), CruiserMk1Renderer::new);
             EntityRenderers.register(TankModEntityTypes.M4SHERMAN_ENTITY_TYPE.get(), M4ShermanRenderer::new);
         }
+    }
+    private void onClientSetup(FMLClientSetupEvent event) {
+        ClientEventHandler.setup();
     }
 }

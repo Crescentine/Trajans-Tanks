@@ -1,6 +1,7 @@
 package com.crescentine.trajanstanks;
 
 import com.crescentine.trajanstanks.config.TankModConfig;
+import com.crescentine.trajanstanks.entity.artillery.ArtilleryEntity;
 import com.crescentine.trajanstanks.entity.tanks.basetank.BaseTankEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.ChatFormatting;
@@ -9,6 +10,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 import java.awt.*;
 import java.text.DecimalFormat;
@@ -31,10 +33,11 @@ public class StatsOverlay {
 
         PoseStack matrixStack = new PoseStack();
         BaseTankEntity tank = (BaseTankEntity) entity;
-        String health = new DecimalFormat("0.0").format(tank.getHealth());
+        DecimalFormat format1 = new DecimalFormat("0.0");
+        String health = format1.format(tank.getHealth());
         mc.font.drawShadow(matrixStack, ChatFormatting.BOLD + "Health: " + ChatFormatting.WHITE + health, 10, 10, Color.CYAN.getRGB());
 
-        if(TankModConfig.fuelSystemEnabled.get()) {
+        if(TankModConfig.fuelSystemEnabled.get() && !(entity instanceof ArtilleryEntity)) {
             DecimalFormat format = new DecimalFormat("0.0");
             String fuel = format.format(tank.getFuelAmount()) + "/" + format.format(tank.maxFuel);
             mc.font.drawShadow(matrixStack, ChatFormatting.BOLD + "Fuel Remaining: " + ChatFormatting.WHITE + fuel, 10, 20, Color.CYAN.getRGB());

@@ -37,11 +37,10 @@ public class Panzer2Entity extends BaseTankEntity {
         }
         return PlayState.STOP;
     }
-
-   /* @Override
+    @Override
     public boolean canBeControlledByRider() {
-        if (TankModClient.startMoving.isDown()) {
-            return true;
+        if (level.isClientSide()) {
+            return TankModClient.startMoving.isDown();
         }
         return false;
     }
@@ -75,7 +74,7 @@ public class Panzer2Entity extends BaseTankEntity {
         }
         if (!itemStack.isEmpty()) {
             ShellEntity shellEntity = new ShellEntity(tankEntity, world);
-            shellEntity.shootFromRotation(player, tank.getXRot(),  tank.getYRot(), 0.0F, 2.5F, 0F);
+            shellEntity.shootFromRotation(player, player.getXRot(),  player.getYRot() - 0.8f, 0.0F, 2.7F, 0F);
             world.addFreshEntity(shellEntity);
             itemStack.shrink(1);
             shootingAnimation = true;
@@ -83,5 +82,5 @@ public class Panzer2Entity extends BaseTankEntity {
         time = 0;
         shootingAnimation = false;
         return true;
-    } */
+    }
 }
