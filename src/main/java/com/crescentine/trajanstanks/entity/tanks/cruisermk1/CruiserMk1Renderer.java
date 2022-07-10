@@ -61,16 +61,17 @@ public class CruiserMk1Renderer extends ExtendedGeoEntityRenderer<CruiserMk1Enti
     @Override
     protected void preRenderItem(PoseStack matrixStack, ItemStack item, String boneName, CruiserMk1Entity currentEntity, IBone bone) {
     }
+
     @Override
-    protected void preRenderBlock(BlockState block, String boneName, CruiserMk1Entity currentEntity) {
+    protected void preRenderBlock(PoseStack matrixStack, BlockState block, String boneName, CruiserMk1Entity currentEntity) {
     }
     @Override
     protected void postRenderItem(PoseStack matrixStack, ItemStack item, String boneName, CruiserMk1Entity currentEntity, IBone bone) {
     }
-    @Override
-    protected void postRenderBlock(BlockState block, String boneName, CruiserMk1Entity currentEntity) {
-    }
 
+    @Override
+    protected void postRenderBlock(PoseStack matrixStack, BlockState block, String boneName, CruiserMk1Entity currentEntity) {
+    }
     @Override
     public void renderRecursively(GeoBone bone, PoseStack stack, VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
         super.renderRecursively(bone, stack, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);

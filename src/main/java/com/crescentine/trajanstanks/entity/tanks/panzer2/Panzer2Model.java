@@ -27,6 +27,7 @@ public class Panzer2Model extends AnimatedGeoModel<Panzer2Entity>
     public ResourceLocation getAnimationFileLocation(Panzer2Entity animatable) {
         return new ResourceLocation(TankMod.MOD_ID, "animations/tank.animation.json");
     }
+    /*
     @Override
     public void setLivingAnimations(Panzer2Entity entity, Integer uniqueID, AnimationEvent customPredicate) {
         super.setLivingAnimations(entity, uniqueID, customPredicate);
@@ -35,5 +36,5 @@ public class Panzer2Model extends AnimatedGeoModel<Panzer2Entity>
         if (entity.isVehicle() && rider instanceof Player) {
            turret.setRotationY((float)-Math.toRadians(rider.getYHeadRot() - entity.getYRot()));
         }
-    }
+    } */
 }

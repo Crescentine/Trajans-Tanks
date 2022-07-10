@@ -60,16 +60,17 @@ public class M4ShermanRenderer extends ExtendedGeoEntityRenderer<M4ShermanEntity
     @Override
     protected void preRenderItem(PoseStack matrixStack, ItemStack item, String boneName, M4ShermanEntity currentEntity, IBone bone) {
     }
+
     @Override
-    protected void preRenderBlock(BlockState block, String boneName, M4ShermanEntity currentEntity) {
+    protected void preRenderBlock(PoseStack matrixStack, BlockState block, String boneName, M4ShermanEntity currentEntity) {
     }
     @Override
     protected void postRenderItem(PoseStack matrixStack, ItemStack item, String boneName, M4ShermanEntity currentEntity, IBone bone) {
     }
-    @Override
-    protected void postRenderBlock(BlockState block, String boneName, M4ShermanEntity currentEntity) {
-    }
 
+    @Override
+    protected void postRenderBlock(PoseStack matrixStack, BlockState block, String boneName, M4ShermanEntity currentEntity) {
+    }
     @Override
     public void renderRecursively(GeoBone bone, PoseStack stack, VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
         super.renderRecursively(bone, stack, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);

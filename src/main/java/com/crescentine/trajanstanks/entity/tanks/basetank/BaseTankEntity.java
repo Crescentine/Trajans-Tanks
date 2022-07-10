@@ -208,10 +208,6 @@ public class BaseTankEntity extends Pig implements IAnimatable {
         return null;
     }
 
-    @Override
-    protected SoundEvent getAmbientSound() {
-        return SoundEvents.MINECART_RIDING;
-    }
 
     @Override
     protected SoundEvent getDeathSound() {
@@ -220,6 +216,11 @@ public class BaseTankEntity extends Pig implements IAnimatable {
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
+        return SoundEvents.ARMOR_EQUIP_IRON;
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
         return SoundEvents.ARMOR_EQUIP_IRON;
     }
 
