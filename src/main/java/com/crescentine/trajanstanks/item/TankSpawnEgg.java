@@ -25,7 +25,7 @@ public class TankSpawnEgg extends ForgeSpawnEggItem {
                     public ItemStack execute(BlockSource source, ItemStack stack) {
                         Direction direction = source.getBlockState().getValue(DispenserBlock.FACING);
                         EntityType<?> entitytype = ((SpawnEggItem)stack.getItem()).getType(stack.getTag());
-                        entitytype.spawn(source.getLevel(), stack, null, source.getPos().relative(direction), MobSpawnType.DISPENSER, direction != Direction.UP, false);
+                        entitytype.spawn(source.getLevel(), stack, null, source.getPos().relative(direction, 0), MobSpawnType.DISPENSER, direction != Direction.UP, false);
                         stack.shrink(1);
                         return stack;
                     }

@@ -6,7 +6,7 @@ import com.crescentine.trajanstanks.entity.tanks.basetank.BaseTankEntity;
 import com.crescentine.trajanstanks.item.TankModItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
@@ -54,12 +54,12 @@ public class ArtilleryEntity extends BaseTankEntity {
             }
         }
         if (time < cooldown) {
-            player.sendMessage(new TextComponent("Please wait " + (cooldown - time) / 20 + " s !").withStyle(ChatFormatting.AQUA), Util.NIL_UUID);
+            player.displayClientMessage(Component.literal("Please wait " + (cooldown - time) / 20 + " s !").withStyle(ChatFormatting.AQUA), false);
             world.playSound(null, player.blockPosition(), SoundEvents.DISPENSER_FAIL, SoundSource.BLOCKS, 1.0f, 1.0f);
             return false;
         }
         if (itemStack.isEmpty()) {
-            player.sendMessage(new TextComponent("You don't have any ammo!" ).withStyle(ChatFormatting.RED), Util.NIL_UUID);
+            player.displayClientMessage(Component.literal("You don't have any ammo!" ).withStyle(ChatFormatting.RED), false);
             world.playSound(null, player.blockPosition(), SoundEvents.DISPENSER_FAIL, SoundSource.BLOCKS, 1.0f, 1.0f);
             return false;
         }
@@ -70,7 +70,6 @@ public class ArtilleryEntity extends BaseTankEntity {
             artilleryShell.setPos(this.getEyePosition());
             world.addFreshEntity(artilleryShell);
             itemStack.shrink(1);
-            this.artilleryShootingAnimation = 1;
         }
         time = 0;
         artilleryShootingAnimation = 0;

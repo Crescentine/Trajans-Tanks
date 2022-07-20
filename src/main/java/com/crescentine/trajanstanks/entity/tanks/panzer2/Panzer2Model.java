@@ -7,7 +7,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.event.world.NoteBlockEvent;
 import software.bernie.example.entity.GeoExampleEntity;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.processor.IBone;
@@ -16,15 +15,15 @@ import software.bernie.geckolib3.model.provider.data.EntityModelData;
 
 public class Panzer2Model extends AnimatedGeoModel<Panzer2Entity>
 {
-    public ResourceLocation getModelLocation(Panzer2Entity object) {
+    public ResourceLocation getModelResource(Panzer2Entity object) {
         return new ResourceLocation(TankMod.MOD_ID, "geo/tank.geo.json");
     }
 
-    public ResourceLocation getTextureLocation(Panzer2Entity object) {
+    public ResourceLocation getTextureResource(Panzer2Entity object) {
         return new ResourceLocation(TankMod.MOD_ID, "textures/item/texture.png");
     }
 
-    public ResourceLocation getAnimationFileLocation(Panzer2Entity animatable) {
+    public ResourceLocation getAnimationResource(Panzer2Entity animatable) {
         return new ResourceLocation(TankMod.MOD_ID, "animations/tank.animation.json");
     }
     /*

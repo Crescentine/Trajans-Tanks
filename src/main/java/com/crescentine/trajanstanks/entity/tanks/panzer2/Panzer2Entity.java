@@ -7,13 +7,13 @@ import com.crescentine.trajanstanks.entity.tanks.basetank.BaseTankEntity;
 import com.crescentine.trajanstanks.item.TankModItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -37,13 +37,21 @@ public class Panzer2Entity extends BaseTankEntity {
         }
         return PlayState.STOP;
     }
-    @Override
-    public boolean canBeControlledByRider() {
+    /*
+    public boolean canBeControlled() {
         if (level.isClientSide()) {
-            return TankModClient.startMoving.isDown();
+            return TankModClient.START_MOVING.isDown();
         }
         return false;
     }
+
+    @Nullable
+    @Override
+    public Entity getControllingPassenger() {
+        Entity entity = this.getFirstPassenger();
+        return entity != null && this.canBeControlled() ? entity : null;
+    } */
+    /*
   @Override
     public boolean shoot(Player player, BaseTankEntity tank, Level world) {
         ItemStack itemStack = ItemStack.EMPTY;
@@ -82,5 +90,5 @@ public class Panzer2Entity extends BaseTankEntity {
         time = 0;
         shootingAnimation = false;
         return true;
-    }
+    } */
 }

@@ -10,7 +10,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -38,6 +38,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.Vec3;
+import org.checkerframework.checker.units.qual.C;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -149,9 +150,15 @@ public class BaseTankEntity extends Pig implements IAnimatable {
         return 30;
     }
 
+    public boolean canBeControlled() {
+       return true;
+    }
+
+    @Nullable
     @Override
-    public boolean canBeControlledByRider() {
-        return true;
+    public Entity getControllingPassenger() {
+        Entity entity = this.getFirstPassenger();
+        return entity != null && this.canBeControlled() ? entity : null;
     }
 
     @Override
@@ -161,10 +168,10 @@ public class BaseTankEntity extends Pig implements IAnimatable {
 
     @Override
     public float getSteeringSpeed() {
-        if (TankModConfig.fuelSystemEnabled.get() && TankModClient.startMoving.isDown() && getFuelAmount() > 0) {
+        if (TankModConfig.fuelSystemEnabled.get() && TankModClient.START_MOVING.isDown() && getFuelAmount() > 0) {
             return (float) speed;
         }
-        if (TankModClient.startMoving.isDown() && !TankModConfig.fuelSystemEnabled.get()) {
+        if (TankModClient.START_MOVING.isDown() && !TankModConfig.fuelSystemEnabled.get()) {
             return (float) speed;
         }
         return 0.0f;
@@ -249,7 +256,7 @@ public class BaseTankEntity extends Pig implements IAnimatable {
     protected void fuelTick() {
         int fuel = getFuelAmount();
         if (level.isClientSide) {
-            if (this.isVehicle() && fuel > 0 && TankModClient.startMoving.isDown()) {
+            if (this.isVehicle() && fuel > 0 && TankModClient.START_MOVING.isDown()) {
                 removeFuel(1);
             }
         if (!level.isClientSide) {
@@ -310,26 +317,25 @@ public class BaseTankEntity extends Pig implements IAnimatable {
         }
 
         if (time < shootingCooldown) {
-            player.sendMessage(new TextComponent("Please wait " + (shootingCooldown - time) / 20 + " s !").withStyle(ChatFormatting.AQUA, ChatFormatting.BOLD), Util.NIL_UUID);
+            player.displayClientMessage(Component.literal("Please wait " + (shootingCooldown - time) / 20 + " s !").withStyle(ChatFormatting.AQUA, ChatFormatting.BOLD), false);
             world.playSound(null, player.blockPosition(), SoundEvents.DISPENSER_FAIL, SoundSource.BLOCKS, 1.0f, 1.0f);
             return false;
         }
         if (itemStack.isEmpty()) {
-            player.sendMessage(new TextComponent("You don't have any ammo!").withStyle(ChatFormatting.RED, ChatFormatting.BOLD), Util.NIL_UUID);
+            player.displayClientMessage(Component.literal("You don't have any ammo!").withStyle(ChatFormatting.RED, ChatFormatting.BOLD), false);
             world.playSound(null, player.blockPosition(), SoundEvents.DISPENSER_FAIL, SoundSource.BLOCKS, 1.0f, 1.0f);
             return false;
         }
         if (getFuelAmount() < 1 && TankModConfig.fuelSystemEnabled.get()) {
-            player.sendMessage(new TextComponent("You don't have any fuel!").withStyle(ChatFormatting.RED, ChatFormatting.BOLD), Util.NIL_UUID);
+            player.displayClientMessage(Component.literal("You don't have any fuel!").withStyle(ChatFormatting.RED, ChatFormatting.BOLD), false);
             world.playSound(null, player.blockPosition(), SoundEvents.DISPENSER_FAIL, SoundSource.BLOCKS, 1.0f, 1.0f);
             return false;
         }
         if (!itemStack.isEmpty()) {
             ShellEntity shellEntity = new ShellEntity(tankEntity, world);
-            shellEntity.shootFromRotation(tankEntity, tankEntity.getXRot(), tankEntity.getYRot(), 0.0F, 2.0F, 0F);
+            shellEntity.shootFromRotation(tankEntity, tankEntity.getXRot(), tankEntity.getYRot(), 0.0F, 3.5F, 0F);
             world.addFreshEntity(shellEntity);
             itemStack.shrink(shellsUsed);
-            shootingAnimation = true;
         }
         time = 0;
         shootingAnimation = false;
@@ -339,19 +345,19 @@ public class BaseTankEntity extends Pig implements IAnimatable {
     public boolean fuelLeft(Player player) {
         double fuel = getFuelAmount();
         if (fuel < 1200 && fuel > 1 && TankModConfig.fuelSystemEnabled.get()) {
-            player.sendMessage(new TextComponent("Low fuel! Amount of time before fuel runs out " + fuel / 20 + " seconds or " + String.format("%.2f", fuel / 1200) + " minutes ").withStyle(ChatFormatting.RED, ChatFormatting.BOLD), Util.NIL_UUID);
+            player.displayClientMessage(Component.literal("Low fuel! Amount of time before fuel runs out " + fuel / 20 + " seconds or " + String.format("%.2f", fuel / 1200) + " minutes ").withStyle(ChatFormatting.RED, ChatFormatting.BOLD), false);
             return true;
         }
         if (fuel > 1200 && TankModConfig.fuelSystemEnabled.get()) {
-            player.sendMessage(new TextComponent("The amount of fuel remaining: " + fuel / 20 + " seconds, or " + String.format("%.2f", fuel / 1200) + " minutes ").withStyle(ChatFormatting.BLUE, ChatFormatting.BOLD), Util.NIL_UUID);
+            player.displayClientMessage(Component.literal("The amount of fuel remaining: " + fuel / 20 + " seconds, or " + String.format("%.2f", fuel / 1200) + " minutes ").withStyle(ChatFormatting.BLUE, ChatFormatting.BOLD), false);
             return true;
         }
         if (getFuelAmount() < 1 && TankModConfig.fuelSystemEnabled.get()) {
-            player.sendMessage(new TextComponent("No fuel remaining!").withStyle(ChatFormatting.RED, ChatFormatting.BOLD), Util.NIL_UUID);
+            player.displayClientMessage(Component.literal("No fuel remaining!").withStyle(ChatFormatting.RED, ChatFormatting.BOLD), false);
             return true;
         }
         if (!TankModConfig.fuelSystemEnabled.get()) {
-            player.sendMessage(new TextComponent("Fuel is not enabled! Enable fuel in the config, or contact your server administrator.").withStyle(ChatFormatting.RED, ChatFormatting.BOLD), Util.NIL_UUID);
+            player.displayClientMessage(Component.literal("Fuel is not enabled! Enable fuel in the config, or contact your server administrator.").withStyle(ChatFormatting.RED, ChatFormatting.BOLD), false);
             return true;
         }
         return false;

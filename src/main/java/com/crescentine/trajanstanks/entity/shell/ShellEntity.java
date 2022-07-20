@@ -60,6 +60,7 @@ public class ShellEntity extends ThrowableItemProjectile {
     }
 
 
+
     @Override
     protected void onHitEntity(EntityHitResult entityHitResult) {
         super.onHitEntity(entityHitResult);
