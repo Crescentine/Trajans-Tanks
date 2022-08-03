@@ -1,10 +1,11 @@
 package com.crescentine.trajanstanks.entity.tanks.basetank;
 
 import com.crescentine.trajanscore.TankModClient;
+import com.crescentine.trajanscore.item.TrajansCoreItems;
 import com.crescentine.trajanstanks.TankMod;
 import com.crescentine.trajanstanks.config.TankModConfig;
 import com.crescentine.trajanstanks.entity.shell.ShellEntity;
-import com.crescentine.trajanstanks.item.TankModItems;
+import com.crescentine.trajanstanks.entity.tankshells.standard.StandardShell;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
@@ -50,6 +51,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 public class BaseTankEntity extends Pig implements IAnimatable {
     private final AnimationFactory factory = new AnimationFactory(this);
     public double healAmount = 0;
+    public boolean armored;
     public double speed = 0;
     private static final EntityDataAccessor<Integer> FUEL_AMOUNT = SynchedEntityData.defineId(BaseTankEntity.class, EntityDataSerializers.INT);
     public int shootingCooldown = 60;
@@ -310,7 +312,7 @@ public class BaseTankEntity extends Pig implements IAnimatable {
         BaseTankEntity tankEntity = (BaseTankEntity) tank;
         for (int i = 0; i < playerEntity.getInventory().getContainerSize(); ++i) {
             ItemStack stack = playerEntity.getInventory().getItem(i);
-            if (stack.getItem() == TankModItems.SHELL_ITEM.get() && stack.getCount() >= shellsUsed) {
+            if (stack.getItem() == TrajansCoreItems.STANDARD_SHELL.get() && stack.getCount() >= shellsUsed) {
                 itemStack = stack;
                 break;
             }
@@ -332,7 +334,7 @@ public class BaseTankEntity extends Pig implements IAnimatable {
             return false;
         }
         if (!itemStack.isEmpty()) {
-            ShellEntity shellEntity = new ShellEntity(tankEntity, world);
+            StandardShell shellEntity = new StandardShell(tankEntity, world);
             shellEntity.shootFromRotation(tankEntity, tankEntity.getXRot(), tankEntity.getYRot(), 0.0F, 3.5F, 0F);
             world.addFreshEntity(shellEntity);
             itemStack.shrink(shellsUsed);
@@ -341,6 +343,7 @@ public class BaseTankEntity extends Pig implements IAnimatable {
         shootingAnimation = false;
         return true;
     }
+    
 
     public boolean fuelLeft(Player player) {
         double fuel = getFuelAmount();

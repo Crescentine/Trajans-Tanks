@@ -21,7 +21,7 @@ modId="trajanstanks" #mandatory
 # see the associated build.gradle script for how to populate this completely automatically during a build
 version="1.0" #mandatory
  # A display name for the mod
-displayName="Tank Mod (Forge) (1.18.2)" #mandatory
+displayName="Tank Mod (Forge) (1.19.1)" #mandatory
 # A URL to query for updates for this mod. See the JSON update specification https://mcforge.readthedocs.io/en/latest/gettingstarted/autoupdate/
 #updateJSONURL="https://change.me.example.invalid/updates.json" #optional
 # A URL for the "homepage" for this mod, displayed in the mod UI
@@ -43,7 +43,7 @@ Please visit CurseForge for more information, by searching the mod name.
     # Does this dependency have to exist - if not, ordering below must be specified
     mandatory=true #mandatory
     # The version range of the dependency
-    versionRange="[41,)" #mandatory
+    versionRange="[42,)" #mandatory
     # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
     ordering="NONE"
     # Side this dependency is applied on - BOTH, CLIENT or SERVER
@@ -53,6 +53,6 @@ Please visit CurseForge for more information, by searching the mod name.
     modId="minecraft"
     mandatory=true
 # This version range declares a minimum of the current minecraft version up to but not including the next major version
-    versionRange="[1.19,1.20)"
+    versionRange="[1.19.1,1.20)"
     ordering="NONE"
     side="BOTH"

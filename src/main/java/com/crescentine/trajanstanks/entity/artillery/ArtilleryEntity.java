@@ -31,6 +31,7 @@ public class ArtilleryEntity extends BaseTankEntity {
         super(entityType, world);
         this.health = TankModConfig.mounted_gun_health.get();
         this.speed = 0;
+        this.armored = false;
     }
     @Override
     public InteractionResult interactAt(Player player, Vec3 hitPos, InteractionHand hand) {

@@ -18,6 +18,7 @@ public class T34Entity extends BaseTankEntity {
         this.armor = 4.0;
         this.healAmount = TankModConfig.t34_heal_amount.get();
         this.maxFuel = TankModConfig.t34_maxfuel.get() * 20;
+        this.armored = true;
     }
     @Override
     protected <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {

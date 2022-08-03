@@ -53,14 +53,10 @@ public class ShellEntity extends ThrowableItemProjectile {
             }
         }
     }
-
     @Override
     protected float getGravity() {
         return 0.026f;
     }
-
-
-
     @Override
     protected void onHitEntity(EntityHitResult entityHitResult) {
         super.onHitEntity(entityHitResult);
@@ -69,7 +65,6 @@ public class ShellEntity extends ThrowableItemProjectile {
         if (entity instanceof LivingEntity) {
             entity.hurt(DamageSource.thrown(this, this.getOwner()), (float) (TankModConfig.shell_damage.get() * 1.0f));
             entity.playSound(SoundEvents.GENERIC_EXPLODE, 2F, 1F);
-
         }
     }
 }

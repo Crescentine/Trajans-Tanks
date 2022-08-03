@@ -1,5 +1,6 @@
 package com.crescentine.trajanstanks.entity;
 
+import com.crescentine.trajanscore.TrajansCoreMod;
 import com.crescentine.trajanstanks.TankMod;
 import com.crescentine.trajanstanks.entity.artillery.ArtilleryEntity;
 import com.crescentine.trajanstanks.entity.shell.ArtilleryShell;
@@ -9,6 +10,11 @@ import com.crescentine.trajanstanks.entity.tanks.m4sherman.M4ShermanEntity;
 import com.crescentine.trajanstanks.entity.tanks.tiger.TigerTankEntity;
 import com.crescentine.trajanstanks.entity.tanks.panzer2.Panzer2Entity;
 import com.crescentine.trajanstanks.entity.tanks.t34.T34Entity;
+import com.crescentine.trajanstanks.entity.tankshells.apcr.APCRShell;
+import com.crescentine.trajanstanks.entity.tankshells.armorpiercing.ArmorPiercingShell;
+import com.crescentine.trajanstanks.entity.tankshells.heat.HeatShell;
+import com.crescentine.trajanstanks.entity.tankshells.highexplosive.HighExplosiveShell;
+import com.crescentine.trajanstanks.entity.tankshells.standard.StandardShell;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.resources.ResourceLocation;
@@ -49,6 +55,32 @@ public class TankModEntityTypes {
             () -> EntityType.Builder.<CruiserMk1Entity>of(CruiserMk1Entity::new, MobCategory.MISC).sized(3.8F, 2.3f)
                     .clientTrackingRange(10).build("cruisermk1_entity_type"));
 
+    public static final RegistryObject<EntityType<StandardShell>> STANDARD_SHELL = ENTITY_TYPES.register("standard_shell",
+            () -> EntityType.Builder.<StandardShell>of(StandardShell::new, MobCategory.MISC).sized(0.25f, 0.25f)
+                    .clientTrackingRange(8).updateInterval(10)
+                    .build(new ResourceLocation(TankMod.MOD_ID, "heat_shell").toString()));
+
+    public static final RegistryObject<EntityType<HighExplosiveShell>> HIGH_EXPLOSIVE_SHELL = ENTITY_TYPES.register("high_explosive_shell",
+            () -> EntityType.Builder.<HighExplosiveShell>of(HighExplosiveShell::new, MobCategory.MISC).sized(0.25f, 0.25f)
+                    .clientTrackingRange(8).updateInterval(10)
+                    .build(new ResourceLocation(TankMod.MOD_ID, "heat_shell").toString()));
+
+    public static final RegistryObject<EntityType<HeatShell>> HEAT_SHELL = ENTITY_TYPES.register("heat_shell",
+            () -> EntityType.Builder.<HeatShell>of(HeatShell::new, MobCategory.MISC).sized(0.25f, 0.25f)
+                    .clientTrackingRange(8).updateInterval(10)
+                    .build(new ResourceLocation(TankMod.MOD_ID, "heat_shell").toString()));
+
+    public static final RegistryObject<EntityType<ArmorPiercingShell>> ARMOR_PIERCING_SHELL = ENTITY_TYPES.register("armor_piercing_shell",
+            () -> EntityType.Builder.<ArmorPiercingShell>of(ArmorPiercingShell::new, MobCategory.MISC).sized(0.25f, 0.25f)
+                    .clientTrackingRange(8).updateInterval(10)
+                    .build(new ResourceLocation(TankMod.MOD_ID, "armor_piercing_shell").toString()));
+
+    public static final RegistryObject<EntityType<APCRShell>> APCR_SHELL = ENTITY_TYPES.register("apcr_shell",
+            () -> EntityType.Builder.<APCRShell>of(APCRShell::new, MobCategory.MISC).sized(0.25f, 0.25f)
+                    .clientTrackingRange(8).updateInterval(10)
+                    .build(new ResourceLocation(TankMod.MOD_ID, "apcr_shell").toString()));
+
+
 
     public static final RegistryObject<EntityType<ShellEntity>> SHELL = ENTITY_TYPES.register("shell",
             () -> EntityType.Builder.<ShellEntity>of(ShellEntity::new, MobCategory.MISC).sized(0.15f, 0.15f)
@@ -60,11 +92,8 @@ public class TankModEntityTypes {
                     .clientTrackingRange(8).updateInterval(10)
                     .build(new ResourceLocation(TankMod.MOD_ID, "artillery_shell").toString()));
 
-
-
     public static void register(IEventBus eventBus) {
                 ENTITY_TYPES.register(eventBus);
-
             }
     @SubscribeEvent
     public static void entityAttributesInit(EntityAttributeCreationEvent event) {
