@@ -17,14 +17,14 @@ public class HeatShell extends BaseShell {
         fire = true;
     }
     public HeatShell(EntityType<HeatShell> entityType, double x, double y, double z, Level world) {
-        super(TankModEntityTypes.HIGH_EXPLOSIVE_SHELL.get(), x, y, z, world);
+        super(TankModEntityTypes.HEAT_SHELL.get(), x, y, z, world);
         damage = TankModConfig.heatShellDamage.get();
         explosionRadius = TankModConfig.heatShellExplosionRadius.get();
         fire = true;
     }
 
     public HeatShell(LivingEntity player, Level world) {
-        super(TankModEntityTypes.HIGH_EXPLOSIVE_SHELL.get(), player, world);
+        super(TankModEntityTypes.HEAT_SHELL.get(), player, world);
         damage = TankModConfig.heatShellDamage.get();
         explosionRadius = TankModConfig.heatShellExplosionRadius.get();
         fire = true;

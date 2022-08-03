@@ -19,6 +19,11 @@ public class TigerTankEntity extends BaseTankEntity {
         this.healAmount = TankModConfig.tiger_heal_amount.get();
         this.maxFuel = TankModConfig.tiger_maxfuel.get() * 20;
         this.armored = true;
+        this.canUseAPCR = false;
+        this.canUseHeat = true;
+        this.canUseArmorPiercing = true;
+        this.canUseHighExplosive = true;
+        this.canUseStandard = true;
     }
     @Override
     protected <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {

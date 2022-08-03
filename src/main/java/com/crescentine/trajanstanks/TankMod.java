@@ -100,6 +100,7 @@ public class TankMod {
             EntityRenderers.register(TankModEntityTypes.CRUISERMK1_ENTITY_TYPE.get(), CruiserMk1Renderer::new);
             EntityRenderers.register(TankModEntityTypes.M4SHERMAN_ENTITY_TYPE.get(), M4ShermanRenderer::new);
 
+
             EntityRenderers.register(TankModEntityTypes.STANDARD_SHELL.get(), StandardShellRenderer::new);
             EntityRenderers.register(TankModEntityTypes.HIGH_EXPLOSIVE_SHELL.get(), HighExplosiveShellRenderer::new);
             EntityRenderers.register(TankModEntityTypes.HEAT_SHELL.get(), HeatShellRenderer::new);

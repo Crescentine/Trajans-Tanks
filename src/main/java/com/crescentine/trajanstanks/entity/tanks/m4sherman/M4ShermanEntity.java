@@ -19,6 +19,11 @@ public class M4ShermanEntity extends BaseTankEntity {
         this.healAmount = TankModConfig.m4sherman_heal_amount.get();
         this.maxFuel = TankModConfig.m4sherman_maxfuel.get() * 20;
         this.armored = true;
+        this.canUseAPCR = false;
+        this.canUseHeat = true;
+        this.canUseArmorPiercing = true;
+        this.canUseHighExplosive = true;
+        this.canUseStandard = true;
     }
     @Override
     protected <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {

@@ -29,6 +29,11 @@ public class CruiserMk1Entity extends BaseTankEntity  {
         this.healAmount = TankModConfig.cruisermk1_heal_amount.get();
         this.maxFuel = TankModConfig.cruisermk1_maxfuel.get() * 20;
         this.armored = true;
+        this.canUseAPCR = false;
+        this.canUseHeat = false;
+        this.canUseArmorPiercing = false;
+        this.canUseHighExplosive = false;
+        this.canUseStandard = true;
     }
     @Override
     protected <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
