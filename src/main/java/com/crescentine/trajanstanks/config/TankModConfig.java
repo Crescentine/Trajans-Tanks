@@ -41,6 +41,12 @@ public class TankModConfig {
     public static final ForgeConfigSpec.ConfigValue<Double> m4sherman_heal_amount;
     public static final ForgeConfigSpec.ConfigValue<Double> m4sherman_maxfuel;
 
+    public static final ForgeConfigSpec.ConfigValue<Double> archer_health;
+    public static final ForgeConfigSpec.ConfigValue<Double> archer_speed;
+    public static final ForgeConfigSpec.ConfigValue<Integer> archer_shot_cooldown;
+    public static final ForgeConfigSpec.ConfigValue<Double> archer_heal_amount;
+    public static final ForgeConfigSpec.ConfigValue<Double> archer_maxfuel;
+
     public static final ForgeConfigSpec.ConfigValue<Double> mounted_gun_health;
     public static final ForgeConfigSpec.ConfigValue<Integer> mounted_gun_shot_cooldown;
 
@@ -119,6 +125,14 @@ public class TankModConfig {
         m4sherman_shot_cooldown = BUILDER.define("M4 Sherman Shoot Cooldown (1 = 1/20 second", 70);
         m4sherman_heal_amount = BUILDER.define("M4 Sherman Healing Amount (on right click)", 10.0);
         m4sherman_maxfuel = BUILDER.define("M4 Sherman Max Fuel (seconds)", 600.0);
+        BUILDER.pop();
+
+        BUILDER.push("Archer Stats");
+        archer_health = BUILDER.define("Archer Health (0-250)" , 110.0);
+        archer_speed = BUILDER.define("Archer Speed" , 0.14);
+        archer_shot_cooldown = BUILDER.define("Archer Shoot Cooldown (1 = 1/20 second", 80);
+        archer_heal_amount = BUILDER.define("Archer Healing Amount (on right click)", 10.0);
+        archer_maxfuel = BUILDER.define("Archer Max Fuel (seconds)", 600.0);
         BUILDER.pop();
 
         BUILDER.push("Anti-Tank Stats");

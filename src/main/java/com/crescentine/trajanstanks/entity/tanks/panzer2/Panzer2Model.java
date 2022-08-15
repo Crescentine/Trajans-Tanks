@@ -7,6 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import org.jetbrains.annotations.Nullable;
 import software.bernie.example.entity.GeoExampleEntity;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.processor.IBone;
@@ -26,14 +27,13 @@ public class Panzer2Model extends AnimatedGeoModel<Panzer2Entity>
     public ResourceLocation getAnimationResource(Panzer2Entity animatable) {
         return new ResourceLocation(TankMod.MOD_ID, "animations/tank.animation.json");
     }
-    /*
-    @Override
-    public void setLivingAnimations(Panzer2Entity entity, Integer uniqueID, AnimationEvent customPredicate) {
+   @Override
+    public void setLivingAnimations(Panzer2Entity entity, Integer uniqueID, @Nullable AnimationEvent customPredicate) {
         super.setLivingAnimations(entity, uniqueID, customPredicate);
         IBone turret = this.getAnimationProcessor().getBone("TopPart");
-        Entity rider = entity.getControllingPassenger();
+        Entity rider = entity.getFirstPassenger();
         if (entity.isVehicle() && rider instanceof Player) {
-           turret.setRotationY((float)-Math.toRadians(rider.getYHeadRot() - entity.getYRot()));
+            turret.setRotationY((float)-Math.toRadians(rider.getYHeadRot() - entity.getYRot()));
         }
-    } */
+    }
 }

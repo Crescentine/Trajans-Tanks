@@ -1,8 +1,8 @@
 package com.crescentine.trajanstanks;
 
+import com.crescentine.trajanscore.basetank.BaseTankEntity;
 import com.crescentine.trajanstanks.config.TankModConfig;
 import com.crescentine.trajanstanks.entity.artillery.ArtilleryEntity;
-import com.crescentine.trajanstanks.entity.tanks.basetank.BaseTankEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;

@@ -1,21 +1,21 @@
 package com.crescentine.trajanstanks;
 
 
+import com.crescentine.trajanscore.TrajansCoreEntities;
+import com.crescentine.trajanscore.tankshells.apcr.APCRShellRenderer;
+import com.crescentine.trajanscore.tankshells.armorpiercing.ArmorPiercingShellRenderer;
+import com.crescentine.trajanscore.tankshells.heat.HeatShellRenderer;
+import com.crescentine.trajanscore.tankshells.highexplosive.HighExplosiveShellRenderer;
+import com.crescentine.trajanscore.tankshells.standard.StandardShellRenderer;
 import com.crescentine.trajanstanks.config.TankModConfig;
 import com.crescentine.trajanstanks.entity.*;
 import com.crescentine.trajanstanks.entity.artillery.ArtilleryEntityRenderer;
-import com.crescentine.trajanstanks.entity.shell.ArtilleryShell;
-import com.crescentine.trajanstanks.entity.shell.ShellEntity;
+import com.crescentine.trajanstanks.entity.tanks.archer.ArcherRenderer;
 import com.crescentine.trajanstanks.entity.tanks.cruisermk1.CruiserMk1Renderer;
 import com.crescentine.trajanstanks.entity.tanks.m4sherman.M4ShermanRenderer;
 import com.crescentine.trajanstanks.entity.tanks.tiger.TigerTankRenderer;
 import com.crescentine.trajanstanks.entity.tanks.panzer2.Panzer2Renderer;
 import com.crescentine.trajanstanks.entity.tanks.t34.T34Renderer;
-import com.crescentine.trajanstanks.entity.tankshells.apcr.APCRShellRenderer;
-import com.crescentine.trajanstanks.entity.tankshells.armorpiercing.ArmorPiercingShellRenderer;
-import com.crescentine.trajanstanks.entity.tankshells.heat.HeatShellRenderer;
-import com.crescentine.trajanstanks.entity.tankshells.highexplosive.HighExplosiveShellRenderer;
-import com.crescentine.trajanstanks.entity.tankshells.standard.StandardShellRenderer;
 import com.crescentine.trajanstanks.item.TankModItems;
 import com.crescentine.trajanstanks.packet.*;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -60,15 +60,6 @@ public class TankMod {
                     packet.handle(packet, null);
                 }
         );
-        NETWORK_INSTANCE.registerMessage(1, ArtilleryPacket.class,
-                ArtilleryPacket::writePacketData,
-                ArtilleryPacket::new,
-                (packet, ctx) -> {
-                    ctx.get().setPacketHandled(true);
-                    packet.handle(packet, null);
-                }
-        );
-
         GeckoLib.initialize();
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         eventBus.addListener(this::onClientSetup);
@@ -93,19 +84,18 @@ public class TankMod {
         public static void registerRenderers(final FMLClientSetupEvent event) {
             EntityRenderers.register(TankModEntityTypes.ARTILLERY_ENTITY_TYPE.get(), ArtilleryEntityRenderer::new);
             EntityRenderers.register(TankModEntityTypes.PANZER_TWO_ENTITY_TYPE.get(), Panzer2Renderer::new);
-            EntityRenderers.register(TankModEntityTypes.SHELL.get(), ThrownItemRenderer<ShellEntity>::new);
-            EntityRenderers.register(TankModEntityTypes.ARTILLERY_SHELL.get(), ThrownItemRenderer<ArtilleryShell>::new);
+
             EntityRenderers.register(TankModEntityTypes.TIGER_ENTITY_TYPE.get(), TigerTankRenderer::new);
             EntityRenderers.register(TankModEntityTypes.T34_ENTITY_TYPE.get(), T34Renderer::new);
             EntityRenderers.register(TankModEntityTypes.CRUISERMK1_ENTITY_TYPE.get(), CruiserMk1Renderer::new);
             EntityRenderers.register(TankModEntityTypes.M4SHERMAN_ENTITY_TYPE.get(), M4ShermanRenderer::new);
+            EntityRenderers.register(TankModEntityTypes.ARCHER_ENTITY_TYPE.get(), ArcherRenderer::new);
 
-
-            EntityRenderers.register(TankModEntityTypes.STANDARD_SHELL.get(), StandardShellRenderer::new);
-            EntityRenderers.register(TankModEntityTypes.HIGH_EXPLOSIVE_SHELL.get(), HighExplosiveShellRenderer::new);
-            EntityRenderers.register(TankModEntityTypes.HEAT_SHELL.get(), HeatShellRenderer::new);
-            EntityRenderers.register(TankModEntityTypes.ARMOR_PIERCING_SHELL.get(), ArmorPiercingShellRenderer::new);
-            EntityRenderers.register(TankModEntityTypes.APCR_SHELL.get(), APCRShellRenderer::new);
+            EntityRenderers.register(TrajansCoreEntities.STANDARD_SHELL.get(), StandardShellRenderer::new);
+            EntityRenderers.register(TrajansCoreEntities.HIGH_EXPLOSIVE_SHELL.get(), HighExplosiveShellRenderer::new);
+            EntityRenderers.register(TrajansCoreEntities.HEAT_SHELL.get(), HeatShellRenderer::new);
+            EntityRenderers.register(TrajansCoreEntities.ARMOR_PIERCING_SHELL.get(), ArmorPiercingShellRenderer::new);
+            EntityRenderers.register(TrajansCoreEntities.APCR_SHELL.get(), APCRShellRenderer::new);
         }
     }
     private void onClientSetup(FMLClientSetupEvent event) {

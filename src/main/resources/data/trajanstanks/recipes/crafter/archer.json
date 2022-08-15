@@ -1,0 +1,32 @@
+{
+  "type" : "trajanscore:crafter",
+  "ingredients" : [
+    {
+      "item": "trajanscore:medium_tank_turret"
+    },
+    {
+      "item": "trajanscore:medium_engine"
+    },
+    {
+      "item": "trajanscore:steering_crafting_item"
+    },
+    {
+      "item": "trajanscore:medium_tank_plating"
+    },
+    {
+      "item": "trajanscore:medium_tank_tracks"
+    },
+    {
+      "item": "trajanscore:medium_tank_tracks"
+    },
+    {
+      "item": "trajanscore:medium_tank_tracks"
+    },
+    {
+      "item": "trajanscore:archer_blueprint"
+    }
+  ],
+  "output" : {
+    "item" : "trajanstanks:archer_item"
+  }
+}

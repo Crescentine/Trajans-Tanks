@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class TankSpawnEgg extends ForgeSpawnEggItem {
-    public String toolTip;
     public boolean standard;
     public boolean armorPiercing;
     public boolean heatShell;

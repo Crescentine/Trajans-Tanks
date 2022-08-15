@@ -1,4 +1,4 @@
-package com.crescentine.trajanstanks.entity.tanks.m4sherman;
+package com.crescentine.trajanstanks.entity.tanks.archer;
 
 import com.crescentine.trajanscore.basetank.BaseTankEntity;
 import com.crescentine.trajanstanks.config.TankModConfig;
@@ -9,25 +9,25 @@ import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 
-public class M4ShermanEntity extends BaseTankEntity {
-    public M4ShermanEntity(EntityType<?> entityType, Level world) {
+public class ArcherEntity extends BaseTankEntity {
+    public ArcherEntity(EntityType<?> entityType, Level world) {
         super(entityType, world);
-        this.health = TankModConfig.m4sherman_health.get();
-        this.speed = TankModConfig.m4sherman_speed.get();
-        this.shootingCooldown = TankModConfig.m4sherman_shot_cooldown.get();
-        this.armor = 4.0;
-        this.healAmount = TankModConfig.m4sherman_heal_amount.get();
-        this.maxFuel = TankModConfig.m4sherman_maxfuel.get() * 20;
+        this.health = TankModConfig.archer_health.get();
+        this.speed = TankModConfig.archer_speed.get();
+        this.shootingCooldown = TankModConfig.archer_shot_cooldown.get();
+        this.armor = 5.0;
+        this.healAmount = TankModConfig.archer_heal_amount.get();
+        this.maxFuel = TankModConfig.archer_maxfuel.get() * 20;
         this.armored = true;
-        this.canUseAPCR = false;
-        this.canUseHeat = true;
-        this.canUseArmorPiercing = true;
-        this.canUseHighExplosive = true;
-        this.canUseStandard = true;
+        this.canUseAPCR = true;
+        this.canUseHeat = false;
+        this.canUseArmorPiercing = false;
+        this.canUseHighExplosive = false;
+        this.canUseStandard = false;
     }
     @Override
     protected <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
-        if (event.isMoving()) {
+        if (event.getLimbSwingAmount() > 0.1F) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
             return PlayState.CONTINUE;
         }

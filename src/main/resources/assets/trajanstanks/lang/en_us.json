@@ -37,6 +37,7 @@
   "block.trajanstanks.steel_manufacturer" : "Steel Manufacturer",
   "item.trajanstanks.cruiser_mk1_item" : "Cruiser MK1",
   "item.trajanstanks.m4sherman_item" : "M4 Sherman",
+  "item.trajanstanks.archer_item" : "Archer",
 
   "entity.trajanstanks.artillery_entity_type" : "Anti Tank Artillery",
   "entity.trajanstanks.artillery_shell" : "Anti Tank Shell",

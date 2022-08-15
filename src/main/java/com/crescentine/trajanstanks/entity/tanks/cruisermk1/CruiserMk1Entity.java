@@ -1,8 +1,8 @@
 package com.crescentine.trajanstanks.entity.tanks.cruisermk1;
 
 import com.crescentine.trajanscore.TankModClient;
+import com.crescentine.trajanscore.basetank.BaseTankEntity;
 import com.crescentine.trajanstanks.config.TankModConfig;
-import com.crescentine.trajanstanks.entity.tanks.basetank.BaseTankEntity;
 import net.minecraft.client.player.Input;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.InteractionHand;
@@ -19,7 +19,7 @@ import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 
-public class CruiserMk1Entity extends BaseTankEntity  {
+public class CruiserMk1Entity extends BaseTankEntity {
     public CruiserMk1Entity(EntityType<?> entityType, Level world) {
         super(entityType, world);
         this.health = TankModConfig.cruisermk1_health.get();

@@ -1,7 +1,7 @@
 package com.crescentine.trajanstanks.entity.tanks.tiger;
 
+import com.crescentine.trajanscore.basetank.BaseTankEntity;
 import com.crescentine.trajanstanks.config.TankModConfig;
-import com.crescentine.trajanstanks.entity.tanks.basetank.BaseTankEntity;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.Level;
 import software.bernie.geckolib3.core.IAnimatable;

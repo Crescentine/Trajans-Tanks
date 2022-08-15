@@ -14,17 +14,12 @@ public class TankModNetwork {
             new ResourceLocation(TankMod.MOD_ID, "tank"), () -> NETWORK_VERSION,
             version -> version.equals(NETWORK_VERSION), version -> version.equals(NETWORK_VERSION));
 
-    public static final SimpleChannel ARTILLERY = NetworkRegistry.newSimpleChannel(
-            new ResourceLocation(TankMod.MOD_ID, "artillery"), () -> NETWORK_VERSION,
-            version -> version.equals(NETWORK_VERSION), version -> version.equals(NETWORK_VERSION));
-
     public static final SimpleChannel FUEL_REMAINING = NetworkRegistry.newSimpleChannel(
             new ResourceLocation(TankMod.MOD_ID, "fuel_remaining"), () -> NETWORK_VERSION,
             version -> version.equals(NETWORK_VERSION), version -> version.equals(NETWORK_VERSION));
 
     public static void init() {
         FUEL_REMAINING.registerMessage(++channel_id, FuelRemainingPacket.class, FuelRemainingPacket::writePacketData, FuelRemainingPacket::decode, FuelRemainingPacket::handle);
-        ARTILLERY.registerMessage(++channel_id, ArtilleryPacket.class, ArtilleryPacket::writePacketData, ArtilleryPacket::decode, ArtilleryPacket::handle);
         TANK.registerMessage(++channel_id, TankPacket.class, TankPacket::writePacketData, TankPacket::decode, TankPacket::handle);
     }
 }

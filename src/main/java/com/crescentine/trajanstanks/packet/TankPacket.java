@@ -1,7 +1,7 @@
 package com.crescentine.trajanstanks.packet;
 
+import com.crescentine.trajanscore.basetank.BaseTankEntity;
 import com.crescentine.trajanstanks.entity.artillery.ArtilleryEntity;
-import com.crescentine.trajanstanks.entity.tanks.basetank.BaseTankEntity;
 import com.crescentine.trajanstanks.entity.tanks.panzer2.Panzer2Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.network.FriendlyByteBuf;
