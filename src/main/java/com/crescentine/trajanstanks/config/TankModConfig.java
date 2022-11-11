@@ -47,6 +47,12 @@ public class TankModConfig {
     public static final ForgeConfigSpec.ConfigValue<Double> archer_heal_amount;
     public static final ForgeConfigSpec.ConfigValue<Double> archer_maxfuel;
 
+    public static final ForgeConfigSpec.ConfigValue<Double> kv2_health;
+    public static final ForgeConfigSpec.ConfigValue<Double> kv2_speed;
+    public static final ForgeConfigSpec.ConfigValue<Integer> kv2_shot_cooldown;
+    public static final ForgeConfigSpec.ConfigValue<Double> kv2_heal_amount;
+    public static final ForgeConfigSpec.ConfigValue<Double> kv2_maxfuel;
+
     public static final ForgeConfigSpec.ConfigValue<Double> mounted_gun_health;
     public static final ForgeConfigSpec.ConfigValue<Integer> mounted_gun_shot_cooldown;
 
@@ -133,6 +139,14 @@ public class TankModConfig {
         archer_shot_cooldown = BUILDER.define("Archer Shoot Cooldown (1 = 1/20 second", 80);
         archer_heal_amount = BUILDER.define("Archer Healing Amount (on right click)", 10.0);
         archer_maxfuel = BUILDER.define("Archer Max Fuel (seconds)", 600.0);
+        BUILDER.pop();
+
+        BUILDER.push("KV-2 Stats");
+        kv2_health = BUILDER.define("KV-2 Health (0-250)" , 110.0);
+        kv2_speed = BUILDER.define("KV-2 Speed" , 0.12);
+        kv2_shot_cooldown = BUILDER.define("KV-2 Shoot Cooldown (1 = 1/20 second", 80);
+        kv2_heal_amount = BUILDER.define("KV-2 Healing Amount (on right click)", 10.0);
+        kv2_maxfuel = BUILDER.define("KV-2 Max Fuel (seconds)", 600.0);
         BUILDER.pop();
 
         BUILDER.push("Anti-Tank Stats");

@@ -51,4 +51,9 @@ public class Panzer2Entity extends BaseTankEntity {
         }
         return PlayState.STOP;
     }
+
+    @Override
+    public boolean shouldRiderSit() {
+        return false;
+    }
 }

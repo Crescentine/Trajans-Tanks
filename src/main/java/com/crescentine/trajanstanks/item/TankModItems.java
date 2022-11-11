@@ -20,6 +20,8 @@ public class TankModItems {
     public static final RegistryObject<Item> CRUISER_MK1_ITEM = ITEMS.register("cruiser_mk1_item", () -> new TankSpawnEgg(TankModEntityTypes.CRUISERMK1_ENTITY_TYPE, 0xFFFFFF, 0xFFFFFF, true, false, false, false, false, (new Item.Properties()).tab(TankModItemGroup.TANK_MOD_ITEM_GROUP)));
     public static final RegistryObject<Item> M4SHERMAN_ITEM = ITEMS.register("m4sherman_item", () -> new TankSpawnEgg(TankModEntityTypes.M4SHERMAN_ENTITY_TYPE, 0xFFFFFF, 0xFFFFFF, true, true, true, true, false, (new Item.Properties()).tab(TankModItemGroup.TANK_MOD_ITEM_GROUP)));
     public static final RegistryObject<Item> ARCHER_ITEM = ITEMS.register("archer_item", () -> new TankSpawnEgg(TankModEntityTypes.ARCHER_ENTITY_TYPE, 0xFFFFFF, 0xFFFFFF, false, false, false, false, true, (new Item.Properties()).tab(TankModItemGroup.TANK_MOD_ITEM_GROUP)));
+    public static final RegistryObject<Item> KV2_ITEM = ITEMS.register("kv2_item", () -> new TankSpawnEgg(TankModEntityTypes.KV2_ENTITY_TYPE, 0xFFFFFF, 0xFFFFFF, true, true, true, true, false, (new Item.Properties()).tab(TankModItemGroup.TANK_MOD_ITEM_GROUP)));
+
 
     public static final RegistryObject<Item> ARTILLERY_ITEM = ITEMS.register("artillery_item", () -> new TankSpawnEgg(TankModEntityTypes.ARTILLERY_ENTITY_TYPE, 0x7a7873, 0x66625d, false, true, false, false, true, (new Item.Properties()).tab(TankModItemGroup.TANK_MOD_ITEM_GROUP)));
    }

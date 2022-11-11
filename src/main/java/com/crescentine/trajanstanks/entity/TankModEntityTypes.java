@@ -5,6 +5,7 @@ import com.crescentine.trajanstanks.TankMod;
 import com.crescentine.trajanstanks.entity.artillery.ArtilleryEntity;
 import com.crescentine.trajanstanks.entity.tanks.archer.ArcherEntity;
 import com.crescentine.trajanstanks.entity.tanks.cruisermk1.CruiserMk1Entity;
+import com.crescentine.trajanstanks.entity.tanks.kv2.KV2Entity;
 import com.crescentine.trajanstanks.entity.tanks.m4sherman.M4ShermanEntity;
 import com.crescentine.trajanstanks.entity.tanks.tiger.TigerTankEntity;
 import com.crescentine.trajanstanks.entity.tanks.panzer2.Panzer2Entity;
@@ -53,6 +54,10 @@ public class TankModEntityTypes {
             () -> EntityType.Builder.<ArcherEntity>of(ArcherEntity::new, MobCategory.MISC).sized(5.0F, 2.5f)
                     .clientTrackingRange(10).build("archer_entity_type"));
 
+    public static final RegistryObject<EntityType<KV2Entity>> KV2_ENTITY_TYPE = ENTITY_TYPES.register("kv2_entity_type",
+            () -> EntityType.Builder.<KV2Entity>of(KV2Entity::new, MobCategory.MISC).sized(6.0F, 3.2f)
+                    .clientTrackingRange(10).build("kv2_entity_type"));
+
     public static void register(IEventBus eventBus) {
                 ENTITY_TYPES.register(eventBus);
             }
@@ -65,5 +70,6 @@ public class TankModEntityTypes {
         event.put(CRUISERMK1_ENTITY_TYPE.get(), CruiserMk1Entity.createAttributes().build());
         event.put(M4SHERMAN_ENTITY_TYPE.get(), M4ShermanEntity.createAttributes().build());
         event.put(ARCHER_ENTITY_TYPE.get(), ArcherEntity.createAttributes().build());
+        event.put(KV2_ENTITY_TYPE.get(), ArcherEntity.createAttributes().build());
     }
 }

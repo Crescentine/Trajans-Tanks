@@ -12,6 +12,7 @@ import com.crescentine.trajanstanks.entity.*;
 import com.crescentine.trajanstanks.entity.artillery.ArtilleryEntityRenderer;
 import com.crescentine.trajanstanks.entity.tanks.archer.ArcherRenderer;
 import com.crescentine.trajanstanks.entity.tanks.cruisermk1.CruiserMk1Renderer;
+import com.crescentine.trajanstanks.entity.tanks.kv2.KV2Renderer;
 import com.crescentine.trajanstanks.entity.tanks.m4sherman.M4ShermanRenderer;
 import com.crescentine.trajanstanks.entity.tanks.tiger.TigerTankRenderer;
 import com.crescentine.trajanstanks.entity.tanks.panzer2.Panzer2Renderer;
@@ -90,6 +91,7 @@ public class TankMod {
             EntityRenderers.register(TankModEntityTypes.CRUISERMK1_ENTITY_TYPE.get(), CruiserMk1Renderer::new);
             EntityRenderers.register(TankModEntityTypes.M4SHERMAN_ENTITY_TYPE.get(), M4ShermanRenderer::new);
             EntityRenderers.register(TankModEntityTypes.ARCHER_ENTITY_TYPE.get(), ArcherRenderer::new);
+            EntityRenderers.register(TankModEntityTypes.KV2_ENTITY_TYPE.get(), KV2Renderer::new);
 
             EntityRenderers.register(TrajansCoreEntities.STANDARD_SHELL.get(), StandardShellRenderer::new);
             EntityRenderers.register(TrajansCoreEntities.HIGH_EXPLOSIVE_SHELL.get(), HighExplosiveShellRenderer::new);
