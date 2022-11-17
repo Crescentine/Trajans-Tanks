@@ -88,6 +88,16 @@
 						}
 					}
 				},
+				"AnimatedWheel2": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.5": {
+							"vector": [360, 0, 0]
+						}
+					}
+				},
 				"AnimatedWheel9": {
 					"rotation": {
 						"0.0": {
@@ -159,16 +169,6 @@
 					}
 				},
 				"AnimatedWheel16": {
-					"rotation": {
-						"0.0": {
-							"vector": [0, 0, 0]
-						},
-						"2.5": {
-							"vector": [360, 0, 0]
-						}
-					}
-				},
-				"AnimatedWheel2": {
 					"rotation": {
 						"0.0": {
 							"vector": [0, 0, 0]

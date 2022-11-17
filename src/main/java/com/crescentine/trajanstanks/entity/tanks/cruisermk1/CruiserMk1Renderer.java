@@ -26,7 +26,7 @@ public class CruiserMk1Renderer extends ExtendedGeoEntityRenderer<CruiserMk1Enti
 
     @Override
     protected float getHeightScale(CruiserMk1Entity entity) {
-        return 1.4f;
+        return 1.0f;
     }
 
     @Override
@@ -36,7 +36,7 @@ public class CruiserMk1Renderer extends ExtendedGeoEntityRenderer<CruiserMk1Enti
 
     @Override
     protected float getWidthScale(CruiserMk1Entity entity) {
-        return 1.4f;
+        return 1.0f;
     }
 
     @Nullable

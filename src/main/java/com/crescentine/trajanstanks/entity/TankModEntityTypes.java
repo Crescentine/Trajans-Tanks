@@ -47,7 +47,7 @@ public class TankModEntityTypes {
                     .clientTrackingRange(10).build("t34_entity_type"));
 
     public static final RegistryObject<EntityType<CruiserMk1Entity>> CRUISERMK1_ENTITY_TYPE = ENTITY_TYPES.register("cruisermk1_entity_type",
-            () -> EntityType.Builder.<CruiserMk1Entity>of(CruiserMk1Entity::new, MobCategory.MISC).sized(3.8F, 2.3f)
+            () -> EntityType.Builder.<CruiserMk1Entity>of(CruiserMk1Entity::new, MobCategory.MISC).sized(3.8F, 2.8f)
                     .clientTrackingRange(10).build("cruisermk1_entity_type"));
 
     public static final RegistryObject<EntityType<ArcherEntity>> ARCHER_ENTITY_TYPE = ENTITY_TYPES.register("archer_entity_type",
