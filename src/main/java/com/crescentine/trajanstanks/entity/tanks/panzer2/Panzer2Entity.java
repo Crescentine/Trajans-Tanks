@@ -25,7 +25,7 @@ public class Panzer2Entity extends BaseTankEntity {
     public Panzer2Entity(EntityType<?> entityType, Level world) {
         super(entityType, world);
         this.health = TankModConfig.panzer2_health.get();
-        this.speed = TankModConfig.panzer2_speed.get();
+        this.speedMultiplier = TankModConfig.panzer2_speed.get();
         this.shootingCooldown = TankModConfig.panzer2_shot_cooldown.get();
         this.armor = 3.0;
         this.healAmount = TankModConfig.panzer2_heal_amount.get();
@@ -36,11 +36,7 @@ public class Panzer2Entity extends BaseTankEntity {
         this.canUseArmorPiercing = false;
         this.canUseHighExplosive = false;
         this.canUseStandard = true;
-    }
-
-   @Override
-    public boolean canBeControlled() {
-        return this.level.isClientSide && TankModClient.START_MOVING.isDown();
+        this.showFuel = true;
     }
 
     @Override

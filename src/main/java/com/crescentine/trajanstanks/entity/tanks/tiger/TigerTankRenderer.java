@@ -27,7 +27,7 @@ public class TigerTankRenderer extends ExtendedGeoEntityRenderer<TigerTankEntity
     }
 
     @Override
-    protected float getHeightScale(TigerTankEntity entity) {
+    public float getHeightScale(TigerTankEntity entity) {
         return 1.1f;
     }
 
@@ -37,7 +37,7 @@ public class TigerTankRenderer extends ExtendedGeoEntityRenderer<TigerTankEntity
     }
 
     @Override
-    protected float getWidthScale(TigerTankEntity entity) {
+    public float getWidthScale(TigerTankEntity entity) {
         return 1.1f;
     }
 

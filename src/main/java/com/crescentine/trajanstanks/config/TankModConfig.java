@@ -6,10 +6,6 @@ public class TankModConfig {
     public static final ForgeConfigSpec.Builder BUILDER  = new ForgeConfigSpec.Builder();
     public static final ForgeConfigSpec SPEC;
 
-    public static final ForgeConfigSpec.ConfigValue<Boolean> fuelSystemEnabled;
-    public static final ForgeConfigSpec.ConfigValue<Double> coalFuelAmount;
-    public static final ForgeConfigSpec.ConfigValue<Double> lavaFuelAmount;
-
     public static final ForgeConfigSpec.ConfigValue<Double> panzer2_health;
     public static final ForgeConfigSpec.ConfigValue<Double> panzer2_speed;
     public static final ForgeConfigSpec.ConfigValue<Integer> panzer2_shot_cooldown;
@@ -21,7 +17,6 @@ public class TankModConfig {
     public static final ForgeConfigSpec.ConfigValue<Integer> t34_shot_cooldown;
     public static final ForgeConfigSpec.ConfigValue<Double> t34_heal_amount;
     public static final ForgeConfigSpec.ConfigValue<Double> t34_maxfuel;
-
 
     public static final ForgeConfigSpec.ConfigValue<Double> tiger_health;
     public static final ForgeConfigSpec.ConfigValue<Double> tiger_speed;
@@ -53,44 +48,15 @@ public class TankModConfig {
     public static final ForgeConfigSpec.ConfigValue<Double> kv2_heal_amount;
     public static final ForgeConfigSpec.ConfigValue<Double> kv2_maxfuel;
 
-    public static final ForgeConfigSpec.ConfigValue<Double> mounted_gun_health;
-    public static final ForgeConfigSpec.ConfigValue<Integer> mounted_gun_shot_cooldown;
+    public static final ForgeConfigSpec.ConfigValue<Double> pak40_health;
+    public static final ForgeConfigSpec.ConfigValue<Integer> pak40_cooldown;
 
-
-    public static final ForgeConfigSpec.ConfigValue<Double> shell_damage;
-    public static final ForgeConfigSpec.ConfigValue<Boolean> shell_makes_fire;
-    public static final ForgeConfigSpec.ConfigValue<Integer> shell_explosion_radius;
-    public static final ForgeConfigSpec.ConfigValue<Double> anti_tank_shell_damage;
-    public static final ForgeConfigSpec.ConfigValue<Boolean> at_shell_makes_fire;
-    public static final ForgeConfigSpec.ConfigValue<Integer> anti_tank_shell_explosion_radius;
-    public static final ForgeConfigSpec.ConfigValue<Double> anti_tank_shell_damage_to_tank;
-
-    public static final ForgeConfigSpec.ConfigValue<Double> standardShellDamage;
-    public static final ForgeConfigSpec.ConfigValue<Integer> standardShellExplosionRadius;
-
-    public static final ForgeConfigSpec.ConfigValue<Double> armorPiercingShellDamage;
-    public static final ForgeConfigSpec.ConfigValue<Double> armorPiercingShellDamageToArmoredVehicles;
-    public static final ForgeConfigSpec.ConfigValue<Integer> armorPiercingExplosionRadius;
-
-    public static final ForgeConfigSpec.ConfigValue<Double> highExplosiveShellDamage;
-    public static final ForgeConfigSpec.ConfigValue<Integer> highExplosiveShellExplosionRadius;
-
-    public static final ForgeConfigSpec.ConfigValue<Double> heatShellDamage;
-    public static final ForgeConfigSpec.ConfigValue<Integer> heatShellExplosionRadius;
-
-    public static final ForgeConfigSpec.ConfigValue<Double> APCRShellDamage;
-    public static final ForgeConfigSpec.ConfigValue<Integer> APCRShellExplosionRadius;
-
+    public static final ForgeConfigSpec.ConfigValue<Double> qf6_health;
+    public static final ForgeConfigSpec.ConfigValue<Integer> qf6_cooldown;
 
     static {
         BUILDER.push("Trajan's Tanks Config");
         BUILDER.comment("Config File for Trajan's Tank Mod");
-        BUILDER.pop();
-
-        BUILDER.push("General");
-        fuelSystemEnabled = BUILDER.define("Set to false to disable tanks requiring fuel", true);
-        coalFuelAmount = BUILDER.define("How Much Fuel Coal and Charcoal Gives (seconds)", 6.0);
-        lavaFuelAmount = BUILDER.define("How Much Fuel Lava Gives (seconds)", 60.0);
         BUILDER.pop();
 
         BUILDER.push("Panzer 2 Stats");
@@ -149,47 +115,17 @@ public class TankModConfig {
         kv2_maxfuel = BUILDER.define("KV-2 Max Fuel (seconds)", 600.0);
         BUILDER.pop();
 
-        BUILDER.push("Anti-Tank Stats");
-        mounted_gun_health = BUILDER.define("Artillery Health", 30.0);
-        mounted_gun_shot_cooldown = BUILDER.define("Artillery Shot Cooldown (1 = 1/20 second)", 75);
+        BUILDER.push("Pak-40 Stats");
+        pak40_health = BUILDER.define("Pak-40 Health", 30.0);
+        pak40_cooldown = BUILDER.define("Pak-40 Shot Cooldown (1 = 1/20 second)", 75);
         BUILDER.pop();
 
-        BUILDER.push("Tank Shell Damages");
-        shell_damage = BUILDER.define("Shell Damage", 60.0);
-        shell_makes_fire = BUILDER.define("Tank Shell Creates Fire on Explosion", true);
-        shell_explosion_radius = BUILDER.define("Shell Explosion Radius (Whole Number)", 3);
-        anti_tank_shell_damage = BUILDER.define("Anti Tank Shell Damage", 10.0);
-        at_shell_makes_fire = BUILDER.define("Anti-Tank Tank Shell Creates Fire on Explosion", true);
-        anti_tank_shell_explosion_radius = BUILDER.define("Anti-Tank Shell Explosion Radius (Whole Number)", 3);
-        anti_tank_shell_damage_to_tank = BUILDER.define("Anti Tank Damage to Tank", 20.0);
+        BUILDER.push("Qf-6 Stats");
+        qf6_health = BUILDER.define("QF-6 Health", 30.0);
+        qf6_cooldown = BUILDER.define("QF-6 Shot Cooldown (1 = 1/20 second)", 75);
         BUILDER.pop();
 
-        BUILDER.push("Standard Shell Stats");
-        standardShellDamage = BUILDER.define("Standard Shell Damage", 60.0);
-        standardShellExplosionRadius = BUILDER.define("Standard Shell Explosion Radius", 3);
-        BUILDER.pop();
-
-        BUILDER.push("Armor Piercing Shell Stats");
-        armorPiercingShellDamage = BUILDER.define("Armor Piercing Shell Damage (to players)", 60.0);
-        armorPiercingExplosionRadius = BUILDER.define("Armor Piercing Shell Explosion Radius", 3);
-        armorPiercingShellDamageToArmoredVehicles = BUILDER.define("Armor Piercing Shell Damage (to armored vehicles)", 80.0);
-        BUILDER.pop();
-
-        BUILDER.push("High Explosive Shell Stats");
-        highExplosiveShellDamage = BUILDER.define("High Explosive Shell Damage", 60.0);
-        highExplosiveShellExplosionRadius = BUILDER.define("High Explosive Shell Explosion Radius", 4);
-        BUILDER.pop();
-
-        BUILDER.push("HEAT Shell Stats");
-        heatShellDamage = BUILDER.define("HEAT Shell Damage", 80.0);
-        heatShellExplosionRadius = BUILDER.define("HEAT Shell Explosion Radius", 2);
-        BUILDER.pop();
-
-        BUILDER.push("APCR Shell Stats");
-        APCRShellDamage = BUILDER.define("APCR Shell Damage", 90.0);
-        APCRShellExplosionRadius = BUILDER.define("ACPR Shell Explosion Radius", 0);
-        BUILDER.pop();
-        SPEC = BUILDER.build();
+       SPEC = BUILDER.build();
 
     }
 }

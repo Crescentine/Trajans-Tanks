@@ -13,7 +13,7 @@ public class M4ShermanEntity extends BaseTankEntity {
     public M4ShermanEntity(EntityType<?> entityType, Level world) {
         super(entityType, world);
         this.health = TankModConfig.m4sherman_health.get();
-        this.speed = TankModConfig.m4sherman_speed.get();
+        this.speedMultiplier = TankModConfig.m4sherman_speed.get();
         this.shootingCooldown = TankModConfig.m4sherman_shot_cooldown.get();
         this.armor = 4.0;
         this.healAmount = TankModConfig.m4sherman_heal_amount.get();
@@ -24,6 +24,7 @@ public class M4ShermanEntity extends BaseTankEntity {
         this.canUseArmorPiercing = true;
         this.canUseHighExplosive = true;
         this.canUseStandard = true;
+        this.showFuel = true;
     }
     @Override
     protected <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {

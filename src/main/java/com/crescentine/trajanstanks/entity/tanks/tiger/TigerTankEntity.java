@@ -12,7 +12,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 public class TigerTankEntity extends BaseTankEntity {
     public TigerTankEntity(EntityType<?> entityType, Level world) {
         super(entityType, world);
-        this.speed = TankModConfig.tiger_speed.get();
+        this.speedMultiplier = TankModConfig.tiger_speed.get();
         this.health = TankModConfig.tiger_health.get();
         this.shootingCooldown = TankModConfig.tiger_shot_cooldown.get();
         this.armor = 5.0;
@@ -24,6 +24,7 @@ public class TigerTankEntity extends BaseTankEntity {
         this.canUseArmorPiercing = true;
         this.canUseHighExplosive = true;
         this.canUseStandard = true;
+        this.showFuel = true;
     }
     @Override
     protected <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {

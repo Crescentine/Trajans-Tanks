@@ -13,6 +13,6 @@ public class TankModItemGroup extends CreativeModeTab {
     }
     @Override
     public ItemStack makeIcon() {
-        return new ItemStack(TankModItems.TANK_ITEM.get());
+        return new ItemStack(TankModItems.PANZER2_ITEM.get());
     }
 }

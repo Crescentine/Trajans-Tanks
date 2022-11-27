@@ -31,7 +31,7 @@ public class Panzer2Model extends AnimatedGeoModel<Panzer2Entity>
     public void setLivingAnimations(Panzer2Entity entity, Integer uniqueID, @Nullable AnimationEvent customPredicate) {
         super.setLivingAnimations(entity, uniqueID, customPredicate);
         IBone turret = this.getAnimationProcessor().getBone("TopPart");
-        Entity rider = entity.getFirstPassenger();
+        Entity rider = entity.getControllingPassenger();
         if (entity.isVehicle() && rider instanceof Player) {
             turret.setRotationY((float)-Math.toRadians(rider.getYHeadRot() - entity.getYRot()));
         }

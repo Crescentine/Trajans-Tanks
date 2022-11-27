@@ -9,7 +9,8 @@ import com.crescentine.trajanscore.tankshells.highexplosive.HighExplosiveShellRe
 import com.crescentine.trajanscore.tankshells.standard.StandardShellRenderer;
 import com.crescentine.trajanstanks.config.TankModConfig;
 import com.crescentine.trajanstanks.entity.*;
-import com.crescentine.trajanstanks.entity.artillery.ArtilleryEntityRenderer;
+import com.crescentine.trajanstanks.entity.artillery.pak40.Pak40Renderer;
+import com.crescentine.trajanstanks.entity.artillery.qf6.QF6Renderer;
 import com.crescentine.trajanstanks.entity.tanks.archer.ArcherRenderer;
 import com.crescentine.trajanstanks.entity.tanks.cruisermk1.CruiserMk1Renderer;
 import com.crescentine.trajanstanks.entity.tanks.kv2.KV2Renderer;
@@ -18,9 +19,7 @@ import com.crescentine.trajanstanks.entity.tanks.tiger.TigerTankRenderer;
 import com.crescentine.trajanstanks.entity.tanks.panzer2.Panzer2Renderer;
 import com.crescentine.trajanstanks.entity.tanks.t34.T34Renderer;
 import com.crescentine.trajanstanks.item.TankModItems;
-import com.crescentine.trajanstanks.packet.*;
 import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -31,7 +30,6 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
@@ -53,29 +51,12 @@ public class TankMod {
 
     public TankMod() {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, TankModConfig.SPEC, "trajanstanks-config.toml");
-        NETWORK_INSTANCE.registerMessage(0, TankPacket.class,
-                TankPacket::writePacketData,
-                TankPacket::new,
-                (packet, ctx) -> {
-                    ctx.get().setPacketHandled(true);
-                    packet.handle(packet, null);
-                }
-        );
         GeckoLib.initialize();
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        eventBus.addListener(this::onClientSetup);
-        eventBus.addListener(this::commonSetup);
         TankModItems.ITEMS.register(eventBus);
         TankModItems.BLOCKS.register(eventBus);
         TankModEntityTypes.ENTITY_TYPES.register(eventBus);
         MinecraftForge.EVENT_BUS.register(this);
-        TankModNetwork.init();
-
-    }
-
-
-    public void commonSetup(final FMLCommonSetupEvent event) {
-        TankModNetwork.init();
     }
 
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -83,15 +64,15 @@ public class TankMod {
         @OnlyIn(Dist.CLIENT)
         @SubscribeEvent
         public static void registerRenderers(final FMLClientSetupEvent event) {
-            EntityRenderers.register(TankModEntityTypes.ARTILLERY_ENTITY_TYPE.get(), ArtilleryEntityRenderer::new);
+            EntityRenderers.register(TankModEntityTypes.ARTILLERY_ENTITY_TYPE.get(), Pak40Renderer::new);
             EntityRenderers.register(TankModEntityTypes.PANZER_TWO_ENTITY_TYPE.get(), Panzer2Renderer::new);
-
             EntityRenderers.register(TankModEntityTypes.TIGER_ENTITY_TYPE.get(), TigerTankRenderer::new);
             EntityRenderers.register(TankModEntityTypes.T34_ENTITY_TYPE.get(), T34Renderer::new);
             EntityRenderers.register(TankModEntityTypes.CRUISERMK1_ENTITY_TYPE.get(), CruiserMk1Renderer::new);
             EntityRenderers.register(TankModEntityTypes.M4SHERMAN_ENTITY_TYPE.get(), M4ShermanRenderer::new);
             EntityRenderers.register(TankModEntityTypes.ARCHER_ENTITY_TYPE.get(), ArcherRenderer::new);
             EntityRenderers.register(TankModEntityTypes.KV2_ENTITY_TYPE.get(), KV2Renderer::new);
+            EntityRenderers.register(TankModEntityTypes.QF6_ENTITY_TYPE.get(), QF6Renderer::new);
 
             EntityRenderers.register(TrajansCoreEntities.STANDARD_SHELL.get(), StandardShellRenderer::new);
             EntityRenderers.register(TrajansCoreEntities.HIGH_EXPLOSIVE_SHELL.get(), HighExplosiveShellRenderer::new);
@@ -99,8 +80,5 @@ public class TankMod {
             EntityRenderers.register(TrajansCoreEntities.ARMOR_PIERCING_SHELL.get(), ArmorPiercingShellRenderer::new);
             EntityRenderers.register(TrajansCoreEntities.APCR_SHELL.get(), APCRShellRenderer::new);
         }
-    }
-    private void onClientSetup(FMLClientSetupEvent event) {
-        ClientEventHandler.setup();
     }
 }

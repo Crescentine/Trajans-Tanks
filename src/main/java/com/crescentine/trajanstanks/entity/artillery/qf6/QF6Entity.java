@@ -1,6 +1,6 @@
-package com.crescentine.trajanstanks.entity.tanks.archer;
+package com.crescentine.trajanstanks.entity.artillery.qf6;
 
-import com.crescentine.trajanscore.basetank.BaseTankEntity;
+import com.crescentine.trajanscore.basetank.BaseATEntity;
 import com.crescentine.trajanstanks.config.TankModConfig;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
@@ -9,29 +9,28 @@ import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 
-public class ArcherEntity extends BaseTankEntity {
-    public ArcherEntity(EntityType<?> entityType, Level world) {
+public class QF6Entity extends BaseATEntity {
+    public QF6Entity(EntityType<?> entityType, Level world) {
         super(entityType, world);
-        this.health = TankModConfig.archer_health.get();
-        this.speedMultiplier = TankModConfig.archer_speed.get();
-        this.shootingCooldown = TankModConfig.archer_shot_cooldown.get();
-        this.armor = 5.0;
-        this.healAmount = TankModConfig.archer_heal_amount.get();
-        this.maxFuel = TankModConfig.archer_maxfuel.get() * 20;
-        this.armored = true;
+        this.health = TankModConfig.qf6_health.get();
+        this.speedMultiplier = 0;
+        this.shootingCooldown = TankModConfig.qf6_cooldown.get();
+        this.canUseArmorPiercing = true;
         this.canUseAPCR = true;
         this.canUseHeat = false;
-        this.canUseArmorPiercing = false;
         this.canUseHighExplosive = false;
         this.canUseStandard = false;
-        this.showFuel = true;
     }
     @Override
     protected <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
-        if (event.getLimbSwingAmount() > 0.1F) {
+        if (event.isMoving()) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
             return PlayState.CONTINUE;
         }
         return PlayState.STOP;
+    }
+    @Override
+    public double getPassengersRidingOffset() {
+        return 0.6;
     }
 }

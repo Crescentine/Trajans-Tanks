@@ -13,7 +13,7 @@ public class T34Entity extends BaseTankEntity {
     public T34Entity(EntityType<?> entityType, Level world) {
         super(entityType, world);
         this.health = TankModConfig.t34_health.get();
-        this.speed = TankModConfig.t34_speed.get();
+        this.speedMultiplier = TankModConfig.t34_speed.get();
         this.shootingCooldown = TankModConfig.t34_shot_cooldown.get();
         this.armor = 4.0;
         this.healAmount = TankModConfig.t34_heal_amount.get();
@@ -24,6 +24,7 @@ public class T34Entity extends BaseTankEntity {
         this.canUseArmorPiercing = true;
         this.canUseHighExplosive = true;
         this.canUseStandard = true;
+        this.showFuel = true;
     }
     @Override
     protected <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {

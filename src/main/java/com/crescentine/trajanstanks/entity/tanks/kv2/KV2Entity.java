@@ -13,7 +13,7 @@ public class KV2Entity extends BaseTankEntity {
     public KV2Entity(EntityType<?> entityType, Level world) {
         super(entityType, world);
         this.health = TankModConfig.kv2_health.get();
-        this.speed = TankModConfig.kv2_speed.get();
+        this.speedMultiplier = TankModConfig.kv2_speed.get();
         this.shootingCooldown = TankModConfig.kv2_shot_cooldown.get();
         this.armor = 5.0;
         this.healAmount = TankModConfig.kv2_heal_amount.get();
@@ -24,6 +24,7 @@ public class KV2Entity extends BaseTankEntity {
         this.canUseArmorPiercing = true;
         this.canUseHighExplosive = true;
         this.canUseStandard = true;
+        this.showFuel = true;
     }
     @Override
     protected <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {

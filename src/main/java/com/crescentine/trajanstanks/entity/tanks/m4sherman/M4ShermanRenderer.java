@@ -24,7 +24,7 @@ public class M4ShermanRenderer extends ExtendedGeoEntityRenderer<M4ShermanEntity
     }
 
     @Override
-    protected float getHeightScale(M4ShermanEntity entity) {
+    public float getHeightScale(M4ShermanEntity entity) {
         return 1.2F;
     }
 
@@ -34,7 +34,7 @@ public class M4ShermanRenderer extends ExtendedGeoEntityRenderer<M4ShermanEntity
     }
 
     @Override
-    protected float getWidthScale(M4ShermanEntity entity) {
+    public float getWidthScale(M4ShermanEntity entity) {
         return 1.2f;
     }
 

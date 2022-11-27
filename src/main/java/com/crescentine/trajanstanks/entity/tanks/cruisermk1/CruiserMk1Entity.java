@@ -23,7 +23,7 @@ public class CruiserMk1Entity extends BaseTankEntity {
     public CruiserMk1Entity(EntityType<?> entityType, Level world) {
         super(entityType, world);
         this.health = TankModConfig.cruisermk1_health.get();
-        this.speed = TankModConfig.cruisermk1_speed.get();
+        this.speedMultiplier = TankModConfig.cruisermk1_speed.get();
         this.shootingCooldown = TankModConfig.cruisermk1_shot_cooldown.get();
         this.armor = 3.0;
         this.healAmount = TankModConfig.cruisermk1_heal_amount.get();
@@ -34,6 +34,7 @@ public class CruiserMk1Entity extends BaseTankEntity {
         this.canUseArmorPiercing = false;
         this.canUseHighExplosive = false;
         this.canUseStandard = true;
+        this.showFuel = true;
     }
     @Override
     protected <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {

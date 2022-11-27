@@ -1,5 +1,6 @@
 package com.crescentine.trajanstanks.entity.tanks.cruisermk1;
 
+import com.crescentine.trajanstanks.entity.tanks.archer.ArcherEntity;
 import com.crescentine.trajanstanks.entity.tanks.panzer2.Panzer2Entity;
 import com.crescentine.trajanstanks.entity.tanks.panzer2.Panzer2Model;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -8,6 +9,7 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
@@ -24,8 +26,9 @@ public class CruiserMk1Renderer extends ExtendedGeoEntityRenderer<CruiserMk1Enti
         this.shadowRadius = 0.7F;
     }
 
+
     @Override
-    protected float getHeightScale(CruiserMk1Entity entity) {
+    public float getHeightScale(CruiserMk1Entity entity) {
         return 1.0f;
     }
 
@@ -35,7 +38,7 @@ public class CruiserMk1Renderer extends ExtendedGeoEntityRenderer<CruiserMk1Enti
     }
 
     @Override
-    protected float getWidthScale(CruiserMk1Entity entity) {
+    public float getWidthScale(CruiserMk1Entity entity) {
         return 1.0f;
     }
 
@@ -75,5 +78,17 @@ public class CruiserMk1Renderer extends ExtendedGeoEntityRenderer<CruiserMk1Enti
     @Override
     public void renderRecursively(GeoBone bone, PoseStack stack, VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
         super.renderRecursively(bone, stack, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
+    }
+    @Override
+    public void render(GeoModel model, CruiserMk1Entity animatable, float partialTick, RenderType type, PoseStack poseStack, @javax.annotation.Nullable MultiBufferSource bufferSource, @javax.annotation.Nullable VertexConsumer buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+        super.render(model, animatable, partialTick, type, poseStack, bufferSource, buffer, packedLight, packedOverlay, red, green, blue, alpha);
+        if (animatable.getFuelAmount() > 0 && model.getBone("Engine").isPresent() && animatable.isVehicle() && animatable.isMoving()) {
+            animatable.getCommandSenderWorld().addParticle(ParticleTypes.LARGE_SMOKE,
+                    model.getBone("Engine").get().getWorldPosition().x,
+                    model.getBone("Engine").get().getWorldPosition().y + 0.8,
+                    model.getBone("Engine").get().getWorldPosition().z,
+                    (animatable.getRandom().nextGaussian() * 0.0003D), -animatable.getRandom().nextGaussian() * 0.0003D,
+                    (animatable.getRandom().nextGaussian() * 0.0003D));
+        }
     }
 }
