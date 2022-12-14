@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "iPi",
+    "PRP",
+    "iPi"
+  ],
+  "key": {
+    "i": {
+      "item": "minecraft:iron_ingot"
+    },
+    "P": {
+      "item": "minecraft:paper"
+    },
+    "R": {
+      "item": "minecraft:blue_dye"
+    }
+  },
+  "result": {
+    "item" : "trajanstanks:m4sherman_blueprint"
+  }
+}

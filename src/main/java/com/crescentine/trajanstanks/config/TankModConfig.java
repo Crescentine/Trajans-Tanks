@@ -48,6 +48,12 @@ public class TankModConfig {
     public static final ForgeConfigSpec.ConfigValue<Double> kv2_heal_amount;
     public static final ForgeConfigSpec.ConfigValue<Double> kv2_maxfuel;
 
+    public static final ForgeConfigSpec.ConfigValue<Double> jagdpanther_health;
+    public static final ForgeConfigSpec.ConfigValue<Double> jagdpanther_speed;
+    public static final ForgeConfigSpec.ConfigValue<Integer> jagdpanther_shot_cooldown;
+    public static final ForgeConfigSpec.ConfigValue<Double> jagdpanther_heal_amount;
+    public static final ForgeConfigSpec.ConfigValue<Double> jagdpanther_maxfuel;
+
     public static final ForgeConfigSpec.ConfigValue<Double> pak40_health;
     public static final ForgeConfigSpec.ConfigValue<Integer> pak40_cooldown;
 
@@ -100,9 +106,9 @@ public class TankModConfig {
         BUILDER.pop();
 
         BUILDER.push("Archer Stats");
-        archer_health = BUILDER.define("Archer Health (0-250)" , 110.0);
+        archer_health = BUILDER.define("Archer Health (0-250)" , 95.0);
         archer_speed = BUILDER.define("Archer Speed" , 0.14);
-        archer_shot_cooldown = BUILDER.define("Archer Shoot Cooldown (1 = 1/20 second", 80);
+        archer_shot_cooldown = BUILDER.define("Archer Shoot Cooldown (1 = 1/20 second", 70);
         archer_heal_amount = BUILDER.define("Archer Healing Amount (on right click)", 10.0);
         archer_maxfuel = BUILDER.define("Archer Max Fuel (seconds)", 600.0);
         BUILDER.pop();
@@ -113,6 +119,14 @@ public class TankModConfig {
         kv2_shot_cooldown = BUILDER.define("KV-2 Shoot Cooldown (1 = 1/20 second", 80);
         kv2_heal_amount = BUILDER.define("KV-2 Healing Amount (on right click)", 10.0);
         kv2_maxfuel = BUILDER.define("KV-2 Max Fuel (seconds)", 600.0);
+        BUILDER.pop();
+
+        BUILDER.push("Jagdpanther Stats");
+        jagdpanther_health = BUILDER.define("Jagdpanther Health (0-250)" , 110.0);
+        jagdpanther_speed = BUILDER.define("Jagdpanther Speed" , 0.12);
+        jagdpanther_shot_cooldown = BUILDER.define("Jagdpanther Shoot Cooldown (1 = 1/20 second", 80);
+        jagdpanther_heal_amount = BUILDER.define("Jagdpanther Healing Amount (on right click)", 10.0);
+        jagdpanther_maxfuel = BUILDER.define("Jagdpanther Max Fuel (seconds)", 600.0);
         BUILDER.pop();
 
         BUILDER.push("Pak-40 Stats");
@@ -126,6 +140,5 @@ public class TankModConfig {
         BUILDER.pop();
 
        SPEC = BUILDER.build();
-
     }
 }

@@ -147,12 +147,12 @@ dependencies {
     // Specify the version of Minecraft to use. If this is any group other than 'net.minecraft', it is assumed
     // that the dep is a ForgeGradle 'patcher' dependency, and its patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
-    minecraft 'net.minecraftforge:forge:1.19.2-43.1.52'
-    implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.19:3.1.37')
-    compileOnly fg.deobf("mezz.jei:jei-1.19.2-common-api:11.4.0.286")
-    compileOnly fg.deobf("mezz.jei:jei-1.19.2-forge-api:11.4.0.286")
-    runtimeOnly fg.deobf("mezz.jei:jei-1.19.2-forge:11.4.0.286")
-    implementation fg.deobf("curse.maven:trajanscore-626570:4111108")
+    minecraft 'net.minecraftforge:forge:1.19.2-43.2.0'
+    implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.19:3.1.38')
+    compileOnly fg.deobf("mezz.jei:jei-1.19.2-common-api:11.4.0.288")
+    compileOnly fg.deobf("mezz.jei:jei-1.19.2-forge-api:11.4.0.288")
+    runtimeOnly fg.deobf("mezz.jei:jei-1.19.2-forge:11.4.0.288")
+    implementation fg.deobf("curse.maven:trajanscore-626570:4166582")
     // Real mod deobf dependency examples - these get remapped to your current mappings
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api") // Adds JEI API as a compile dependency
     // runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}") // Adds the full JEI mod as a runtime dependency

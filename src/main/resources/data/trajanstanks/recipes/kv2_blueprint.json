@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "iPi",
+        "PRP",
+        "iPi"
+    ],
+    "key": {
+        "i": {
+            "item": "minecraft:iron_block"
+        },
+        "P": {
+            "item": "minecraft:paper"
+        },
+        "R": {
+            "item": "minecraft:red_dye"
+        }
+    },
+    "result": {
+        "item" : "trajanstanks:kv2_blueprint"
+    }
+}

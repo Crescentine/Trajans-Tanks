@@ -23,10 +23,10 @@
       "item": "trajanscore:medium_tank_tracks"
     },
     {
-      "item": "trajanscore:t34_blueprint"
+      "item": "trajanstanks:t34_blueprint"
     }
   ],
   "output" : {
-    "item" : "trajanstanks:medium_tank_item"
+    "item" : "trajanstanks:t34_item"
   }
 }

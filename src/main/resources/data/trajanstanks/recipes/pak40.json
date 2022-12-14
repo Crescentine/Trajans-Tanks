@@ -3,7 +3,7 @@
     "pattern": [
         "  #",
         "III",
-        "S S"
+        "SGS"
     ],
     "key": {
         "#": {
@@ -12,11 +12,14 @@
         "I": {
             "item": "minecraft:iron_block"
         },
+        "G": {
+            "item": "minecraft:light_gray_dye"
+        },
         "S": {
             "item": "minecraft:smooth_stone"
         }
     },
     "result": {
-        "item": "trajanstanks:artillery_item"
+        "item": "trajanstanks:pak40_item"
     }
 }

@@ -23,10 +23,10 @@
       "item": "trajanscore:heavy_tank_tracks"
     },
     {
-      "item": "trajanstanks:tiger_blueprint"
+      "item": "trajanstanks:jag_blueprint"
     }
   ],
   "output" : {
-    "item" : "trajanstanks:tiger_item"
+    "item" : "trajanstanks:jagdpanther_item"
   }
 }
