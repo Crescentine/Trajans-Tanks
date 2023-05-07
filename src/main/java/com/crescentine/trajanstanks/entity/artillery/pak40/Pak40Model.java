@@ -2,9 +2,9 @@ package com.crescentine.trajanstanks.entity.artillery.pak40;
 
 import com.crescentine.trajanstanks.TankMod;
 import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class Pak40Model extends AnimatedGeoModel<Pak40Entity>
+public class Pak40Model extends GeoModel<Pak40Entity>
 {
     public ResourceLocation getModelResource(Pak40Entity object) {
         return new ResourceLocation(TankMod.MOD_ID, "geo/artillery.geo.json");

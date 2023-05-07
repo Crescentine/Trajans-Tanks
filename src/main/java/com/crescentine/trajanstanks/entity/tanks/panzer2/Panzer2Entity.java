@@ -15,10 +15,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.animation.*;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.object.PlayState;
 
 public class Panzer2Entity extends BaseTankEntity {
     static int shellsUsed = 1;
@@ -38,16 +38,17 @@ public class Panzer2Entity extends BaseTankEntity {
         this.canUseStandard = true;
         this.showFuel = true;
     }
-
-    @Override
-    protected <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
+    protected <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
         if (event.isMoving()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.tank.walking", true));
+            event.getController().setAnimation(RawAnimation.begin().then("animation.tank.walking", Animation.LoopType.LOOP));
             return PlayState.CONTINUE;
         }
         return PlayState.STOP;
     }
-
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        controllers.add(new AnimationController<>(this, "controller", 0, this::predicate));
+    }
     @Override
     public boolean shouldRiderSit() {
         return false;

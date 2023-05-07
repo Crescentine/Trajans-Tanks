@@ -3,9 +3,9 @@ package com.crescentine.trajanstanks.entity.artillery.qf6;
 import com.crescentine.trajanstanks.TankMod;
 import com.crescentine.trajanstanks.entity.artillery.pak40.Pak40Entity;
 import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class QF6Model extends AnimatedGeoModel<QF6Entity>
+public class QF6Model extends GeoModel<QF6Entity>
 {
     public ResourceLocation getModelResource(QF6Entity object) {
         return new ResourceLocation(TankMod.MOD_ID, "geo/qf6.geo.json");

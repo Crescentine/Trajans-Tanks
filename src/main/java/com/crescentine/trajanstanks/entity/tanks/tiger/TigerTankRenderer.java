@@ -15,68 +15,17 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib3.core.processor.IBone;
-import software.bernie.geckolib3.geo.render.built.GeoBone;
-import software.bernie.geckolib3.renderers.geo.ExtendedGeoEntityRenderer;
-import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
+import software.bernie.geckolib.cache.object.GeoBone;
+import software.bernie.geckolib.renderer.DynamicGeoEntityRenderer;
+import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class TigerTankRenderer extends ExtendedGeoEntityRenderer<TigerTankEntity> {
+public class TigerTankRenderer extends GeoEntityRenderer<TigerTankEntity> {
     public TigerTankRenderer(EntityRendererProvider.Context renderManagerIn) {
         super(renderManagerIn, new TigerTankModel());
         this.shadowRadius = 0.7F;
     }
-
     @Override
-    public float getHeightScale(TigerTankEntity entity) {
-        return 1.1f;
-    }
-
-    @Override
-    protected boolean isArmorBone(GeoBone bone) {
-        return false;
-    }
-
-    @Override
-    public float getWidthScale(TigerTankEntity entity) {
-        return 1.1f;
-    }
-
-    @Nullable
-    @Override
-    protected ResourceLocation getTextureForBone(String boneName, TigerTankEntity currentEntity) {
-        return null;
-    }
-
-    @Nullable
-    @Override
-    protected ItemStack getHeldItemForBone(String boneName, TigerTankEntity currentEntity) {
-        return null;
-    }
-
-    @Override
-    protected ItemTransforms.TransformType getCameraTransformForItemAtBone(ItemStack boneItem, String boneName) {
-        return null;
-    }
-
-    @Nullable
-    @Override
-    protected BlockState getHeldBlockForBone(String boneName, TigerTankEntity currentEntity) {
-        return null;
-    }
-
-    @Override
-    protected void preRenderItem(PoseStack matrixStack, ItemStack item, String boneName, TigerTankEntity currentEntity, IBone bone) {
-    }
-
-    @Override
-    protected void preRenderBlock(PoseStack matrixStack, BlockState block, String boneName, TigerTankEntity currentEntity) {
-    }
-
-    @Override
-    protected void postRenderItem(PoseStack matrixStack, ItemStack item, String boneName, TigerTankEntity currentEntity, IBone bone) {
-    }
-
-    @Override
-    protected void postRenderBlock(PoseStack matrixStack, BlockState block, String boneName, TigerTankEntity currentEntity) {
+    public GeoEntityRenderer<TigerTankEntity> withScale(float scaleWidth, float scaleHeight) {
+        return super.withScale(1.1f, 1.1f);
     }
 }

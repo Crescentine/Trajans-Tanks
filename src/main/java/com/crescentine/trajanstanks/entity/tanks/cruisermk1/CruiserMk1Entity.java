@@ -14,10 +14,9 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.animation.*;
+import software.bernie.geckolib.core.object.PlayState;
 
 public class CruiserMk1Entity extends BaseTankEntity {
     public CruiserMk1Entity(EntityType<?> entityType, Level world) {
@@ -36,12 +35,15 @@ public class CruiserMk1Entity extends BaseTankEntity {
         this.canUseStandard = true;
         this.showFuel = true;
     }
-    @Override
-    protected <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
+    protected <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
         if (event.isMoving()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
+            event.getController().setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
             return PlayState.CONTINUE;
         }
         return PlayState.STOP;
+    }
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        controllers.add(new AnimationController<>(this, "controller", 0, this::predicate));
     }
 }

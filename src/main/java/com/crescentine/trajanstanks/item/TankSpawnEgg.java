@@ -1,5 +1,6 @@
 package com.crescentine.trajanstanks.item;
 
+import com.crescentine.trajanscore.TankModClient;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Mob;
@@ -27,14 +28,16 @@ public class TankSpawnEgg extends ForgeSpawnEggItem {
     public boolean heatShell;
     public boolean heShell;
     public boolean apcrShell;
+    public boolean turretMoves;
     public TankSpawnEgg(Supplier<? extends EntityType<? extends Mob>> typeIn, int primaryColorIn, int secondaryColorIn, boolean standard, boolean armorPiercing, boolean heatShell,
-                        boolean heShell, boolean apcrShell, Properties builder) {
+                        boolean heShell, boolean apcrShell, boolean turretMoves, Properties builder) {
         super(typeIn, primaryColorIn, secondaryColorIn,  builder);
         this.standard = standard;
         this.armorPiercing = armorPiercing;
         this.heatShell = heatShell;
         this.heShell = heShell;
         this.apcrShell = apcrShell;
+        this.turretMoves = turretMoves;
         DispenserBlock.registerBehavior(
                 this,
                 new DefaultDispenseItemBehavior() {
@@ -50,6 +53,9 @@ public class TankSpawnEgg extends ForgeSpawnEggItem {
 
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+        if (turretMoves) {
+            pTooltipComponents.add(Component.literal("Press SYNC KEY to have turret follow").withStyle(ChatFormatting.RED));
+        }
         pTooltipComponents.add(Component.literal("Ammo:").withStyle(ChatFormatting.AQUA));
         if (standard) {
             pTooltipComponents.add(Component.literal("Standard Shell"));

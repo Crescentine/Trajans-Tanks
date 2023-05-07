@@ -31,7 +31,6 @@
   "entity.trajanstanks.qf6_entity_type" : "QF-6",
   "entity.trajanstanks.artillery_entity_type" : "Pak-40",
 
-  "itemGroup.trajanstanks": "Tanks",
-  "itemGroup.trajanstanks_parts" : "Trajan's Tanks: Parts",
+  "itemgroup.trajanstanks": "Tanks",
   "category.tankmod.trajanstanks" : "Tank Mod"
 }

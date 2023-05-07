@@ -2,6 +2,8 @@ package com.crescentine.trajanstanks;
 
 
 import com.crescentine.trajanscore.TrajansCoreEntities;
+import com.crescentine.trajanscore.TrajansCoreMod;
+import com.crescentine.trajanscore.item.TrajansCoreItems;
 import com.crescentine.trajanscore.tankshells.apcr.APCRShellRenderer;
 import com.crescentine.trajanscore.tankshells.armorpiercing.ArmorPiercingShellRenderer;
 import com.crescentine.trajanscore.tankshells.heat.HeatShellRenderer;
@@ -21,10 +23,14 @@ import com.crescentine.trajanstanks.entity.tanks.panzer2.Panzer2Renderer;
 import com.crescentine.trajanstanks.entity.tanks.t34.T34Renderer;
 import com.crescentine.trajanstanks.item.TankModItems;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -36,7 +42,7 @@ import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import software.bernie.geckolib3.GeckoLib;
+import software.bernie.geckolib.GeckoLib;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("trajanstanks")
@@ -58,8 +64,42 @@ public class TankMod {
         TankModItems.BLOCKS.register(eventBus);
         TankModEntityTypes.ENTITY_TYPES.register(eventBus);
         MinecraftForge.EVENT_BUS.register(this);
+        eventBus.addListener(this::registerTabs);
+        eventBus.addListener(this::addItemsToTabs);
     }
-
+    public static CreativeModeTab TANK_MOD_ITEMGROUP;
+    private void registerTabs(CreativeModeTabEvent.Register event) {
+        TANK_MOD_ITEMGROUP = event.registerCreativeModeTab(new ResourceLocation(MOD_ID, "trajanstanks"), builder -> builder
+                .icon(() -> new ItemStack(TankModItems.PANZER2_ITEM.get()))
+                .title(Component.translatable("itemgroup.trajanstanks"))
+                .displayItems((featureFlags, output, hasOp) -> {
+                    output.accept(TankModItems.PANZER2_ITEM.get());
+                    output.accept(TankModItems.TIGER_ITEM.get());
+                    output.accept(TankModItems.T34_ITEM.get());
+                    output.accept(TankModItems.CRUISER_MK1_ITEM.get());
+                    output.accept(TankModItems.M4SHERMAN_ITEM.get());
+                    output.accept(TankModItems.ARCHER_ITEM.get());
+                    output.accept(TankModItems.KV2_ITEM.get());
+                    output.accept(TankModItems.JAGDPANTHER_ITEM.get());
+                    output.accept(TankModItems.QF6_ITEM.get());
+                    output.accept(TankModItems.PAK40_ITEM.get());
+                })
+        );
+    }
+    private void addItemsToTabs(CreativeModeTabEvent.BuildContents event)
+    {
+        if (event.getTab() == TrajansCoreMod.PARTS_TAB)
+        {
+            event.accept(TankModItems.PANZER_TWO_BLUEPRINT);
+            event.accept(TankModItems.TIGER_BLUEPRINT);
+            event.accept(TankModItems.T34_BLUEPRINT);
+            event.accept(TankModItems.CRUISERMK1_BLUEPRINT);
+            event.accept(TankModItems.M4SHERMAN_BLUEPRINT);
+            event.accept(TankModItems.ARCHER_BLUEPRINT);
+            event.accept(TankModItems.KV2_BLUEPRINT);
+            event.accept(TankModItems.JAG_BLUEPRINT);
+        }
+    }
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistryEvents {
         @OnlyIn(Dist.CLIENT)

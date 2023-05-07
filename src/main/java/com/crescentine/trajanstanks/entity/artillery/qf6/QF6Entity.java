@@ -4,10 +4,9 @@ import com.crescentine.trajanscore.basetank.BaseATEntity;
 import com.crescentine.trajanstanks.config.TankModConfig;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.animation.*;
+import software.bernie.geckolib.core.object.PlayState;
 
 public class QF6Entity extends BaseATEntity {
     public QF6Entity(EntityType<?> entityType, Level world) {
@@ -21,13 +20,16 @@ public class QF6Entity extends BaseATEntity {
         this.canUseHighExplosive = false;
         this.canUseStandard = false;
     }
-    @Override
-    protected <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
+    protected <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
         if (event.isMoving()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
+            event.getController().setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
             return PlayState.CONTINUE;
         }
         return PlayState.STOP;
+    }
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        controllers.add(new AnimationController<>(this, "controller", 0, this::predicate));
     }
     @Override
     public double getPassengersRidingOffset() {

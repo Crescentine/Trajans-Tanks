@@ -4,10 +4,9 @@ import com.crescentine.trajanscore.basetank.BaseTankEntity;
 import com.crescentine.trajanstanks.config.TankModConfig;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.animation.*;
+import software.bernie.geckolib.core.object.PlayState;
 
 public class JagdpantherEntity extends BaseTankEntity {
     public JagdpantherEntity(EntityType<?> entityType, Level world) {
@@ -26,12 +25,15 @@ public class JagdpantherEntity extends BaseTankEntity {
         this.canUseStandard = false;
         this.showFuel = true;
     }
-    @Override
-    protected <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
+    protected <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
         if (event.getLimbSwingAmount() > 0.1F) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
+            event.getController().setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
             return PlayState.CONTINUE;
         }
         return PlayState.STOP;
+    }
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        controllers.add(new AnimationController<>(this, "controller", 0, this::predicate));
     }
 }
