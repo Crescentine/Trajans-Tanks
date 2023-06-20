@@ -36,4 +36,9 @@ public class T34Entity extends BaseTankEntity {
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "controller", 0, this::predicate));
     }
+
+    @Override
+    public boolean shouldRiderSit() {
+        return true;
+    }
 }

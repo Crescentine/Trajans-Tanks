@@ -29,6 +29,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -72,7 +73,7 @@ public class TankMod {
         TANK_MOD_ITEMGROUP = event.registerCreativeModeTab(new ResourceLocation(MOD_ID, "trajanstanks"), builder -> builder
                 .icon(() -> new ItemStack(TankModItems.PANZER2_ITEM.get()))
                 .title(Component.translatable("itemgroup.trajanstanks"))
-                .displayItems((featureFlags, output, hasOp) -> {
+                .displayItems((parameters, output) -> {
                     output.accept(TankModItems.PANZER2_ITEM.get());
                     output.accept(TankModItems.TIGER_ITEM.get());
                     output.accept(TankModItems.T34_ITEM.get());
@@ -100,11 +101,10 @@ public class TankMod {
             event.accept(TankModItems.JAG_BLUEPRINT);
         }
     }
-    @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
-    public static class RegistryEvents {
-        @OnlyIn(Dist.CLIENT)
+    @Mod.EventBusSubscriber(modid = TankMod.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
+    public final class RegistryEvents {
         @SubscribeEvent
-        public static void registerRenderers(final FMLClientSetupEvent event) {
+        public static void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
             EntityRenderers.register(TankModEntityTypes.ARTILLERY_ENTITY_TYPE.get(), Pak40Renderer::new);
             EntityRenderers.register(TankModEntityTypes.PANZER_TWO_ENTITY_TYPE.get(), Panzer2Renderer::new);
             EntityRenderers.register(TankModEntityTypes.TIGER_ENTITY_TYPE.get(), TigerTankRenderer::new);
