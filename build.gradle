@@ -40,7 +40,7 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
-    mappings channel: 'parchment', version: '1.19.3-2023.03.12-1.19.4'
+    mappings channel: 'parchment', version: '1.19.3-2023.03.12-1.20.1'
 
     // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg') // Currently, this location cannot be changed from the default.
 
@@ -139,12 +139,12 @@ dependencies {
     // Specify the version of Minecraft to use. If this is any group other than 'net.minecraft', it is assumed
     // that the dep is a ForgeGradle 'patcher' dependency, and its patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
-    minecraft 'net.minecraftforge:forge:1.19.4-45.1.0'
-    implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.19.4:4.2')
-    compileOnly fg.deobf("mezz.jei:jei-1.19.4-common-api:13.1.0.15")
-    compileOnly fg.deobf("mezz.jei:jei-1.19.4-forge-api:13.1.0.15")
-    runtimeOnly fg.deobf("mezz.jei:jei-1.19.4-forge:13.1.0.15")
-    implementation fg.deobf("curse.maven:trajanscore-626570:4598023")
+    minecraft 'net.minecraftforge:forge:1.20.1-47.0.6'
+    implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.20:4.2')
+    compileOnly fg.deobf("mezz.jei:jei-1.20.1-common-api:15.1.0.19")
+    compileOnly fg.deobf("mezz.jei:jei-1.20.1-forge-api:15.1.0.19")
+    runtimeOnly fg.deobf("mezz.jei:jei-1.20.1-forge:15.1.0.19")
+    implementation fg.deobf("curse.maven:trajanscore-626570:4632740")
     // Real mod deobf dependency examples - these get remapped to your current mappings
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api") // Adds JEI API as a compile dependency
     // runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}") // Adds the full JEI mod as a runtime dependency

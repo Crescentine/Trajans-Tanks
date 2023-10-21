@@ -1,6 +1,7 @@
 package com.crescentine.trajanstanks;
 
 
+import com.crescentine.trajanscore.TrajansCoreCreativeTabs;
 import com.crescentine.trajanscore.TrajansCoreEntities;
 import com.crescentine.trajanscore.TrajansCoreMod;
 import com.crescentine.trajanscore.item.TrajansCoreItems;
@@ -31,7 +32,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.CreativeModeTabEvent;
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -65,31 +66,14 @@ public class TankMod {
         TankModItems.BLOCKS.register(eventBus);
         TankModEntityTypes.ENTITY_TYPES.register(eventBus);
         MinecraftForge.EVENT_BUS.register(this);
-        eventBus.addListener(this::registerTabs);
         eventBus.addListener(this::addItemsToTabs);
+        TankModCreativeTabs.register(eventBus);
     }
     public static CreativeModeTab TANK_MOD_ITEMGROUP;
-    private void registerTabs(CreativeModeTabEvent.Register event) {
-        TANK_MOD_ITEMGROUP = event.registerCreativeModeTab(new ResourceLocation(MOD_ID, "trajanstanks"), builder -> builder
-                .icon(() -> new ItemStack(TankModItems.PANZER2_ITEM.get()))
-                .title(Component.translatable("itemgroup.trajanstanks"))
-                .displayItems((parameters, output) -> {
-                    output.accept(TankModItems.PANZER2_ITEM.get());
-                    output.accept(TankModItems.TIGER_ITEM.get());
-                    output.accept(TankModItems.T34_ITEM.get());
-                    output.accept(TankModItems.CRUISER_MK1_ITEM.get());
-                    output.accept(TankModItems.M4SHERMAN_ITEM.get());
-                    output.accept(TankModItems.ARCHER_ITEM.get());
-                    output.accept(TankModItems.KV2_ITEM.get());
-                    output.accept(TankModItems.JAGDPANTHER_ITEM.get());
-                    output.accept(TankModItems.QF6_ITEM.get());
-                    output.accept(TankModItems.PAK40_ITEM.get());
-                })
-        );
-    }
-    private void addItemsToTabs(CreativeModeTabEvent.BuildContents event)
+
+    private void addItemsToTabs(BuildCreativeModeTabContentsEvent event)
     {
-        if (event.getTab() == TrajansCoreMod.PARTS_TAB)
+        if (event.getTabKey() == TrajansCoreCreativeTabs.PARTS_TAB.getKey())
         {
             event.accept(TankModItems.PANZER_TWO_BLUEPRINT);
             event.accept(TankModItems.TIGER_BLUEPRINT);
