@@ -21,7 +21,7 @@ modId="trajanstanks" #mandatory
 # see the associated build.gradle script for how to populate this completely automatically during a build
 version="2.4" #mandatory
  # A display name for the mod
-displayName="Trajan's WW2 Tank Mod (Forge) (1.19.4)" #mandatory
+displayName="Trajan's WW2 Tank Mod (Forge) (1.20.1)" #mandatory
 # A URL to query for updates for this mod. See the JSON update specification https://mcforge.readthedocs.io/en/latest/gettingstarted/autoupdate/
 #updateJSONURL="https://change.me.example.invalid/updates.json" #optional
 # A URL for the "homepage" for this mod, displayed in the mod UI

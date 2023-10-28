@@ -27,10 +27,13 @@ public class TigerTankModel extends GeoModel<TigerTankEntity> {
     @Override
     public void setCustomAnimations(TigerTankEntity animatable, long instanceId, AnimationState<TigerTankEntity> animationState) {
         super.setCustomAnimations(animatable, instanceId, animationState);
-        CoreGeoBone turret = this.getAnimationProcessor().getBone("turret");
-        Entity rider = animatable.getControllingPassenger();
-        if (animatable.isVehicle() && rider instanceof Player) {
-            turret.setRotY((float) -Math.toRadians(rider.getYHeadRot() - animatable.getYRot()));
+        CoreGeoBone turret = this.getAnimationProcessor().getBone("TopPart");
+        turret.setRotY(0);
+        if (animatable.hasControllingPassenger()) {
+            Entity rider = animatable.getControllingPassenger();
+            if (animatable.isVehicle() && rider instanceof Player player && player.level().isClientSide() && animatable.hasControllingPassenger()) {
+                turret.setRotY((float) -Math.toRadians(rider.getYHeadRot() - animatable.getYRot()));
+            }
         }
     }
 }
