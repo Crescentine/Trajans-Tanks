@@ -7,8 +7,8 @@
 				"texture_width": 512,
 				"texture_height": 512,
 				"visible_bounds_width": 8,
-				"visible_bounds_height": 4.5,
-				"visible_bounds_offset": [0, 1.75, 0]
+				"visible_bounds_height": 5,
+				"visible_bounds_offset": [0, 1.5, 0]
 			},
 			"bones": [
 				{
@@ -33,9 +33,16 @@
 						{"origin": [-12, 23, -14], "size": [25, 1, 25], "uv": [77, 261]},
 						{"origin": [-6, 38.28384, -15.58006], "size": [13, 6, 5], "pivot": [0.5, 44.78384, -13.08006], "rotation": [-62.5, 0, 0], "uv": [45, 175]},
 						{"origin": [-3, 32, -25], "size": [7, 10, 5], "uv": [198, 103]},
-						{"origin": [-2, 36, -46], "size": [5, 5, 21], "uv": [152, 129]},
 						{"origin": [-6, 31, -20], "size": [13, 13, 5], "uv": [200, 27]},
 						{"origin": [-6, 29.16165, -18.77165], "size": [13, 6, 5], "pivot": [0.5, 32.16165, -16.27165], "rotation": [67.5, 0, 0], "uv": [154, 70]}
+					]
+				},
+				{
+					"name": "bone",
+					"parent": "turret",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{"origin": [-2, 36, -46], "size": [5, 5, 21], "uv": [152, 129]}
 					]
 				},
 				{
