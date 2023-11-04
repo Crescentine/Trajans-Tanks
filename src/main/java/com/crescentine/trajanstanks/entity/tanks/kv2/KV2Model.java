@@ -30,11 +30,13 @@ public class KV2Model extends GeoModel<KV2Entity>
     public void setCustomAnimations(KV2Entity animatable, long instanceId, AnimationState<KV2Entity> animationState) {
         super.setCustomAnimations(animatable, instanceId, animationState);
         CoreGeoBone turret = this.getAnimationProcessor().getBone("TopPart");
-        turret.setRotY(0);
-        if (animatable.hasControllingPassenger()) {
-            Entity rider = animatable.getControllingPassenger();
-            if (animatable.isVehicle() && rider instanceof Player player && player.level().isClientSide() && animatable.hasControllingPassenger()) {
-                turret.setRotY((float) -Math.toRadians(rider.getYHeadRot() - animatable.getYRot()));
+        if (turret != null) {
+            turret.setRotY(0);
+            if (animatable.hasControllingPassenger()) {
+                Entity rider = animatable.getControllingPassenger();
+                if (animatable.isVehicle() && rider instanceof Player player && player.level().isClientSide() && animatable.hasControllingPassenger()) {
+                    turret.setRotY((float) -Math.toRadians(rider.getYHeadRot() - animatable.getYRot()));
+                }
             }
         }
     }

@@ -27,12 +27,14 @@ public class CruiserMk1Model extends GeoModel<CruiserMk1Entity> {
     @Override
     public void setCustomAnimations(CruiserMk1Entity animatable, long instanceId, AnimationState<CruiserMk1Entity> animationState) {
         super.setCustomAnimations(animatable, instanceId, animationState);
-        CoreGeoBone turret = this.getAnimationProcessor().getBone("TopPart");
-        turret.setRotY(0);
-        if (animatable.hasControllingPassenger()) {
-            Entity rider = animatable.getControllingPassenger();
-            if (animatable.isVehicle() && rider instanceof Player player && player.level().isClientSide() && animatable.hasControllingPassenger()) {
-                turret.setRotY((float) -Math.toRadians(rider.getYHeadRot() - animatable.getYRot()));
+        CoreGeoBone turret = this.getAnimationProcessor().getBone("Turret");
+        if (turret != null) {
+            turret.setRotY(0);
+            if (animatable.hasControllingPassenger()) {
+                Entity rider = animatable.getControllingPassenger();
+                if (animatable.isVehicle() && rider instanceof Player player && player.level().isClientSide() && animatable.hasControllingPassenger()) {
+                    turret.setRotY((float) -Math.toRadians(rider.getYHeadRot() - animatable.getYRot()));
+                }
             }
         }
     }

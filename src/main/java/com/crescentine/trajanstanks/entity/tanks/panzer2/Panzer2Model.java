@@ -32,11 +32,13 @@ public class Panzer2Model extends GeoModel<Panzer2Entity>
     public void setCustomAnimations(Panzer2Entity animatable, long instanceId, AnimationState<Panzer2Entity> animationState) {
         super.setCustomAnimations(animatable, instanceId, animationState);
         CoreGeoBone turret = this.getAnimationProcessor().getBone("TopPart");
-        turret.setRotY(0);
-        if (animatable.hasControllingPassenger()) {
-            Entity rider = animatable.getControllingPassenger();
-            if (animatable.isVehicle() && rider instanceof Player player && player.level().isClientSide() && animatable.hasControllingPassenger()) {
-                turret.setRotY((float) -Math.toRadians(rider.getYHeadRot() - animatable.getYRot()));
+        if (turret != null) {
+            turret.setRotY(0);
+            if (animatable.hasControllingPassenger()) {
+                Entity rider = animatable.getControllingPassenger();
+                if (animatable.isVehicle() && rider instanceof Player player && player.level().isClientSide() && animatable.hasControllingPassenger()) {
+                    turret.setRotY((float) -Math.toRadians(rider.getYHeadRot() - animatable.getYRot()));
+                }
             }
         }
     }
