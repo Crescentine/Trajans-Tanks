@@ -28,17 +28,8 @@ public class TigerTankEntity extends BaseTankEntity {
     }
     protected <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
         if (event.getLimbSwingAmount() > 0.1F) {
-            event.getController().setAnimation(RawAnimation.begin().then("shoot", Animation.LoopType.LOOP));
+            event.getController().setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
             return PlayState.CONTINUE;
-        }
-        return PlayState.STOP;
-    }
-    protected <E extends GeoAnimatable> PlayState attackPredicate(AnimationState<E> event) {
-        if (event.getController().getAnimationState().equals(AnimationController.State.STOPPED)) {
-            event.getController().setAnimation(RawAnimation.begin().then("shoot", Animation.LoopType.PLAY_ONCE));
-
-
-
         }
         return PlayState.STOP;
     }
@@ -46,6 +37,7 @@ public class TigerTankEntity extends BaseTankEntity {
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "controller", 0, this::predicate));
+        controllers.add(new AnimationController<>(this, "shoot_controller", state -> PlayState.STOP).triggerableAnim("shoot", RawAnimation.begin().then("shoot", Animation.LoopType.PLAY_ONCE)));
 
     }
 }
