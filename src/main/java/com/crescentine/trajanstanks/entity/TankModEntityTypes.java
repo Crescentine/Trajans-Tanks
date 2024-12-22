@@ -7,7 +7,9 @@ import com.crescentine.trajanstanks.entity.tanks.archer.ArcherEntity;
 import com.crescentine.trajanstanks.entity.tanks.cruisermk1.CruiserMk1Entity;
 import com.crescentine.trajanstanks.entity.tanks.jagdpanther.JagdpantherEntity;
 import com.crescentine.trajanstanks.entity.tanks.kv2.KV2Entity;
+import com.crescentine.trajanstanks.entity.tanks.luchs.LuchsEntity;
 import com.crescentine.trajanstanks.entity.tanks.m4sherman.M4ShermanEntity;
+import com.crescentine.trajanstanks.entity.tanks.somua.SomuaS35Entity;
 import com.crescentine.trajanstanks.entity.tanks.tiger.TigerTankEntity;
 import com.crescentine.trajanstanks.entity.tanks.panzer2.Panzer2Entity;
 import com.crescentine.trajanstanks.entity.tanks.t34.T34Entity;
@@ -31,7 +33,7 @@ public class TankModEntityTypes {
                     .clientTrackingRange(10).build("artillery_entity_type"));
 
     public static final RegistryObject<EntityType<Panzer2Entity>> PANZER_TWO_ENTITY_TYPE = ENTITY_TYPES.register("panzer_two_entity_type",
-            () -> EntityType.Builder.<Panzer2Entity>of(Panzer2Entity::new, MobCategory.MISC).sized(4.0F, 2.3F)
+            () -> EntityType.Builder.<Panzer2Entity>of(Panzer2Entity::new, MobCategory.MISC).sized(3.5F, 2.2F)
                     .clientTrackingRange(10).build("panzer_two_entity_type"));
 
     public static final RegistryObject<EntityType<TigerTankEntity>> TIGER_ENTITY_TYPE = ENTITY_TYPES.register("tiger_tank_entity_type",
@@ -58,6 +60,15 @@ public class TankModEntityTypes {
             () -> EntityType.Builder.<KV2Entity>of(KV2Entity::new, MobCategory.MISC).sized(6.0F, 3.2f)
                     .clientTrackingRange(10).build("kv2_entity_type"));
 
+
+    public static final RegistryObject<EntityType<LuchsEntity>> LUCHS_ENTITY_TYPE = ENTITY_TYPES.register("luchs_entity_type",
+            () -> EntityType.Builder.<LuchsEntity>of(LuchsEntity::new, MobCategory.MISC).sized(4.0F, 3.2f)
+                    .clientTrackingRange(10).build("luchs_entity_type"));
+
+    public static final RegistryObject<EntityType<SomuaS35Entity>> SOMUA_ENTITY_TYPE = ENTITY_TYPES.register("somua_entity_type",
+            () -> EntityType.Builder.<SomuaS35Entity>of(SomuaS35Entity::new, MobCategory.MISC).sized(4.0F, 3.2f)
+                    .clientTrackingRange(10).build("somua_entity_type"));
+
     public static final RegistryObject<EntityType<QF6Entity>> QF6_ENTITY_TYPE = ENTITY_TYPES.register("qf6_entity_type",
             () -> EntityType.Builder.<QF6Entity>of(QF6Entity::new, MobCategory.MISC).sized(1.65f, 1.0f)
                     .clientTrackingRange(10).build("qf6_entity_type"));
@@ -69,17 +80,5 @@ public class TankModEntityTypes {
     public static void register(IEventBus eventBus) {
                 ENTITY_TYPES.register(eventBus);
             }
-    @SubscribeEvent
-    public static void entityAttributesInit(EntityAttributeCreationEvent event) {
-        event.put(PANZER_TWO_ENTITY_TYPE.get(), Panzer2Entity.createAttributes().build());
-        event.put(TIGER_ENTITY_TYPE.get(), TigerTankEntity.createAttributes().build());
-        event.put(ARTILLERY_ENTITY_TYPE.get(), Pak40Entity.createAttributes().build());
-        event.put(T34_ENTITY_TYPE.get(), T34Entity.createAttributes().build());
-        event.put(CRUISERMK1_ENTITY_TYPE.get(), CruiserMk1Entity.createAttributes().build());
-        event.put(M4SHERMAN_ENTITY_TYPE.get(), M4ShermanEntity.createAttributes().build());
-        event.put(ARCHER_ENTITY_TYPE.get(), ArcherEntity.createAttributes().build());
-        event.put(KV2_ENTITY_TYPE.get(), KV2Entity.createAttributes().build());
-        event.put(QF6_ENTITY_TYPE.get(), QF6Entity.createAttributes().build());
-        event.put(JAGDPANTHER_ENTITY_TYPE.get(), JagdpantherEntity.createAttributes().build());
-    }
+
 }

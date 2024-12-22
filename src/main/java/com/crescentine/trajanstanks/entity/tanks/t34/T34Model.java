@@ -26,15 +26,25 @@ public class T34Model extends GeoModel<T34Entity> {
     @Override
     public void setCustomAnimations(T34Entity animatable, long instanceId, AnimationState<T34Entity> animationState) {
         super.setCustomAnimations(animatable, instanceId, animationState);
+        CoreGeoBone main = this.getAnimationProcessor().getBone("body");
         CoreGeoBone turret = this.getAnimationProcessor().getBone("turret");
-        if (turret != null) {
-            turret.setRotY(0);
-            if (animatable.hasControllingPassenger()) {
-                Entity rider = animatable.getControllingPassenger();
-                if (animatable.isVehicle() && rider instanceof Player player && player.level().isClientSide() && animatable.hasControllingPassenger()) {
-                    turret.setRotY((float) -Math.toRadians(rider.getYHeadRot() - animatable.getYRot()));
-                }
+
+
+        main.setRotY(0f);
+        turret.setRotY(0f);
+        if (animatable.getControllingPassenger()!=null) {
+            Entity rider = animatable.getControllingPassenger();
+            if (animatable.isVehicle()) {
+                turret.setRotY((float) -Math.toRadians(rider.getYHeadRot()));
+
+                main.setRotY((float) Math.toRadians(-animatable.getYRot()));
+
+
+
             }
+        } else {
+            main.setRotY((float) Math.toRadians(-animatable.getYRot()));
+
         }
     }
 }

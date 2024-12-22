@@ -13,17 +13,20 @@ public class TankModItems {
     public static DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, TankMod.MOD_ID);
 
     //Vehicle Items
-    public static final RegistryObject<Item> PANZER2_ITEM = ITEMS.register("panzer2_item", () -> new TankSpawnEgg(TankModEntityTypes.PANZER_TWO_ENTITY_TYPE, 0xFFFFFF, 0xFFFFFF, true, false, false, false, false, true, (new Item.Properties())));
-    public static final RegistryObject<Item> TIGER_ITEM = ITEMS.register("tiger_item", () -> new TankSpawnEgg(TankModEntityTypes.TIGER_ENTITY_TYPE, 0xFFFFFF, 0xFFFFFF, true, true, true, true, false,true,  (new Item.Properties())));
-    public static final RegistryObject<Item> T34_ITEM = ITEMS.register("t34_item", () -> new TankSpawnEgg(TankModEntityTypes.T34_ENTITY_TYPE, 0xFFFFFF, 0xFFFFFF, true, true, true, true, false,true, (new Item.Properties())));
-    public static final RegistryObject<Item> CRUISER_MK1_ITEM = ITEMS.register("cruiser_mk1_item", () -> new TankSpawnEgg(TankModEntityTypes.CRUISERMK1_ENTITY_TYPE, 0xFFFFFF, 0xFFFFFF, true, false, false, false, false, true, (new Item.Properties())));
-    public static final RegistryObject<Item> M4SHERMAN_ITEM = ITEMS.register("m4sherman_item", () -> new TankSpawnEgg(TankModEntityTypes.M4SHERMAN_ENTITY_TYPE, 0xFFFFFF, 0xFFFFFF, true, true, true, true, false, true, (new Item.Properties())));
-    public static final RegistryObject<Item> ARCHER_ITEM = ITEMS.register("archer_item", () -> new TankSpawnEgg(TankModEntityTypes.ARCHER_ENTITY_TYPE, 0xFFFFFF, 0xFFFFFF, false, false, false, false, true, true, (new Item.Properties())));
-    public static final RegistryObject<Item> KV2_ITEM = ITEMS.register("kv2_item", () -> new TankSpawnEgg(TankModEntityTypes.KV2_ENTITY_TYPE, 0xFFFFFF, 0xFFFFFF, true, true, true, true, false,true,  (new Item.Properties())));
-    public static final RegistryObject<Item> JAGDPANTHER_ITEM = ITEMS.register("jagdpanther_item", () -> new TankSpawnEgg(TankModEntityTypes.JAGDPANTHER_ENTITY_TYPE, 0xFFFFFF, 0xFFFFFF, false, false, false, false, true, false, (new Item.Properties())));
+    public static final RegistryObject<Item> PANZER2_ITEM = ITEMS.register("panzer2_item", () -> new TankSpawnEgg(new Item.Properties(), TankModEntityTypes.PANZER_TWO_ENTITY_TYPE::get));
+    public static final RegistryObject<Item> TIGER_ITEM = ITEMS.register("tiger_item", () -> new TankSpawnEgg(new Item.Properties(), TankModEntityTypes.TIGER_ENTITY_TYPE::get));
+    public static final RegistryObject<Item> T34_ITEM = ITEMS.register("t34_item", () -> new TankSpawnEgg(new Item.Properties(), TankModEntityTypes.T34_ENTITY_TYPE::get));
+    public static final RegistryObject<Item> CRUISER_MK1_ITEM = ITEMS.register("cruiser_mk1_item", () -> new TankSpawnEgg(new Item.Properties(), TankModEntityTypes.CRUISERMK1_ENTITY_TYPE::get));
+    public static final RegistryObject<Item> M4SHERMAN_ITEM = ITEMS.register("m4sherman_item", () -> new TankSpawnEgg(new Item.Properties(), TankModEntityTypes.M4SHERMAN_ENTITY_TYPE::get));
+    public static final RegistryObject<Item> ARCHER_ITEM = ITEMS.register("archer_item", () -> new TankSpawnEgg(new Item.Properties(), TankModEntityTypes.ARCHER_ENTITY_TYPE::get));
+    public static final RegistryObject<Item> KV2_ITEM = ITEMS.register("kv2_item", () -> new TankSpawnEgg(new Item.Properties(), TankModEntityTypes.KV2_ENTITY_TYPE::get));
+    public static final RegistryObject<Item> JAGDPANTHER_ITEM = ITEMS.register("jagdpanther_item", () -> new TankSpawnEgg(new Item.Properties(), TankModEntityTypes.JAGDPANTHER_ENTITY_TYPE::get));
+    public static final RegistryObject<Item> LUCHS_ITEM = ITEMS.register("luchs_item", () -> new TankSpawnEgg(new Item.Properties(), TankModEntityTypes.LUCHS_ENTITY_TYPE::get));
+    public static final RegistryObject<Item> SOMUA_ITEM = ITEMS.register("somua_item", () -> new TankSpawnEgg(new Item.Properties(), TankModEntityTypes.SOMUA_ENTITY_TYPE::get));
 
-    public static final RegistryObject<Item> QF6_ITEM = ITEMS.register("qf6_item", () -> new TankSpawnEgg(TankModEntityTypes.QF6_ENTITY_TYPE, 0xFFFFFF, 0xFFFFFF, false, true, false, false, true, false, (new Item.Properties())));
-    public static final RegistryObject<Item> PAK40_ITEM = ITEMS.register("pak40_item", () -> new TankSpawnEgg(TankModEntityTypes.ARTILLERY_ENTITY_TYPE, 0xFFFFFF, 0xFFFFFF, false, true, false, false, true,false, (new Item.Properties())));
+
+    //public static final RegistryObject<Item> QF6_ITEM = ITEMS.register("qf6_item", () -> new TankSpawnEgg(new Item.Properties(), TankModEntityTypes.::get));
+    //public static final RegistryObject<Item> PAK40_ITEM = ITEMS.register("pak40_item", () -> new TankSpawnEgg(TankModEntityTypes.ARTILLERY_ENTITY_TYPE, 0xFFFFFF, 0xFFFFFF, false, true, false, false, true,false, (new Item.Properties())));
 
     public static final RegistryObject<Item> T34_BLUEPRINT = ITEMS.register("t34_blueprint", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> ARCHER_BLUEPRINT = ITEMS.register("archer_blueprint", () -> new Item(new Item.Properties()));

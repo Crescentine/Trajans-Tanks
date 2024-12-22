@@ -1,4 +1,4 @@
-package com.crescentine.trajanstanks.entity.tanks.jagdpanther;
+package com.crescentine.trajanstanks.entity.tanks.somua;
 
 import com.crescentine.trajanscore.basetank.BaseTankEntity;
 import com.crescentine.trajanstanks.config.TankModConfig;
@@ -12,24 +12,24 @@ import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animation.*;
 import software.bernie.geckolib.core.object.PlayState;
 
-public class JagdpantherEntity extends BaseTankEntity {
-    public JagdpantherEntity(EntityType<? extends BaseTankEntity> entityType, Level world) {
+public class SomuaS35Entity extends BaseTankEntity {
+    public SomuaS35Entity(EntityType<? extends BaseTankEntity> entityType, Level world) {
         super(entityType, world);
-        this.isTD=true;
-        this.health = TankModConfig.jagdpanther_health.get();
-        this.speedMultiplier = TankModConfig.jagdpanther_speed.get();
-        this.shootingCooldown = TankModConfig.jagdpanther_shot_cooldown.get();
-        this.armor = 5.0;
-        this.healAmount = TankModConfig.jagdpanther_heal_amount.get();
-        this.maxFuel = TankModConfig.jagdpanther_maxfuel.get() * 20;
+        this.health = TankModConfig.somua_health.get();
+        this.speedMultiplier = TankModConfig.somua_speed.get();
+        this.shootingCooldown = TankModConfig.somua_shot_cooldown.get();
+        this.armor = 4.0;
+        this.healAmount = TankModConfig.somua_heal_amount.get();
+        this.maxFuel = TankModConfig.somua_maxfuel.get() * 20;
         this.armored = true;
-        this.canUseAPCR = true;
-        this.canUseHeat = false;
-        this.canUseArmorPiercing = false;
-        this.canUseHighExplosive = false;
-        this.canUseStandard = false;
+        this.canUseAPCR = false;
+        this.canUseHeat = true;
+        this.canUseArmorPiercing = true;
+        this.canUseHighExplosive = true;
+        this.canUseStandard = true;
         this.showFuel = true;
     }
+
     protected <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
         if (this.xo != this.getX() || this.zo != this.getZ()) {
             event.getController().setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
@@ -41,12 +41,10 @@ public class JagdpantherEntity extends BaseTankEntity {
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "controller", 0, this::predicate));
-        controllers.add(new AnimationController<>(this, "shoot_controller", state -> PlayState.STOP).triggerableAnim("shoot", RawAnimation.begin().then("shoot", Animation.LoopType.PLAY_ONCE)));
     }
-
     @Override
     protected Item getItem() {
-        return TankModItems.JAGDPANTHER_ITEM.get();
+        return TankModItems.SOMUA_ITEM.get();
     }
 
     @Override
@@ -63,4 +61,5 @@ public class JagdpantherEntity extends BaseTankEntity {
         ItemStack itemStack = getItemStack();
         spawnAtLocation(itemStack);
     }
+
 }

@@ -1,9 +1,6 @@
 package com.crescentine.trajanstanks.entity.tanks.panzer2;
 
-import com.crescentine.trajanscore.example_tank.ExampleTankEntity;
 import com.crescentine.trajanstanks.TankMod;
-import com.crescentine.trajanstanks.entity.tanks.t34.T34Entity;
-import com.crescentine.trajanstanks.entity.tanks.tiger.TigerTankEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.MouseHandler;
 import net.minecraft.resources.ResourceLocation;
@@ -18,11 +15,11 @@ import software.bernie.geckolib.model.GeoModel;
 public class Panzer2Model extends GeoModel<Panzer2Entity>
 {
     public ResourceLocation getModelResource(Panzer2Entity object) {
-        return new ResourceLocation(TankMod.MOD_ID, "geo/tank.geo.json");
+        return new ResourceLocation(TankMod.MOD_ID, "geo/pz_ii.geo.json");
     }
 
     public ResourceLocation getTextureResource(Panzer2Entity object) {
-        return new ResourceLocation(TankMod.MOD_ID, "textures/item/texture.png");
+        return new ResourceLocation(TankMod.MOD_ID, "textures/item/pz_ii.png");
     }
 
     public ResourceLocation getAnimationResource(Panzer2Entity animatable) {
@@ -31,15 +28,25 @@ public class Panzer2Model extends GeoModel<Panzer2Entity>
     @Override
     public void setCustomAnimations(Panzer2Entity animatable, long instanceId, AnimationState<Panzer2Entity> animationState) {
         super.setCustomAnimations(animatable, instanceId, animationState);
-        CoreGeoBone turret = this.getAnimationProcessor().getBone("TopPart");
-        if (turret != null) {
-            turret.setRotY(0);
-            if (animatable.hasControllingPassenger()) {
-                Entity rider = animatable.getControllingPassenger();
-                if (animatable.isVehicle() && rider instanceof Player player && player.level().isClientSide() && animatable.hasControllingPassenger()) {
-                    turret.setRotY((float) -Math.toRadians(rider.getYHeadRot() - animatable.getYRot()));
-                }
+        CoreGeoBone main = this.getAnimationProcessor().getBone("hull");
+        CoreGeoBone turret = this.getAnimationProcessor().getBone("hull").getChildBones().get(1); //2
+
+
+        main.setRotY(0f);
+        turret.setRotY(0f);
+        if (animatable.getControllingPassenger()!=null) {
+            Entity rider = animatable.getControllingPassenger();
+            if (animatable.isVehicle()) {
+                turret.setRotY((float) -Math.toRadians(rider.getYHeadRot()-animatable.getYRot()));
+
+                main.setRotY((float) Math.toRadians(-animatable.getYRot()));
+
+
+
+
             }
+        } else {
+            main.setRotY((float) Math.toRadians(-animatable.getYRot()));
         }
     }
 }

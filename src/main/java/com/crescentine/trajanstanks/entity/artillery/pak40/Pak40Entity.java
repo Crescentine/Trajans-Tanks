@@ -10,7 +10,7 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.object.PlayState;
 
 public class Pak40Entity extends BaseATEntity {
-    public Pak40Entity(EntityType<?> entityType, Level world) {
+    public Pak40Entity(EntityType<? extends BaseATEntity> entityType, Level world) {
         super(entityType, world);
         this.health = TankModConfig.pak40_health.get();
         this.speedMultiplier = 0;
