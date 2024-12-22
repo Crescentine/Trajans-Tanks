@@ -42,8 +42,6 @@ public class KV2Model extends GeoModel<KV2Entity>
 
                 main.setRotY((float) Math.toRadians(-animatable.getYRot()));
 
-
-
             }
         } else {
             main.setRotY((float) Math.toRadians(-animatable.getYRot()));

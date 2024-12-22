@@ -36,8 +36,6 @@ public class CruiserMk1Model extends GeoModel<CruiserMk1Entity> {
 
                 main.setRotY((float) Math.toRadians(-animatable.getYRot()));
 
-
-
             }
         } else {
             main.setRotY((float) Math.toRadians(-animatable.getYRot()));
