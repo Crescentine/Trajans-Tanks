@@ -9,7 +9,7 @@ import software.bernie.geckolib.core.animation.*;
 import software.bernie.geckolib.core.object.PlayState;
 
 public class QF6Entity extends BaseATEntity {
-    public QF6Entity(EntityType<?> entityType, Level world) {
+    public QF6Entity(EntityType<? extends BaseATEntity> entityType, Level world) {
         super(entityType, world);
         this.health = TankModConfig.qf6_health.get();
         this.speedMultiplier = 0;

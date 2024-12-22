@@ -2,14 +2,18 @@ package com.crescentine.trajanstanks.entity.tanks.t34;
 
 import com.crescentine.trajanscore.basetank.BaseTankEntity;
 import com.crescentine.trajanstanks.config.TankModConfig;
+import com.crescentine.trajanstanks.item.TankModItems;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animation.*;
 import software.bernie.geckolib.core.object.PlayState;
 
 public class T34Entity extends BaseTankEntity {
-    public T34Entity(EntityType<?> entityType, Level world) {
+    public T34Entity(EntityType<? extends BaseTankEntity> entityType, Level world) {
         super(entityType, world);
         this.health = TankModConfig.t34_health.get();
         this.speedMultiplier = TankModConfig.t34_speed.get();
@@ -26,11 +30,12 @@ public class T34Entity extends BaseTankEntity {
         this.showFuel = true;
     }
     protected <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
-        if (event.isMoving()) {
+        if (this.xo != this.getX() || this.zo != this.getZ()) {
             event.getController().setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
             return PlayState.CONTINUE;
+        } else {
+            return PlayState.STOP;
         }
-        return PlayState.STOP;
     }
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
@@ -40,5 +45,25 @@ public class T34Entity extends BaseTankEntity {
     @Override
     public boolean shouldRiderSit() {
         return true;
+    }
+
+    @Override
+    protected Item getItem() {
+        return TankModItems.T34_ITEM.get();
+    }
+
+    @Override
+    public boolean hurt(DamageSource pSource, float pAmount) {
+        if(getHealth()<=0) {
+            kill();
+            dropItem();
+        }
+
+        return super.hurt(pSource, pAmount);
+    }
+
+    protected void dropItem() {
+        ItemStack itemStack = getItemStack();
+        spawnAtLocation(itemStack);
     }
 }

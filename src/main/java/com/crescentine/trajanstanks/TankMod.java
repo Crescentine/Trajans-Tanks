@@ -18,7 +18,9 @@ import com.crescentine.trajanstanks.entity.tanks.archer.ArcherRenderer;
 import com.crescentine.trajanstanks.entity.tanks.cruisermk1.CruiserMk1Renderer;
 import com.crescentine.trajanstanks.entity.tanks.jagdpanther.JagdpantherRenderer;
 import com.crescentine.trajanstanks.entity.tanks.kv2.KV2Renderer;
+import com.crescentine.trajanstanks.entity.tanks.luchs.LuchsRenderer;
 import com.crescentine.trajanstanks.entity.tanks.m4sherman.M4ShermanRenderer;
+import com.crescentine.trajanstanks.entity.tanks.somua.SomuaS35Renderer;
 import com.crescentine.trajanstanks.entity.tanks.tiger.TigerTankRenderer;
 import com.crescentine.trajanstanks.entity.tanks.panzer2.Panzer2Renderer;
 import com.crescentine.trajanstanks.entity.tanks.t34.T34Renderer;
@@ -97,7 +99,9 @@ public class TankMod {
             EntityRenderers.register(TankModEntityTypes.M4SHERMAN_ENTITY_TYPE.get(), M4ShermanRenderer::new);
             EntityRenderers.register(TankModEntityTypes.ARCHER_ENTITY_TYPE.get(), ArcherRenderer::new);
             EntityRenderers.register(TankModEntityTypes.KV2_ENTITY_TYPE.get(), KV2Renderer::new);
+            EntityRenderers.register(TankModEntityTypes.LUCHS_ENTITY_TYPE.get(), LuchsRenderer::new);
             EntityRenderers.register(TankModEntityTypes.JAGDPANTHER_ENTITY_TYPE.get(), JagdpantherRenderer::new);
+            EntityRenderers.register(TankModEntityTypes.SOMUA_ENTITY_TYPE.get(), SomuaS35Renderer::new);
             EntityRenderers.register(TankModEntityTypes.QF6_ENTITY_TYPE.get(), QF6Renderer::new);
 
             EntityRenderers.register(TrajansCoreEntities.STANDARD_SHELL.get(), StandardShellRenderer::new);

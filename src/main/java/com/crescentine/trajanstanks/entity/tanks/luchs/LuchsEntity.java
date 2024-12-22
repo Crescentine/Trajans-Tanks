@@ -1,40 +1,28 @@
-package com.crescentine.trajanstanks.entity.tanks.panzer2;
+package com.crescentine.trajanstanks.entity.tanks.luchs;
 
-import com.crescentine.trajanscore.TankModClient;
 import com.crescentine.trajanscore.basetank.BaseTankEntity;
-import com.crescentine.trajanscore.item.TrajansCoreItems;
 import com.crescentine.trajanstanks.config.TankModConfig;
 import com.crescentine.trajanstanks.item.TankModItems;
-import net.minecraft.ChatFormatting;
-import net.minecraft.Util;
-import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
-import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animation.*;
-import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.object.PlayState;
 
-public class Panzer2Entity extends BaseTankEntity {
+public class LuchsEntity extends BaseTankEntity {
     static int shellsUsed = 1;
-    public Panzer2Entity(EntityType<? extends BaseTankEntity> entityType, Level world) {
+    public LuchsEntity(EntityType<? extends BaseTankEntity> entityType, Level world) {
         super(entityType, world);
-        this.health = TankModConfig.panzer2_health.get();
-        this.speedMultiplier = TankModConfig.panzer2_speed.get();
-        this.shootingCooldown = TankModConfig.panzer2_shot_cooldown.get();
+        this.health = TankModConfig.luchs_health.get();
+        this.speedMultiplier = TankModConfig.luchs_speed.get();
+        this.shootingCooldown = TankModConfig.luchs_shot_cooldown.get();
         this.armor = 3.0;
-        this.healAmount = TankModConfig.panzer2_heal_amount.get();
-        this.maxFuel = TankModConfig.panzer_2_maxfuel.get() * 20;
+        this.healAmount = TankModConfig.luchs_heal_amount.get();
+        this.maxFuel = TankModConfig.luchs_maxfuel.get() * 20;
         this.armored = true;
         this.canUseAPCR = false;
         this.canUseHeat = false;
@@ -45,11 +33,12 @@ public class Panzer2Entity extends BaseTankEntity {
         this.speedMultiplier = 0.6f;
     }
     protected <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
-        if (event.isMoving()) {
-            event.getController().setAnimation(RawAnimation.begin().then("animation.tank.walking", Animation.LoopType.LOOP));
+        if (this.xo != this.getX() || this.zo != this.getZ()) {
+            event.getController().setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
             return PlayState.CONTINUE;
+        } else {
+            return PlayState.STOP;
         }
-        return PlayState.STOP;
     }
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
@@ -72,7 +61,7 @@ public class Panzer2Entity extends BaseTankEntity {
     }
     */
 
-    protected void positionRider(Entity pPassenger, Entity.MoveFunction pCallback) {
+    protected void positionRider(Entity pPassenger, MoveFunction pCallback) {
         if (this.hasPassenger(pPassenger)) {
             double d0 = this.getY() + this.getPassengersRidingOffset() + pPassenger.getMyRidingOffset();
             pCallback.accept(pPassenger, this.getX(), d0, this.getZ());
@@ -80,13 +69,8 @@ public class Panzer2Entity extends BaseTankEntity {
     }
 
     @Override
-    public void rideTick() {
-        super.rideTick();
-    }
-
-    @Override
     protected Item getItem() {
-        return TankModItems.PANZER2_ITEM.get();
+        return TankModItems.LUCHS_ITEM.get();
     }
 
     @Override
@@ -103,4 +87,5 @@ public class Panzer2Entity extends BaseTankEntity {
         ItemStack itemStack = getItemStack();
         spawnAtLocation(itemStack);
     }
+
 }

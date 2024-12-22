@@ -17,7 +17,7 @@ public class TankModCreativeTabs {
     public static final RegistryObject<CreativeModeTab> TANK_MOD_ITEMGROUP = CREATIVE_TABS.register("trajanstanks", () -> CreativeModeTab.builder()
             .withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
         .icon(() -> new ItemStack(TankModItems.PANZER2_ITEM.get()))
-            .title(Component.translatable("itemgroup.trajanscore_shells"))
+            .title(Component.translatable("itemgroup.trajanstanks"))
             .displayItems((parameters, output) -> {
                 output.accept(TankModItems.PANZER2_ITEM.get());
                 output.accept(TankModItems.TIGER_ITEM.get());
@@ -27,8 +27,8 @@ public class TankModCreativeTabs {
                 output.accept(TankModItems.ARCHER_ITEM.get());
                 output.accept(TankModItems.KV2_ITEM.get());
                 output.accept(TankModItems.JAGDPANTHER_ITEM.get());
-                output.accept(TankModItems.QF6_ITEM.get());
-                output.accept(TankModItems.PAK40_ITEM.get());
+                //output.accept(TankModItems.QF6_ITEM.get());
+                //output.accept(TankModItems.PAK40_ITEM.get());
             }).build());
     public static void register(IEventBus eventBus) {
         CREATIVE_TABS.register(eventBus);

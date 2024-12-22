@@ -12,6 +12,22 @@ public class TankModConfig {
     public static final ForgeConfigSpec.ConfigValue<Double> panzer2_heal_amount;
     public static final ForgeConfigSpec.ConfigValue<Double> panzer_2_maxfuel;
 
+
+    //luchs
+    public static final ForgeConfigSpec.ConfigValue<Double> luchs_health;
+    public static final ForgeConfigSpec.ConfigValue<Double> luchs_speed;
+    public static final ForgeConfigSpec.ConfigValue<Integer> luchs_shot_cooldown;
+    public static final ForgeConfigSpec.ConfigValue<Double> luchs_heal_amount;
+    public static final ForgeConfigSpec.ConfigValue<Double> luchs_maxfuel;
+
+
+    //somua
+    public static final ForgeConfigSpec.ConfigValue<Double> somua_health;
+    public static final ForgeConfigSpec.ConfigValue<Double> somua_speed;
+    public static final ForgeConfigSpec.ConfigValue<Integer> somua_shot_cooldown;
+    public static final ForgeConfigSpec.ConfigValue<Double> somua_heal_amount;
+    public static final ForgeConfigSpec.ConfigValue<Double> somua_maxfuel;
+
     public static final ForgeConfigSpec.ConfigValue<Double> t34_health;
     public static final ForgeConfigSpec.ConfigValue<Double> t34_speed;
     public static final ForgeConfigSpec.ConfigValue<Integer> t34_shot_cooldown;
@@ -71,6 +87,22 @@ public class TankModConfig {
         panzer2_shot_cooldown = BUILDER.define("Panzer 2 Shot Cooldown (1 = 1/20 second)", 60);
         panzer2_heal_amount = BUILDER.define("Panzer 2 Healing Amount (on right click)", 10.0);
         panzer_2_maxfuel = BUILDER.define("Panzer 2 Max Fuel (seconds)", 600.0);
+        BUILDER.pop();
+
+        BUILDER.push("Luchs Stats");
+        luchs_health = BUILDER.define("Luchs Health (0-250)" , 80.0);
+        luchs_speed = BUILDER.define("Luchs Speed" , 0.17);
+        luchs_shot_cooldown = BUILDER.define("Luchs Shoot Cooldown (1 = 1/20 second)", 60);
+        luchs_heal_amount = BUILDER.define("Luchs Healing Amount (on right click)", 10.0);
+        luchs_maxfuel = BUILDER.define("Luchs Max Fuel (seconds)", 600.0);
+        BUILDER.pop();
+
+        BUILDER.push("Somua Stats");
+        somua_health = BUILDER.define("Somua Health (0-250)" , 80.0);
+        somua_speed = BUILDER.define("Somua Speed" , 0.17);
+        somua_shot_cooldown = BUILDER.define("Somua Shoot Cooldown (1 = 1/20 second)", 60);
+        somua_heal_amount = BUILDER.define("Somua Healing Amount (on right click)", 10.0);
+        somua_maxfuel = BUILDER.define("Somua Max Fuel (seconds)", 600.0);
         BUILDER.pop();
 
         BUILDER.push("Tiger Stats");

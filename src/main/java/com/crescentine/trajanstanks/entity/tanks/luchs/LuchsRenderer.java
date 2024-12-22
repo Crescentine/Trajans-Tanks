@@ -1,18 +1,11 @@
-package com.crescentine.trajanstanks.entity.tanks.panzer2;
+package com.crescentine.trajanstanks.entity.tanks.luchs;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.core.particles.ParticleTypes;
-import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
-import javax.annotation.Nullable;
 
-public class Panzer2Renderer extends GeoEntityRenderer<Panzer2Entity> {
-    public Panzer2Renderer(EntityRendererProvider.Context renderManagerIn) {
-        super(renderManagerIn, new Panzer2Model());
+public class LuchsRenderer extends GeoEntityRenderer<LuchsEntity> {
+    public LuchsRenderer(EntityRendererProvider.Context renderManagerIn) {
+        super(renderManagerIn, new LuchsModel());
         this.shadowRadius = 0.7F;
     }
   //Broken + for GeckoLib 3
@@ -29,8 +22,5 @@ public class Panzer2Renderer extends GeoEntityRenderer<Panzer2Entity> {
                     }
         } */
 
-    @Override
-    public void scaleModelForRender(float widthScale, float heightScale, PoseStack poseStack, Panzer2Entity animatable, BakedGeoModel model, boolean isReRender, float partialTick, int packedLight, int packedOverlay) {
-        super.scaleModelForRender(widthScale, 1.1f, poseStack, animatable, model, isReRender, partialTick, packedLight, packedOverlay);
-    }
+
 }
