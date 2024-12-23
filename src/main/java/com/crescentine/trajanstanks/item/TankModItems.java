@@ -3,6 +3,7 @@ package com.crescentine.trajanstanks.item;
 import com.crescentine.trajanstanks.TankMod;
 import com.crescentine.trajanstanks.entity.TankModEntityTypes;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -36,4 +37,7 @@ public class TankModItems {
     public static final RegistryObject<Item> M4SHERMAN_BLUEPRINT = ITEMS.register("m4sherman_blueprint", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> KV2_BLUEPRINT = ITEMS.register("kv2_blueprint", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> JAG_BLUEPRINT = ITEMS.register("jag_blueprint", () -> new Item(new Item.Properties()));
-   }
+    public static final RegistryObject<Item> SOMUA_BLUEPRINT = ITEMS.register("somua_blueprint", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> LUCHS_BLUEPRINT = ITEMS.register("luchs_blueprint", () -> new Item(new Item.Properties()));
+
+}

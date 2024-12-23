@@ -17,7 +17,7 @@ public class SomuaS35Model extends GeoModel<SomuaS35Entity> {
     }
 
     public ResourceLocation getAnimationResource(SomuaS35Entity animatable) {
-        return new ResourceLocation(TankMod.MOD_ID, "animations/somua_s35.animation.json");
+        return new ResourceLocation(TankMod.MOD_ID, "animations/somua_s35.json");
     }
     @Override
     public void setCustomAnimations(SomuaS35Entity animatable, long instanceId, AnimationState<SomuaS35Entity> animationState) {

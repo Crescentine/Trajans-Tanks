@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#P#",
+        "PBP",
+        "#P#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:iron_nugget"
+        },
+        "P": {
+            "item": "minecraft:paper"
+        },
+        "B": {
+            "item": "minecraft:white_dye"
+        }
+    },
+    "result": {
+        "item": "trajanstanks:somua_blueprint"
+    }
+}

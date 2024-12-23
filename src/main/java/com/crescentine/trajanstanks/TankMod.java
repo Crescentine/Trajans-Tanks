@@ -85,6 +85,8 @@ public class TankMod {
             event.accept(TankModItems.ARCHER_BLUEPRINT);
             event.accept(TankModItems.KV2_BLUEPRINT);
             event.accept(TankModItems.JAG_BLUEPRINT);
+            event.accept(TankModItems.LUCHS_BLUEPRINT);
+            event.accept(TankModItems.SOMUA_BLUEPRINT);
         }
     }
     @Mod.EventBusSubscriber(modid = TankMod.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
