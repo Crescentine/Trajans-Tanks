@@ -39,9 +39,6 @@ public class TigerTankModel extends GeoModel<TigerTankEntity> {
                 turret.setRotY((float) -Math.toRadians(rider.getYHeadRot()));
 
                 main.setRotY((float) Math.toRadians(-animatable.getYRot()));
-
-
-
             }
         } else {
             main.setRotY((float) Math.toRadians(-animatable.getYRot()));

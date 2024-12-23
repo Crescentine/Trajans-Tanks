@@ -24,6 +24,7 @@ public class M4ShermanModel extends GeoModel<M4ShermanEntity> {
     public ResourceLocation getAnimationResource(M4ShermanEntity animatable) {
         return new ResourceLocation(TankMod.MOD_ID, "animations/m4_sherman_animation.json");
     }
+
     @Override
     public void setCustomAnimations(M4ShermanEntity animatable, long instanceId, AnimationState<M4ShermanEntity> animationState) {
         super.setCustomAnimations(animatable, instanceId, animationState);
@@ -39,7 +40,6 @@ public class M4ShermanModel extends GeoModel<M4ShermanEntity> {
                 turret.setRotY((float) -Math.toRadians(rider.getYHeadRot()));
 
                 main.setRotY((float) Math.toRadians(-animatable.getYRot()));
-
 
 
             }
