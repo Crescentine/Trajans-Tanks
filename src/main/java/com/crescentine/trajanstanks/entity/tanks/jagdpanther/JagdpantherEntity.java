@@ -29,6 +29,7 @@ public class JagdpantherEntity extends BaseTankEntity {
         this.canUseHighExplosive = false;
         this.canUseStandard = false;
         this.showFuel = true;
+        this.tankItem = TankModItems.JAGDPANTHER_ITEM.get();
     }
     protected <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
         if (this.xo != this.getX() || this.zo != this.getZ()) {

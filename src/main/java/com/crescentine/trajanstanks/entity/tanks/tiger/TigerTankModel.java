@@ -45,7 +45,7 @@ public class TigerTankModel extends GeoModel<TigerTankEntity> {
             }
         } else {
             main.setRotY((float) Math.toRadians(-animatable.getYRot()));
-            turret.setRotY(0);
+            turret.setRotY((float) -Math.toRadians(animatable.getLastPlayerYHeadRot()));
         }
     }
 }

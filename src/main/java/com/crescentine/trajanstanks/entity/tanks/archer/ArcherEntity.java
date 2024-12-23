@@ -30,6 +30,7 @@ public class ArcherEntity extends BaseTankEntity {
         this.showFuel = true;
         this.isTD=true;
         this.isOpposite=true;
+        this.tankItem = TankModItems.ARCHER_ITEM.get();
     }
     protected <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
         if (this.xo != this.getX() || this.zo != this.getZ()) {
@@ -42,26 +43,5 @@ public class ArcherEntity extends BaseTankEntity {
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "controller", 0, this::predicate));
-    }
-
-
-    @Override
-    protected Item getItem() {
-        return TankModItems.ARCHER_ITEM.get();
-    }
-
-    @Override
-    public boolean hurt(DamageSource pSource, float pAmount) {
-        if(getHealth()<=0.00) {
-            kill();
-            dropItem();
-        }
-
-        return super.hurt(pSource, pAmount);
-    }
-
-    protected void dropItem() {
-        ItemStack itemStack = getItemStack();
-        spawnAtLocation(itemStack);
     }
 }

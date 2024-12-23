@@ -24,11 +24,13 @@ public class TankModCreativeTabs {
                 output.accept(TankModItems.T34_ITEM.get());
                 output.accept(TankModItems.CRUISER_MK1_ITEM.get());
                 output.accept(TankModItems.M4SHERMAN_ITEM.get());
-                output.accept(TankModItems.ARCHER_ITEM.get());
                 output.accept(TankModItems.KV2_ITEM.get());
                 output.accept(TankModItems.JAGDPANTHER_ITEM.get());
-                //output.accept(TankModItems.QF6_ITEM.get());
-                //output.accept(TankModItems.PAK40_ITEM.get());
+                output.accept(TankModItems.ARCHER_ITEM.get());
+                output.accept(TankModItems.LUCHS_ITEM.get());
+                output.accept(TankModItems.SOMUA_ITEM.get());
+                output.accept(TankModItems.QF6_ITEM.get());
+                output.accept(TankModItems.PAK40_ITEM.get());
             }).build());
     public static void register(IEventBus eventBus) {
         CREATIVE_TABS.register(eventBus);

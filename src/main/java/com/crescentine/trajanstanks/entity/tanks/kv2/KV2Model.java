@@ -47,6 +47,8 @@ public class KV2Model extends GeoModel<KV2Entity>
             }
         } else {
             main.setRotY((float) Math.toRadians(-animatable.getYRot()));
+            turret.setRotY((float) -Math.toRadians(animatable.getLastPlayerYHeadRot()));
+
         }
     }
 }

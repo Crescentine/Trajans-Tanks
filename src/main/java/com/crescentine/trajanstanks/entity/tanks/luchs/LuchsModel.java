@@ -41,6 +41,8 @@ public class LuchsModel extends GeoModel<LuchsEntity>
             }
         } else {
             main.setRotY((float) Math.toRadians(-animatable.getYRot()));
+            turret.setRotY((float) -Math.toRadians(animatable.getLastPlayerYHeadRot()));
+
         }
     }
 }

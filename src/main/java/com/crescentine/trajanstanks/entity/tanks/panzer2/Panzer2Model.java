@@ -46,6 +46,8 @@ public class Panzer2Model extends GeoModel<Panzer2Entity>
             }
         } else {
             main.setRotY((float) Math.toRadians(-animatable.getYRot()));
+            turret.setRotY((float) -Math.toRadians(animatable.getLastPlayerYHeadRot()-animatable.getYRot()));
+
         }
     }
 }

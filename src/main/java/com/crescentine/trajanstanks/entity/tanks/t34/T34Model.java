@@ -44,6 +44,8 @@ public class T34Model extends GeoModel<T34Entity> {
             }
         } else {
             main.setRotY((float) Math.toRadians(-animatable.getYRot()));
+            turret.setRotY((float) -Math.toRadians(animatable.getLastPlayerYHeadRot()));
+
 
         }
     }

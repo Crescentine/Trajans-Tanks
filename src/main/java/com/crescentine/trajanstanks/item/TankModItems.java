@@ -25,8 +25,9 @@ public class TankModItems {
     public static final RegistryObject<Item> SOMUA_ITEM = ITEMS.register("somua_item", () -> new TankSpawnEgg(new Item.Properties(), TankModEntityTypes.SOMUA_ENTITY_TYPE::get));
 
 
-    //public static final RegistryObject<Item> QF6_ITEM = ITEMS.register("qf6_item", () -> new TankSpawnEgg(new Item.Properties(), TankModEntityTypes.::get));
-    //public static final RegistryObject<Item> PAK40_ITEM = ITEMS.register("pak40_item", () -> new TankSpawnEgg(TankModEntityTypes.ARTILLERY_ENTITY_TYPE, 0xFFFFFF, 0xFFFFFF, false, true, false, false, true,false, (new Item.Properties())));
+    public static final RegistryObject<Item> PAK40_ITEM = ITEMS.register("pak40_item", () -> new ATSpawnEgg(new Item.Properties(), TankModEntityTypes.ARTILLERY_ENTITY_TYPE::get));
+    public static final RegistryObject<Item> QF6_ITEM = ITEMS.register("qf6_item", () -> new ATSpawnEgg(new Item.Properties(), TankModEntityTypes.QF6_ENTITY_TYPE::get));
+
 
     public static final RegistryObject<Item> T34_BLUEPRINT = ITEMS.register("t34_blueprint", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> ARCHER_BLUEPRINT = ITEMS.register("archer_blueprint", () -> new Item(new Item.Properties()));

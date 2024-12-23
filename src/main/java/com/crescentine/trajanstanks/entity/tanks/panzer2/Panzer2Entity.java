@@ -43,6 +43,7 @@ public class Panzer2Entity extends BaseTankEntity {
         this.canUseStandard = true;
         this.showFuel = true;
         this.speedMultiplier = 0.6f;
+        this.tankItem = TankModItems.PANZER2_ITEM.get();
     }
     protected <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
         if (event.isMoving()) {
@@ -60,18 +61,6 @@ public class Panzer2Entity extends BaseTankEntity {
         return false;
     }
 
-    /*
-    protected void positionRider(Entity p_289552_, Entity.MoveFunction p_289571_) {
-        if (this.hasPassenger(p_289552_)) {
-            Vec3 vec3 = (new Vec3((double)0.2, 0.0D, 2)).yRot(-this.getYRot() * ((float)Math.PI / 180F) - ((float)Math.PI / 2F));
-
-            p_289571_.accept(p_289552_, this.getX() + vec3.x, this.getY() + vec3.y, this.getZ() + 2.5);
-            super.positionRider(p_289552_, p_289571_);
-
-        }
-    }
-    */
-
     protected void positionRider(Entity pPassenger, Entity.MoveFunction pCallback) {
         if (this.hasPassenger(pPassenger)) {
             double d0 = this.getY() + this.getPassengersRidingOffset() + pPassenger.getMyRidingOffset();
@@ -84,23 +73,5 @@ public class Panzer2Entity extends BaseTankEntity {
         super.rideTick();
     }
 
-    @Override
-    protected Item getItem() {
-        return TankModItems.PANZER2_ITEM.get();
-    }
 
-    @Override
-    public boolean hurt(DamageSource pSource, float pAmount) {
-        if(getHealth()<=0) {
-            kill();
-            dropItem();
-        }
-
-        return super.hurt(pSource, pAmount);
-    }
-
-    protected void dropItem() {
-        ItemStack itemStack = getItemStack();
-        spawnAtLocation(itemStack);
-    }
 }

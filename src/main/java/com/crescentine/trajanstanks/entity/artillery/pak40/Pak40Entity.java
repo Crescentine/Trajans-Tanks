@@ -22,15 +22,17 @@ public class Pak40Entity extends BaseATEntity {
         this.canUseStandard = false;
     }
     protected <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
-        if (event.isMoving()) {
+        if (this.xo != this.getX() || this.zo != this.getZ()) {
             event.getController().setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
             return PlayState.CONTINUE;
+        } else {
+            return PlayState.STOP;
         }
-        return PlayState.STOP;
     }
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "controller", 0, this::predicate));
+        controllers.add(new AnimationController<>(this, "shoot_controller", state -> PlayState.STOP)
+                .triggerableAnim("shoot", RawAnimation.begin().then("shooting_test", Animation.LoopType.PLAY_ONCE)));
     }
     @Override
     public double getPassengersRidingOffset() {
