@@ -1,0 +1,32 @@
+{
+  "type" : "trajanscore:crafter",
+  "ingredients" : [
+    {
+      "item": "trajanscore:light_tank_turret"
+    },
+    {
+      "item": "trajanscore:light_engine"
+    },
+    {
+      "item": "trajanscore:steering_crafting_item"
+    },
+    {
+      "item": "trajanscore:light_tank_plating"
+    },
+    {
+      "item": "trajanscore:light_tank_tracks"
+    },
+    {
+      "item": "trajanscore:light_tank_tracks"
+    },
+    {
+      "item": "trajanscore:light_tank_tracks"
+    },
+    {
+      "item": "trajanstanks:luchs_blueprint"
+    }
+  ],
+  "output" : {
+    "item" : "trajanstanks:luchs_item"
+  }
+}

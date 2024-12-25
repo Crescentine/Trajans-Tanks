@@ -13,6 +13,7 @@
   "item.trajanstanks.luchs_item" : "Luchs",
 
 
+
   "item.trajanstanks.panzer_two_blueprint" : "Panzer 2 Blueprint",
   "item.trajanstanks.tiger_blueprint" : "Tiger Blueprint",
   "item.trajanstanks.t34_blueprint" : "T34 Blueprint",
@@ -21,6 +22,9 @@
   "item.trajanstanks.archer_blueprint" : "Archer Blueprint",
   "item.trajanstanks.m4sherman_blueprint" : "M4 Sherman Blueprint",
   "item.trajanstanks.cruisermk1_blueprint" : "Cruiser MK1 Blueprint",
+  "item.trajanstanks.somua_blueprint" : "Somua Blueprint",
+  "item.trajanstanks.luchs_blueprint" : "Luchs Blueprint",
+
 
   "entity.trajanstanks.cruisermk1_entity_type" : "Cruiser MK 1",
   "entity.trajanstanks.panzer_two_entity_type" : "Panzer 2",
@@ -34,6 +38,9 @@
   "entity.trajanstanks.luchs_entity_type" : "Luchs",
   "entity.trajanstanks.qf6_entity_type" : "QF-6",
   "entity.trajanstanks.artillery_entity_type" : "Pak-40",
+  "entity.trajanstanks.somua_entity_type" : "Somua",
+  "entity.trajanstanks.luchs_entity_type" : "Luchs",
+
 
   "itemgroup.trajanstanks": "Tanks",
   "category.tankmod.trajanstanks" : "Tank Mod"
