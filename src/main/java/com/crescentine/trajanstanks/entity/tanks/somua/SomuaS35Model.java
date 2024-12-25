@@ -40,6 +40,8 @@ public class SomuaS35Model extends GeoModel<SomuaS35Entity> {
             }
         } else {
             main.setRotY((float) Math.toRadians(-animatable.getYRot()));
+            turret.setRotY((float) -Math.toRadians(animatable.getLastPlayerYHeadRot()));
+
 
         }
     }

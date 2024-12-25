@@ -28,6 +28,7 @@ public class KV2Entity extends BaseTankEntity {
         this.canUseHighExplosive = true;
         this.canUseStandard = true;
         this.showFuel = true;
+        this.tankItem = TankModItems.KV2_ITEM.get();
     }
     protected <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
         if (this.xo != this.getX() || this.zo != this.getZ()) {
@@ -45,25 +46,5 @@ public class KV2Entity extends BaseTankEntity {
     @Override
     public boolean shouldRiderSit() {
         return false;
-    }
-
-    @Override
-    protected Item getItem() {
-        return TankModItems.KV2_ITEM.get();
-    }
-
-    @Override
-    public boolean hurt(DamageSource pSource, float pAmount) {
-        if(getHealth()<=0) {
-            kill();
-            dropItem();
-        }
-
-        return super.hurt(pSource, pAmount);
-    }
-
-    protected void dropItem() {
-        ItemStack itemStack = getItemStack();
-        spawnAtLocation(itemStack);
     }
 }

@@ -38,6 +38,7 @@ public class CruiserMk1Entity extends BaseTankEntity {
         this.canUseStandard = true;
         this.showFuel = true;
         this.speedMultiplier = 0.34;
+        this.tankItem = TankModItems.CRUISER_MK1_ITEM.get();
     }
     protected <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
         if (this.xo != this.getX() || this.zo != this.getZ()) {

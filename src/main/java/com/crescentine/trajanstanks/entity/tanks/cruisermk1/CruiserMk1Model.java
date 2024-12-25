@@ -39,6 +39,7 @@ public class CruiserMk1Model extends GeoModel<CruiserMk1Entity> {
             }
         } else {
             main.setRotY((float) Math.toRadians(-animatable.getYRot()));
+            turret.setRotY((float) -Math.toRadians(animatable.getLastPlayerYHeadRot()));
         }
     }
 

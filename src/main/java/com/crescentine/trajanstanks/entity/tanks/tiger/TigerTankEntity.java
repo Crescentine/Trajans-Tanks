@@ -29,6 +29,7 @@ public class TigerTankEntity extends BaseTankEntity {
         this.canUseHighExplosive = true;
         this.canUseStandard = true;
         this.showFuel = true;
+        this.tankItem = TankModItems.TIGER_ITEM.get();
     }
     protected <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
         if (this.xo != this.getX() || this.zo != this.getZ()) {
@@ -39,31 +40,12 @@ public class TigerTankEntity extends BaseTankEntity {
         }
     }
 
+
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "controller", 0, this::predicate));
-        controllers.add(new AnimationController<>(this, "shoot_controller", state -> PlayState.STOP).triggerableAnim("shoot", RawAnimation.begin().then("shoot", Animation.LoopType.PLAY_ONCE)));
 
     }
 
-    @Override
-    protected Item getItem() {
-        return TankModItems.TIGER_ITEM.get();
-    }
-
-    @Override
-    public boolean hurt(DamageSource pSource, float pAmount) {
-        if(getHealth()<=0) {
-            kill();
-            dropItem();
-        }
-
-        return super.hurt(pSource, pAmount);
-    }
-
-    protected void dropItem() {
-        ItemStack itemStack = getItemStack();
-        spawnAtLocation(itemStack);
-    }
 
     }
