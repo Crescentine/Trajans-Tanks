@@ -15,7 +15,7 @@ import software.bernie.geckolib.core.object.PlayState;
 public class T34Entity extends BaseTankEntity {
     public T34Entity(EntityType<? extends BaseTankEntity> entityType, Level world) {
         super(entityType, world);
-        this.health = TankModConfig.t34_health.get();
+        this.health = TankModConfig.medium_tank_health.get();
         this.entityData.set(HEALTH, this.health);
         this.speedMultiplier = TankModConfig.t34_speed.get();
         this.shootingCooldown = TankModConfig.t34_shot_cooldown.get();

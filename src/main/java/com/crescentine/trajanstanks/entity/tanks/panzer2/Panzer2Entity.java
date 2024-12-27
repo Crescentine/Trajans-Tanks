@@ -29,7 +29,7 @@ public class Panzer2Entity extends BaseTankEntity {
     static int shellsUsed = 1;
     public Panzer2Entity(EntityType<? extends BaseTankEntity> entityType, Level world) {
         super(entityType, world);
-        this.health = TankModConfig.panzer2_health.get();
+        this.health = TankModConfig.light_tank_health.get();
         this.entityData.set(HEALTH, this.health);
         this.speedMultiplier = TankModConfig.panzer2_speed.get();
         this.shootingCooldown = TankModConfig.panzer2_shot_cooldown.get();
@@ -43,7 +43,7 @@ public class Panzer2Entity extends BaseTankEntity {
         this.canUseHighExplosive = false;
         this.canUseStandard = true;
         this.showFuel = true;
-        this.speedMultiplier = 0.6f;
+       // this.speedMultiplier = 0.6f;
         this.tankItem = TankModItems.PANZER2_ITEM.get();
     }
     protected <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
@@ -66,7 +66,7 @@ public class Panzer2Entity extends BaseTankEntity {
     protected void positionRider(Entity pPassenger, Entity.MoveFunction pCallback) {
         if (this.hasPassenger(pPassenger)) {
             double d0 = this.getY() + this.getPassengersRidingOffset() + pPassenger.getMyRidingOffset();
-            pCallback.accept(pPassenger, this.getX(), d0, this.getZ());
+            pCallback.accept(pPassenger, this.getX(), d0 - 0.3, this.getZ());
         }
     }
 

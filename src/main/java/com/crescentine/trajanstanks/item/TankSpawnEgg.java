@@ -2,6 +2,7 @@ package com.crescentine.trajanstanks.item;
 
 import com.crescentine.trajanscore.TankModClient;
 import com.crescentine.trajanscore.basetank.BaseTankEntity;
+import com.crescentine.trajanstanks.config.TankModConfig;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -43,11 +44,13 @@ public class TankSpawnEgg extends Item {
     public boolean heat;
     public boolean lowCalibar;
     public boolean highExplosive;
+    public char tankClass;
     private static final Predicate<Entity> ENTITY_PREDICATE = EntitySelector.NO_SPECTATORS.and(Entity::isPickable);
     private final Supplier<? extends EntityType<? extends BaseTankEntity>> type;
     public TankSpawnEgg(Properties properties, Supplier<? extends EntityType<? extends BaseTankEntity>> type, boolean standardShell,
-                        boolean apcrShell, boolean piercingShell, boolean heatShell, boolean lowCalibarShell, boolean highExplosiveShell) {
+                        boolean apcrShell, boolean piercingShell, boolean heatShell, boolean lowCalibarShell, boolean highExplosiveShell, char tankClass) {
         super(properties.stacksTo(1));
+        this.tankClass = tankClass;
         this.type = type;
         this.standard = standardShell;
         this.apcr = apcrShell;
@@ -104,13 +107,26 @@ public class TankSpawnEgg extends Item {
             }
         }
     }
-
+    private int getHealth() {
+        char type = tankClass;
+        if (type == 'l') {
+            return TankModConfig.light_tank_health.get();
+        }
+        if (type == 'm') {
+            return TankModConfig.medium_tank_health.get();
+        }
+        if (type == 'h') {
+            return TankModConfig.heavy_tank_health.get();
+        }
+        return 0;
+    }
 
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
         CompoundTag entityTag = pStack.getTagElement("Compound");
-        pTooltipComponents.add(Component.literal("Ammo").withStyle(ChatFormatting.AQUA));
+        pTooltipComponents.add(Component.literal("Health: " + this.getHealth()).withStyle(ChatFormatting.RED).withStyle(ChatFormatting.BOLD));
+        pTooltipComponents.add(Component.literal("Ammo").withStyle(ChatFormatting.AQUA).withStyle(ChatFormatting.BOLD));
         if (standard) {
             pTooltipComponents.add(Component.literal("Standard Shell"));
         }
@@ -126,7 +142,5 @@ public class TankSpawnEgg extends Item {
         if (lowCalibar) {
             pTooltipComponents.add(Component.literal("Low Calibar Shell"));
         }
-        //pTooltipComponents.add(Component.literal("Netherite").withStyle(ChatFormatting.LIGHT_PURPLE));
-
     }
 }

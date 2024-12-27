@@ -24,7 +24,7 @@ import software.bernie.geckolib.core.object.PlayState;
 public class CruiserMk1Entity extends BaseTankEntity {
     public CruiserMk1Entity(EntityType<? extends BaseTankEntity> entityType, Level world) {
         super(entityType, world);
-        this.health = TankModConfig.cruisermk1_health.get();
+        this.health = TankModConfig.light_tank_health.get();
         this.entityData.set(HEALTH, this.health);
         this.speedMultiplier = TankModConfig.cruisermk1_speed.get();
         this.shootingCooldown = TankModConfig.cruisermk1_shot_cooldown.get();
@@ -38,7 +38,7 @@ public class CruiserMk1Entity extends BaseTankEntity {
         this.canUseHighExplosive = false;
         this.canUseStandard = true;
         this.showFuel = true;
-        this.speedMultiplier = 0.34;
+       // this.speedMultiplier = 0.34;
         this.tankItem = TankModItems.CRUISER_MK1_ITEM.get();
     }
     protected <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
