@@ -17,6 +17,7 @@ public class JagdpantherEntity extends BaseTankEntity {
         super(entityType, world);
         this.isTD=true;
         this.health = TankModConfig.jagdpanther_health.get();
+        this.entityData.set(HEALTH, this.health);
         this.speedMultiplier = TankModConfig.jagdpanther_speed.get();
         this.shootingCooldown = TankModConfig.jagdpanther_shot_cooldown.get();
         this.armor = 5.0;

@@ -16,6 +16,7 @@ public class SomuaS35Entity extends BaseTankEntity {
     public SomuaS35Entity(EntityType<? extends BaseTankEntity> entityType, Level world) {
         super(entityType, world);
         this.health = TankModConfig.somua_health.get();
+        this.entityData.set(HEALTH, this.health);
         this.speedMultiplier = TankModConfig.somua_speed.get();
         this.shootingCooldown = TankModConfig.somua_shot_cooldown.get();
         this.armor = 4.0;

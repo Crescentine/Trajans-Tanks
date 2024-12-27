@@ -16,6 +16,7 @@ public class KV2Entity extends BaseTankEntity {
     public KV2Entity(EntityType<? extends BaseTankEntity> entityType, Level world) {
         super(entityType, world);
         this.health = TankModConfig.kv2_health.get();
+        this.entityData.set(HEALTH, this.health);
         this.speedMultiplier = TankModConfig.kv2_speed.get();
         this.shootingCooldown = TankModConfig.kv2_shot_cooldown.get();
         this.armor = 5.0;

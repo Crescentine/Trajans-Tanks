@@ -16,8 +16,9 @@ import software.bernie.geckolib.core.object.PlayState;
 public class TigerTankEntity extends BaseTankEntity {
     public TigerTankEntity(EntityType<? extends BaseTankEntity> entityType, Level world) {
         super(entityType, world);
-        this.speedMultiplier = TankModConfig.tiger_speed.get();
         this.health = TankModConfig.tiger_health.get();
+        this.entityData.set(HEALTH, this.health);
+        this.speedMultiplier = TankModConfig.tiger_speed.get();
         this.shootingCooldown = TankModConfig.tiger_shot_cooldown.get();
         this.armor = 5.0;
         this.healAmount = TankModConfig.tiger_heal_amount.get();

@@ -12,6 +12,7 @@ public class QF6Entity extends BaseATEntity {
     public QF6Entity(EntityType<? extends BaseATEntity> entityType, Level world) {
         super(entityType, world);
         this.health = TankModConfig.qf6_health.get();
+        this.entityData.set(HEALTH, (int) this.health);
         this.speedMultiplier = 0;
         this.shootingCooldown = TankModConfig.qf6_cooldown.get();
         this.canUseArmorPiercing = true;

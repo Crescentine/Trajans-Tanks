@@ -25,6 +25,7 @@ public class CruiserMk1Entity extends BaseTankEntity {
     public CruiserMk1Entity(EntityType<? extends BaseTankEntity> entityType, Level world) {
         super(entityType, world);
         this.health = TankModConfig.cruisermk1_health.get();
+        this.entityData.set(HEALTH, this.health);
         this.speedMultiplier = TankModConfig.cruisermk1_speed.get();
         this.shootingCooldown = TankModConfig.cruisermk1_shot_cooldown.get();
         this.armor = 3.0;

@@ -18,6 +18,7 @@ public class LuchsEntity extends BaseTankEntity {
     public LuchsEntity(EntityType<? extends BaseTankEntity> entityType, Level world) {
         super(entityType, world);
         this.health = TankModConfig.luchs_health.get();
+        this.entityData.set(HEALTH, this.health);
         this.speedMultiplier = TankModConfig.luchs_speed.get();
         this.shootingCooldown = TankModConfig.luchs_shot_cooldown.get();
         this.armor = 3.0;
