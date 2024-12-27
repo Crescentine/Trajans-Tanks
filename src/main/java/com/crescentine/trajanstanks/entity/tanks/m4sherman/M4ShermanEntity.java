@@ -16,6 +16,7 @@ public class M4ShermanEntity extends BaseTankEntity {
     public M4ShermanEntity(EntityType<? extends BaseTankEntity> entityType, Level world) {
         super(entityType, world);
         this.health = TankModConfig.m4sherman_health.get();
+        this.entityData.set(HEALTH, this.health);
         this.speedMultiplier = TankModConfig.m4sherman_speed.get();
         this.shootingCooldown = TankModConfig.m4sherman_shot_cooldown.get();
         this.armor = 4.0;

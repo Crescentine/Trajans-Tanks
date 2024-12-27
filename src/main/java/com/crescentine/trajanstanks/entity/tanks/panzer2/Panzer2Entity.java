@@ -30,6 +30,7 @@ public class Panzer2Entity extends BaseTankEntity {
     public Panzer2Entity(EntityType<? extends BaseTankEntity> entityType, Level world) {
         super(entityType, world);
         this.health = TankModConfig.panzer2_health.get();
+        this.entityData.set(HEALTH, this.health);
         this.speedMultiplier = TankModConfig.panzer2_speed.get();
         this.shootingCooldown = TankModConfig.panzer2_shot_cooldown.get();
         this.armor = 3.0;

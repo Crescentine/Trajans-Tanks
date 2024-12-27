@@ -13,6 +13,7 @@ public class Pak40Entity extends BaseATEntity {
     public Pak40Entity(EntityType<? extends BaseATEntity> entityType, Level world) {
         super(entityType, world);
         this.health = TankModConfig.pak40_health.get();
+        this.entityData.set(HEALTH, (int) this.health);
         this.speedMultiplier = 0;
         this.shootingCooldown = TankModConfig.pak40_cooldown.get();
         this.canUseArmorPiercing = true;

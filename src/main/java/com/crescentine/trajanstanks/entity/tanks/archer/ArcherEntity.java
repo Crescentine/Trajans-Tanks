@@ -16,6 +16,7 @@ public class ArcherEntity extends BaseTankEntity {
     public ArcherEntity(EntityType<? extends BaseTankEntity> entityType, Level world) {
         super(entityType, world);
         this.health = TankModConfig.archer_health.get();
+        this.entityData.set(HEALTH, this.health);
         this.speedMultiplier = TankModConfig.archer_speed.get();
         this.shootingCooldown = TankModConfig.archer_shot_cooldown.get();
         this.armor = 5.0;
