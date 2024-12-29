@@ -43,6 +43,7 @@ public class Panzer2Entity extends BaseTankEntity {
         this.canUseHighExplosive = false;
         this.canUseStandard = true;
         this.showFuel = true;
+        this.shootingYOffset = 1;
        // this.speedMultiplier = 0.6f;
         this.tankItem = TankModItems.PANZER2_ITEM.get();
     }
