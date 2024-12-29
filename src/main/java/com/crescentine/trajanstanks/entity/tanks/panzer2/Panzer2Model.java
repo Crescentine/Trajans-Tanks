@@ -23,7 +23,7 @@ public class Panzer2Model extends GeoModel<Panzer2Entity>
     }
 
     public ResourceLocation getAnimationResource(Panzer2Entity animatable) {
-        return new ResourceLocation(TankMod.MOD_ID, "animations/tank.animation.json");
+        return new ResourceLocation(TankMod.MOD_ID, "animations/pz2.json");
     }
     @Override
     public void setCustomAnimations(Panzer2Entity animatable, long instanceId, AnimationState<Panzer2Entity> animationState) {

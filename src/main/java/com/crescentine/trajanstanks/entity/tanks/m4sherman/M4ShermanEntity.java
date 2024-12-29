@@ -33,24 +33,13 @@ public class M4ShermanEntity extends BaseTankEntity {
     }
 
     protected <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
-        if (!this.getPersistentData().contains("prevYaw")) {
-            this.getPersistentData().putFloat("prevYaw", this.getYRot());
-        }
-        float prevYaw = this.getPersistentData().getFloat("prevYaw");
-        float currentYaw = this.getYRot();
-
-
-        if (this.xo != this.getX() || this.zo != this.getZ() || prevYaw != currentYaw) {
+        if (this.xo != this.getX() || this.zo != this.getZ() || this.yRotO != this.getYRot()) {
             event.getController().setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
-            this.getPersistentData().putFloat("prevYaw", currentYaw);
-
             return PlayState.CONTINUE;
 
         } else {
             return PlayState.STOP;
-
         }
-
     }
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
