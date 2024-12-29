@@ -84,8 +84,9 @@ public class TankSpawnEgg extends Item {
             if (hitresult.getType() == HitResult.Type.BLOCK) {
                 BaseTankEntity tank = type.get().create(pLevel);
                 tank.setPos(hitresult.getLocation().x(), hitresult.getLocation().y(), hitresult.getLocation().z());
-                tank.setYRot(pPlayer.getYRot());
-                tank.yRotO = pPlayer.yRotO;
+                //tank.setLastPlayerYHeadRot(pPlayer.getYHeadRot());
+                //tank.setYRot(pPlayer.getYRot());
+                //tank.yRotO = pPlayer.yRotO;
 
 
                 if (!pLevel.noCollision(tank, tank.getBoundingBox())) {

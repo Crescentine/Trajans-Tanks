@@ -32,7 +32,7 @@ public class KV2Entity extends BaseTankEntity {
         this.tankItem = TankModItems.KV2_ITEM.get();
     }
     protected <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
-        if (this.xo != this.getX() || this.zo != this.getZ()) {
+        if (this.xo != this.getX() || this.zo != this.getZ() || this.yRotO != this.getYRot()) {
             event.getController().setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
             return PlayState.CONTINUE;
         } else {

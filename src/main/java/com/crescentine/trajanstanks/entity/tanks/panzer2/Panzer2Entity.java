@@ -43,15 +43,17 @@ public class Panzer2Entity extends BaseTankEntity {
         this.canUseHighExplosive = false;
         this.canUseStandard = true;
         this.showFuel = true;
+        this.shootingYOffset = 1;
        // this.speedMultiplier = 0.6f;
         this.tankItem = TankModItems.PANZER2_ITEM.get();
     }
     protected <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
-        if (event.isMoving()) {
-            event.getController().setAnimation(RawAnimation.begin().then("animation.tank.walking", Animation.LoopType.LOOP));
+        if (this.xo != this.getX() || this.zo != this.getZ()) {
+            event.getController().setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
             return PlayState.CONTINUE;
+        } else {
+            return PlayState.STOP;
         }
-        return PlayState.STOP;
     }
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
